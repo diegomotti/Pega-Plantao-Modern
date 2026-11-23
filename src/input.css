@@ -1,0 +1,961 @@
+@import "tailwindcss";
+/* ---------------------------------------------------------------------------
+   Tokens — referência ao Lumen DS publicado.
+
+   tokens.lumen.css é gerado por `npm run sync:tokens`, que baixa o catálogo
+   de https://pegaplantao-lumen-ds.netlify.app/tokens.json.
+   --------------------------------------------------------------------------- */
+@import "./tokens.lumen.css";
+
+@source "../public/**/*.html";
+@source "../public/**/*.js";
+
+/* ---------------------------------------------------------------------------
+   Theme — maps the design tokens to Tailwind utilities.
+   --------------------------------------------------------------------------- */
+@theme {
+  --font-sans: "Instrument Sans", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-red-hat-display: "Red Hat Display", sans-serif;
+  --font-serif: "Libre Bodoni", serif;
+  --font-mono: "Courier Prime", monospace;
+
+  /* Primary Palette (Lumen DS) */
+  --color-primary-25: var(--pp-palette-primary-25);
+  --color-primary-50: var(--pp-palette-primary-50);
+  --color-primary-100: var(--pp-palette-primary-100);
+  --color-primary-200: var(--pp-palette-primary-200);
+  --color-primary-300: var(--pp-palette-primary-300);
+  --color-primary-400: var(--pp-palette-primary-400);
+  --color-primary-500: var(--pp-palette-primary-500);
+  --color-primary-600: var(--pp-palette-primary-600);
+  --color-primary-700: var(--pp-palette-primary-700);
+  --color-primary-800: var(--pp-palette-primary-800);
+  --color-primary-900: var(--pp-palette-primary-900);
+  --color-primary-925: var(--pp-palette-primary-925);
+  --color-primary-950: var(--pp-palette-primary-950);
+  --color-primary: var(--pp-palette-primary-500);
+
+  /* Secondary Palette (Lumen DS) */
+  --color-secondary-50: var(--pp-palette-secondary-50);
+  --color-secondary-100: var(--pp-palette-secondary-100);
+  --color-secondary-200: var(--pp-palette-secondary-200);
+  --color-secondary-300: var(--pp-palette-secondary-300);
+  --color-secondary-400: var(--pp-palette-secondary-400);
+  --color-secondary-500: var(--pp-palette-secondary-500);
+  --color-secondary-600: var(--pp-palette-secondary-600);
+  --color-secondary-700: var(--pp-palette-secondary-700);
+  --color-secondary-800: var(--pp-palette-secondary-800);
+  --color-secondary-900: var(--pp-palette-secondary-900);
+  --color-secondary-950: var(--pp-palette-secondary-950);
+  --color-secondary: var(--pp-palette-secondary-500);
+
+  /* Tertiary Palette (Lumen DS) */
+  --color-tertiary-50: var(--pp-palette-tertiary-50);
+  --color-tertiary-100: var(--pp-palette-tertiary-100);
+  --color-tertiary-200: var(--pp-palette-tertiary-200);
+  --color-tertiary-300: var(--pp-palette-tertiary-300);
+  --color-tertiary-400: var(--pp-palette-tertiary-400);
+  --color-tertiary-500: var(--pp-palette-tertiary-500);
+  --color-tertiary-600: var(--pp-palette-tertiary-600);
+  --color-tertiary-700: var(--pp-palette-tertiary-700);
+  --color-tertiary-800: var(--pp-palette-tertiary-800);
+  --color-tertiary-900: var(--pp-palette-tertiary-900);
+  --color-tertiary-950: var(--pp-palette-tertiary-950);
+  --color-tertiary: var(--pp-palette-tertiary-500);
+
+  /* Gray Palette (Lumen DS) */
+  --color-gray-50: var(--pp-palette-gray-50);
+  --color-gray-100: var(--pp-palette-gray-100);
+  --color-gray-200: var(--pp-palette-gray-200);
+  --color-gray-300: var(--pp-palette-gray-300);
+  --color-gray-400: var(--pp-palette-gray-400);
+  --color-gray-500: var(--pp-palette-gray-500);
+  --color-gray-600: var(--pp-palette-gray-600);
+  --color-gray-700: var(--pp-palette-gray-700);
+  --color-gray-800: var(--pp-palette-gray-800);
+  --color-gray-900: var(--pp-palette-gray-900);
+  --color-gray-950: var(--pp-palette-gray-950);
+  --color-gray: var(--pp-palette-gray-500);
+
+  /* Cyan Palette (Lumen DS) */
+  --color-cyan-50: var(--pp-palette-cyan-50);
+  --color-cyan-100: var(--pp-palette-cyan-100);
+  --color-cyan-200: var(--pp-palette-cyan-200);
+  --color-cyan-300: var(--pp-palette-cyan-300);
+  --color-cyan-400: var(--pp-palette-cyan-400);
+  --color-cyan-500: var(--pp-palette-cyan-500);
+  --color-cyan-600: var(--pp-palette-cyan-600);
+  --color-cyan-700: var(--pp-palette-cyan-700);
+  --color-cyan-800: var(--pp-palette-cyan-800);
+  --color-cyan-900: var(--pp-palette-cyan-900);
+  --color-cyan-950: var(--pp-palette-cyan-950);
+  --color-cyan: var(--pp-palette-cyan-500);
+
+  /* Green Palette (Lumen DS) */
+  --color-green-50: var(--pp-palette-green-50);
+  --color-green-100: var(--pp-palette-green-100);
+  --color-green-200: var(--pp-palette-green-200);
+  --color-green-300: var(--pp-palette-green-300);
+  --color-green-400: var(--pp-palette-green-400);
+  --color-green-500: var(--pp-palette-green-500);
+  --color-green-600: var(--pp-palette-green-600);
+  --color-green-700: var(--pp-palette-green-700);
+  --color-green-800: var(--pp-palette-green-800);
+  --color-green-900: var(--pp-palette-green-900);
+  --color-green-950: var(--pp-palette-green-950);
+  --color-green: var(--pp-palette-green-500);
+
+  /* Red Palette (Lumen DS) */
+  --color-red-50: var(--pp-palette-red-50);
+  --color-red-100: var(--pp-palette-red-100);
+  --color-red-200: var(--pp-palette-red-200);
+  --color-red-300: var(--pp-palette-red-300);
+  --color-red-400: var(--pp-palette-red-400);
+  --color-red-500: var(--pp-palette-red-500);
+  --color-red-600: var(--pp-palette-red-600);
+  --color-red-700: var(--pp-palette-red-700);
+  --color-red-800: var(--pp-palette-red-800);
+  --color-red-900: var(--pp-palette-red-900);
+  --color-red-950: var(--pp-palette-red-950);
+  --color-red: var(--pp-palette-red-500);
+
+  /* Semantic shortcuts */
+  --color-line: var(--pp-palette-gray-100);
+  --color-nav-line: var(--pp-palette-secondary-100);
+  --color-ink: var(--pp-palette-primary-800);
+  --color-muted: var(--pp-palette-gray-500);
+  --color-nav: var(--pp-palette-secondary-500);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+    background-color: var(--pp-palette-cyan-50);
+    background-image:
+      radial-gradient(70% 45% at 0% 0%, #ffffff 0%, rgba(255, 255, 255, 0) 70%),
+      linear-gradient(160deg, #f3fafd 0%, #edf7fc 42%, #e7f4fa 100%);
+    background-attachment: fixed;
+  }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background-color: var(--color-primary-500);
+    color: #fff;
+  }
+
+  /* Icons are injected by the <pp-icon> custom element (see public/app.js). */
+  pp-icon {
+    display: inline-flex;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  pp-icon > svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@layer utilities {
+  .scrollbar-slim {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--pp-palette-gray-500) 30%, transparent) transparent;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-slim::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--pp-palette-gray-500) 25%, transparent);
+    border-radius: 999px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Components
+   --------------------------------------------------------------------------- */
+@layer components {
+  /* -------------------------------------------------------- rail (left) */
+  .pp-rail-link {
+    @apply grid size-10 shrink-0 place-items-center rounded-full border border-primary-25 bg-white text-primary-500 transition-colors hover:border-primary-200 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
+  }
+
+  .pp-rail-link[aria-current="page"] {
+    @apply border-primary-200 bg-primary-25;
+  }
+
+  .pp-rail-link[aria-expanded="true"] {
+    @apply border-primary-200 bg-primary-25;
+  }
+
+  .pp-rail-link--selected[aria-current="page"],
+  .pp-rail-link--selected[aria-expanded="true"] {
+    @apply border-primary-500 bg-primary-500 hover:bg-primary-600;
+  }
+
+  .pp-rail-link--selected pp-icon {
+    filter: brightness(0) invert(1);
+  }
+
+  .pp-rail-menu {
+    @apply fixed z-50 w-50 overflow-y-auto rounded-lg bg-white shadow-[0_4px_18px_rgba(0,0,0,0.2)];
+    max-height: calc(100vh - 16px);
+  }
+
+  .pp-account-menu {
+    @apply absolute top-[calc(100%+20px)] right-0;
+    max-height: calc(100vh - 69px);
+    max-width: calc(100vw - 40px);
+  }
+
+  .pp-rail-menu__item {
+    @apply flex min-h-[51px] items-center gap-2.5 border-b border-primary-50 px-2.5 py-2 text-[14px] leading-[18px] text-primary-500 transition-colors hover:bg-primary-25 focus-visible:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary-500;
+  }
+
+  .pp-rail-menu__item:last-child {
+    @apply border-b-0;
+  }
+
+  .pp-rail-menu__item pp-icon {
+    @apply size-5;
+  }
+
+  /* ------------------------------------------------------ weekly schedule */
+  .pp-weekly-calendar {
+    @apply min-w-[1050px];
+  }
+
+  .pp-weekly-header {
+    @apply grid h-[51px] grid-cols-[220px_minmax(0,1fr)_32px] border-b border-cyan-200;
+  }
+
+  .pp-weekly-period {
+    @apply flex items-center gap-2 text-[16px] text-primary-500;
+  }
+
+  .pp-weekly-arrow {
+    @apply grid size-8 place-items-center rounded text-primary-500 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-primary-500;
+  }
+
+  .pp-weekly-header > .pp-weekly-arrow {
+    @apply self-center;
+  }
+
+  .pp-weekly-days,
+  .pp-weekly-row {
+    @apply grid grid-cols-7;
+  }
+
+  .pp-weekly-day {
+    @apply flex flex-col items-center justify-center text-[19px] leading-[20px] text-gray-800;
+  }
+
+  .pp-weekly-day small {
+    @apply text-[9px] uppercase leading-[11px] text-gray-500;
+  }
+
+  .pp-weekly-day--highlight {
+    @apply rounded-t-lg border-x border-t border-cyan-300 bg-white/40 text-primary-500;
+  }
+
+  .pp-weekly-day--highlight small {
+    @apply text-primary-500;
+  }
+
+  .pp-weekly-sector {
+    @apply grid min-h-[204px] grid-cols-[220px_minmax(0,1fr)_32px] border-b border-cyan-200;
+  }
+
+  .pp-weekly-sector-info {
+    @apply flex flex-col items-start gap-2 pt-2 pr-3;
+  }
+
+  .pp-weekly-outline-btn {
+    @apply inline-flex h-[30px] items-center gap-1 rounded border border-primary-500 bg-white px-2 text-[13px] text-primary-500 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-primary-500;
+  }
+
+  .pp-weekly-restricted {
+    @apply flex w-[146px] items-center justify-between rounded border border-gray-200 bg-white px-2 py-1.5 text-[10px] leading-[13px] text-gray-800;
+  }
+
+  .pp-weekly-column {
+    @apply min-w-0 px-[3px] pt-2;
+  }
+
+  .pp-weekly-column--highlight {
+    @apply border-x border-cyan-300 bg-white/40;
+  }
+
+  .pp-weekly-add {
+    @apply mb-0.5 flex h-[24px] w-full items-center justify-center rounded bg-white/70 text-primary-500 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-primary-500;
+  }
+
+  .pp-weekly-shift {
+    @apply mb-0.5 flex min-h-[38px] justify-between gap-1 rounded-[2px] border border-gray-200 border-l-[3px] border-l-green-500 bg-white px-1 py-0.5 text-[11px] leading-[14px] text-gray-900 shadow-sm;
+  }
+
+  .pp-weekly-shift--green { @apply bg-green-50; }
+  .pp-weekly-shift--yellow { @apply bg-tertiary-50; }
+  .pp-weekly-shift--red { @apply bg-red-50; }
+  .pp-weekly-shift--blue { @apply bg-cyan-50; }
+
+  .pp-weekly-time {
+    @apply shrink-0 border-b-[3px] border-red-500 text-right text-[9px] font-semibold leading-[11px] text-primary-500;
+  }
+
+  /* --------------------------------------------- settings nav (sidebar) */
+  .pp-nav-item {
+    @apply ml-[34px] flex min-h-[43px] w-[calc(100%_-_34px)] items-center justify-between gap-3 border-b border-nav-line py-[11px] pr-2 text-left text-[16px] leading-[18px] text-nav transition-colors hover:text-primary-500;
+  }
+
+  .pp-nav-item:last-child {
+    @apply border-b-0;
+  }
+
+  .pp-nav-item[aria-current="page"] {
+    @apply font-medium text-primary-500;
+  }
+
+  .pp-nav-item[aria-expanded="true"] {
+    @apply border-b-transparent;
+  }
+
+  .pp-nav-item--plain {
+    @apply min-h-[42px] border-b-0;
+  }
+
+  .pp-nav-sub-list {
+    @apply relative ml-[30px] overflow-hidden border-b border-nav-line pt-3 pb-3;
+  }
+
+  .pp-nav-sub {
+    @apply relative flex h-[39px] items-center pr-4 pl-[50px] text-[13.5px] leading-none text-nav transition-colors hover:text-primary-500;
+  }
+
+  /* small "└" mark that links each child to its parent */
+  .pp-nav-sub::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 20px;
+    width: 8px;
+    height: 3.5px;
+    border-left: 1px solid var(--pp-palette-gray-500);
+    border-bottom: 1px solid var(--pp-palette-gray-500);
+  }
+
+  .pp-nav-sub--active {
+    @apply my-[0.5px] h-[38px] w-[calc(100%_+_30px)] rounded-full border border-secondary-200 bg-white font-medium text-primary-500 shadow-[0_1px_2px_rgba(33,79,141,0.04)];
+  }
+
+  /* ---------------------------------------------------------------- card */
+  .pp-card {
+    @apply flex items-center gap-5 rounded-[12px] border border-line bg-white px-5;
+  }
+
+  .pp-card__title {
+    @apply text-[19.3px] font-medium leading-6 tracking-[-0.005em] text-ink;
+  }
+
+  .pp-card__desc {
+    @apply mt-0.5 text-[13.5px] leading-[19px] text-muted;
+  }
+
+  /* ------------------------------------------------------------ checkbox */
+  .pp-check {
+    @apply relative grid size-5 shrink-0 cursor-pointer place-items-center rounded-[5px] border border-gray-200 bg-white transition-colors;
+  }
+
+  .pp-check:has(input:checked) {
+    @apply border-primary-500 bg-primary-500;
+  }
+
+  .pp-check:has(input:indeterminate) {
+    @apply border-primary-500 bg-primary-500;
+  }
+
+  .pp-check:has(input:indeterminate)::after {
+    @apply absolute h-0.5 w-2.5 rounded-full bg-white;
+    content: "";
+  }
+
+  .pp-check > pp-icon {
+    @apply size-3 text-white opacity-0 transition-opacity;
+  }
+
+  .pp-check:has(input:checked) > pp-icon {
+    @apply opacity-100;
+  }
+
+  .pp-check:has(input:focus-visible) {
+    @apply outline-2 outline-offset-2 outline-primary-500;
+  }
+
+  /* ------------------------------------------------- floating-label select */
+  .pp-select {
+    @apply flex h-[37px] w-[159px] cursor-pointer items-center overflow-hidden rounded-[8px] border border-gray-200 bg-white pr-9 pl-3.5 text-left text-[14px] text-muted outline-none transition-colors hover:border-gray-300 focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
+  }
+
+  .pp-select > span {
+    @apply truncate;
+  }
+
+  .pp-select-label {
+    @apply pointer-events-none absolute -top-[7px] left-3 z-10 bg-white px-1 text-[11px] leading-none font-semibold text-gray-700;
+  }
+
+  /* Dropdown list: cartão branco, divisórias ciano e linhas altas. */
+  .pp-select-menu {
+    @apply absolute top-[calc(100%+1px)] left-0 z-50 max-h-[280px] w-full min-w-[200px] overflow-y-auto rounded-[8px] bg-white;
+    box-shadow:
+      0 12px 32px rgb(33 79 141 / 16%),
+      0 3px 8px rgb(33 79 141 / 8%);
+  }
+
+  .pp-select-menu--above {
+    top: auto;
+    bottom: calc(100% + 20px);
+  }
+
+  .pp-select-option {
+    @apply flex h-[40px] cursor-pointer items-center px-3.5 text-[16px] text-primary-900 outline-none select-none;
+  }
+
+  .pp-select-option + .pp-select-option {
+    @apply border-t border-cyan-200;
+  }
+
+  .pp-select-option:hover,
+  .pp-select-option:focus,
+  .pp-select-option:focus-visible {
+    @apply bg-cyan-50/50 outline-none;
+  }
+
+  /* ------------------------------------------------------------- buttons */
+  .pp-btn {
+    --pp-btn-filled: var(--pp-palette-primary-500);
+    --pp-btn-filled-label: var(--pp-palette-white);
+    --pp-btn-filled-hover: var(--pp-palette-primary-800);
+    --pp-btn-filled-active: var(--pp-palette-primary-400);
+    --pp-btn-outline-label: var(--pp-palette-primary-500);
+    --pp-btn-outline-active: var(--pp-palette-primary-400);
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
+    background: var(--pp-btn-filled);
+    color: var(--pp-btn-filled-label);
+  }
+
+  .pp-btn--primary-25 {
+    --pp-btn-filled: var(--pp-palette-primary-25);
+    --pp-btn-filled-label: var(--pp-palette-primary-800);
+    --pp-btn-filled-hover: var(--pp-palette-primary-500);
+    --pp-btn-filled-active: var(--pp-palette-primary-50);
+    --pp-btn-outline-label: var(--pp-palette-primary-25);
+    --pp-btn-outline-active: var(--pp-palette-primary-700);
+  }
+
+  .pp-btn--app-primary {
+    --pp-btn-filled: var(--pp-palette-primary-800);
+    --pp-btn-filled-hover: var(--pp-palette-primary-500);
+    --pp-btn-filled-active: var(--pp-palette-primary-700);
+    --pp-btn-outline-label: var(--pp-palette-primary-300);
+  }
+
+  .pp-btn--secondary {
+    --pp-btn-filled: var(--pp-palette-secondary-100);
+    --pp-btn-filled-label: var(--pp-palette-black);
+    --pp-btn-filled-hover: var(--pp-palette-secondary-200);
+    --pp-btn-filled-active: var(--pp-palette-secondary-200);
+    --pp-btn-outline-label: var(--pp-palette-white);
+    --pp-btn-outline-active: color-mix(in srgb, var(--pp-palette-white) 70%, transparent);
+  }
+
+  .pp-btn--tertiary {
+    --pp-btn-filled: var(--pp-palette-tertiary-500);
+    --pp-btn-filled-label: var(--pp-palette-black);
+    --pp-btn-filled-hover: var(--pp-palette-tertiary-600);
+    --pp-btn-filled-active: var(--pp-palette-tertiary-400);
+    --pp-btn-outline-label: var(--pp-palette-tertiary-500);
+    --pp-btn-outline-active: var(--pp-palette-tertiary-400);
+  }
+
+  .pp-btn--red {
+    --pp-btn-filled: var(--pp-palette-red-600);
+    --pp-btn-filled-hover: var(--pp-palette-red-700);
+    --pp-btn-filled-active: var(--pp-palette-red-500);
+    --pp-btn-outline-label: var(--pp-palette-red-500);
+    --pp-btn-outline-active: var(--pp-palette-red-500);
+  }
+
+  .pp-btn--green {
+    --pp-btn-filled: var(--pp-palette-green-600);
+    --pp-btn-filled-hover: var(--pp-palette-green-700);
+    --pp-btn-filled-active: var(--pp-palette-green-500);
+    --pp-btn-outline-label: var(--pp-palette-green-500);
+    --pp-btn-outline-active: var(--pp-palette-green-500);
+  }
+
+  .pp-btn--white {
+    --pp-btn-filled: var(--pp-palette-white);
+    --pp-btn-filled-label: var(--pp-palette-black);
+    --pp-btn-filled-hover: var(--pp-palette-secondary-50);
+    --pp-btn-filled-active: var(--pp-palette-secondary-50);
+    --pp-btn-outline-label: var(--pp-palette-white);
+    --pp-btn-outline-active: color-mix(in srgb, var(--pp-palette-white) 70%, transparent);
+    @apply shadow-sm;
+  }
+
+  .pp-btn:not(:disabled):hover {
+    background: var(--pp-btn-filled-hover);
+  }
+
+  .pp-btn:not(:disabled):active {
+    background: var(--pp-btn-filled-active);
+  }
+
+  .pp-btn--outline,
+  .pp-btn--text {
+    background: transparent;
+    color: var(--pp-btn-outline-label);
+  }
+
+  .pp-btn--outline {
+    border: 1px solid currentColor;
+  }
+
+  .pp-btn--outline:not(:disabled):hover,
+  .pp-btn--text:not(:disabled):hover {
+    background: color-mix(in srgb, var(--pp-btn-outline-label) 10%, transparent);
+  }
+
+  .pp-btn--outline:not(:disabled):active,
+  .pp-btn--text:not(:disabled):active {
+    background: color-mix(in srgb, var(--pp-btn-outline-label) 10%, transparent);
+    color: var(--pp-btn-outline-active);
+  }
+
+  .pp-btn--text.pp-btn--tertiary {
+    color: var(--pp-palette-tertiary-700);
+  }
+
+  .pp-btn--text.pp-btn--tertiary:not(:disabled):hover {
+    background: var(--pp-palette-tertiary-50);
+  }
+
+  .pp-btn--text.pp-btn--tertiary:not(:disabled):active {
+    background: var(--pp-palette-tertiary-50);
+    color: var(--pp-btn-outline-active);
+  }
+
+  .pp-btn--icon {
+    @apply size-10 p-0;
+  }
+
+  .pp-btn--square { @apply rounded-none; }
+  .pp-btn--medium-rounded { @apply rounded-xl; }
+  .pp-btn--pill { @apply rounded-full; }
+
+  .pp-btn:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+
+  .pp-input {
+    @apply h-[37px] rounded-[8px] border border-line bg-white px-3 text-[14px] text-ink outline-none;
+  }
+
+  .pp-modal {
+    @apply m-auto w-[calc(100%_-_30px)] max-w-[900px] overflow-hidden rounded-2xl border border-line p-0 text-muted shadow-xl;
+    height: min(680px, calc(100dvh - 30px));
+    max-height: calc(100dvh - 30px);
+  }
+  .pp-modal__places {
+    margin: 30px auto;
+    height: calc(100dvh - 60px);
+  }
+
+  .pp-modal::backdrop {
+    background: rgb(0 0 0 / 30%);
+  }
+
+  .pp-modal__layout {
+    @apply flex h-full min-h-0 flex-col;
+  }
+
+  .pp-modal__header {
+    @apply flex min-h-20 shrink-0 items-center justify-between gap-4 border-b border-line bg-cyan-50/85 px-5;
+  }
+
+  .pp-modal__close {
+    @apply -mr-5 flex w-20 shrink-0 items-center justify-center self-stretch border-l border-cyan-200;
+  }
+
+  .pp-modal__body {
+    @apply min-h-0 flex-1 overflow-y-auto p-5;
+  }
+
+  .pp-modal__footer {
+    @apply flex min-h-16 shrink-0 items-center justify-center border-t border-line bg-cyan-50/85 px-5 py-3;
+  }
+
+  .pp-shift-modal {
+    width: calc(100% - 30px);
+    max-width: 1500px;
+    height: min(740px, calc(100dvh - 30px));
+  }
+
+  .pp-shift-header {
+    @apply flex-wrap py-3;
+  }
+
+  .pp-shift-title {
+    @apply flex items-center gap-3 text-xl font-semibold uppercase text-primary-500;
+  }
+
+  .pp-shift-header-actions {
+    @apply ml-auto flex flex-wrap items-center gap-3 text-[13px];
+  }
+
+  .pp-shift-header-actions label,
+  .pp-shift-professional-row > label:not(.pp-field),
+  .pp-shift-repeat-label {
+    @apply flex items-center gap-2;
+  }
+
+  .pp-shift-header input[type="checkbox"],
+  .pp-shift-panel input[type="checkbox"] {
+    @apply size-4 accent-primary-500;
+  }
+
+  .pp-shift-content {
+    @apply flex min-h-0 flex-1 overflow-y-auto p-5;
+  }
+
+  .pp-shift-nav {
+    @apply w-[240px] shrink-0 pt-1;
+  }
+
+  .pp-shift-nav-item {
+    @apply ml-0 w-full justify-start gap-3 border-b-0 px-4 text-[15px];
+  }
+
+  .pp-shift-nav-item pp-icon {
+    @apply shrink-0 text-primary-500;
+  }
+
+  .pp-shift-nav-item[aria-current="page"] {
+    @apply rounded-full border border-secondary-200 bg-white shadow-sm;
+  }
+
+  .pp-shift-panel {
+    @apply min-w-0 flex-1 rounded-xl border border-line bg-cyan-50/85 p-5;
+  }
+
+  .pp-shift-section {
+    @apply mb-4;
+  }
+
+  .pp-shift-section h3,
+  #shift-other-title {
+    @apply mb-2 text-[17px] font-semibold text-ink;
+  }
+
+  .pp-shift-box {
+    @apply border border-line p-4;
+  }
+
+  .pp-shift-settings,
+  .pp-shift-duration,
+  .pp-shift-professional-row {
+    @apply flex flex-wrap items-center gap-4;
+  }
+
+  /* Campo padrão: label flutuante + input (ou select). */
+  .pp-field {
+    @apply relative block min-w-0;
+  }
+
+  .pp-field > span {
+    @apply absolute -top-2 left-3 z-10 bg-white px-1 text-[12px] leading-4 text-gray-700;
+  }
+
+  .pp-field input {
+    @apply h-10 w-full rounded border border-line bg-white px-3 text-[14px] text-ink outline-none focus:border-line focus-visible:outline-none;
+  }
+
+  .pp-field .pp-select {
+    @apply w-full;
+  }
+
+  .pp-field input[readonly] {
+    @apply bg-gray-50;
+  }
+
+  .pp-shift-settings .pp-field {
+    @apply min-w-[180px] flex-1;
+  }
+
+  .pp-shift-settings .pp-field:first-child {
+    @apply max-w-[440px];
+  }
+
+  .pp-shift-duration > .pp-field {
+    @apply w-[130px];
+  }
+
+  .pp-shift-duration > .pp-field:last-of-type {
+    @apply w-[155px];
+  }
+
+  .pp-shift-section-heading {
+    @apply flex flex-wrap items-center justify-between gap-2;
+  }
+
+  .pp-shift-repeat {
+    @apply flex flex-wrap items-center gap-3 border-0 p-0;
+  }
+
+  .pp-shift-repeat legend {
+    @apply mb-2 text-[13px] font-medium text-ink;
+  }
+
+  .pp-shift-repeat .pp-field {
+    @apply w-[150px];
+  }
+
+  .pp-shift-repeat:disabled {
+    @apply opacity-50;
+  }
+
+  .pp-shift-weekdays {
+    @apply flex flex-wrap gap-1.5;
+  }
+
+  .pp-shift-weekdays label {
+    @apply relative;
+  }
+
+  .pp-shift-weekdays input {
+    @apply absolute opacity-0;
+  }
+
+  .pp-shift-weekdays span {
+    @apply grid size-8 place-items-center rounded-full bg-gray-200 text-sm font-medium text-gray-700;
+  }
+
+  .pp-shift-weekdays input:checked + span {
+    @apply bg-primary-500 text-white;
+  }
+
+  .pp-shift-weekdays input:focus-visible + span {
+    @apply outline-2 outline-offset-2 outline-primary-500;
+  }
+
+  .pp-shift-professionals {
+    @apply p-0;
+  }
+
+  .pp-shift-professional-row {
+    @apply px-4 py-5 text-[13px];
+  }
+
+  .pp-shift-professional-row + .pp-shift-professional-row {
+    @apply border-t border-line;
+  }
+
+  .pp-shift-professional-row > .pp-field:first-child {
+    @apply w-[350px] max-w-full;
+  }
+
+  .pp-shift-situation {
+    @apply ml-auto w-[200px];
+  }
+
+  .pp-shift-notice {
+    @apply mb-4 rounded-lg border border-primary-100 bg-white px-4 py-3 text-sm text-ink;
+  }
+
+  @media (max-width: 767px) {
+    .pp-shift-header {
+      @apply gap-3;
+    }
+
+    .pp-shift-header-actions {
+      @apply order-3 w-full;
+    }
+
+    .pp-shift-header .pp-modal__close {
+      @apply ml-auto min-h-10 border-0;
+    }
+
+    .pp-shift-content {
+      @apply flex-col gap-4 p-3;
+    }
+
+    .pp-shift-nav {
+      @apply flex w-full flex-wrap gap-1;
+    }
+
+    .pp-shift-nav-item {
+      @apply w-auto min-h-10 px-3 text-sm;
+    }
+
+    .pp-shift-panel {
+      @apply p-4;
+    }
+
+    .pp-shift-situation {
+      @apply ml-0;
+    }
+  }
+
+  .pp-locais-table {
+    @apply w-full min-w-[650px] border-collapse text-left text-[13px] text-nav;
+  }
+
+  .pp-locais-table th,
+  .pp-locais-table td {
+    @apply border-b border-line px-3 py-2;
+  }
+
+  .pp-locais-table thead th {
+    @apply font-medium text-primary-500;
+  }
+
+  .pp-locais-table th:not(:first-child),
+  .pp-locais-table td:not(:first-child) {
+    @apply w-[17%] text-center;
+  }
+
+  .pp-locais-table .pp-check {
+    @apply mx-auto;
+  }
+
+  .pp-locais-table__group {
+    @apply border-t border-line bg-primary-25 font-medium text-ink;
+  }
+
+  .pp-locais-table__group > :first-child,
+  .pp-locais-table__sector > :first-child {
+    @apply border-l border-line;
+  }
+
+  .pp-locais-table__group > :last-child,
+  .pp-locais-table__sector > :last-child {
+    @apply border-r border-line;
+  }
+
+  .pp-locais-table__sector:nth-child(odd) {
+    @apply bg-primary-25/50;
+  }
+
+  .pp-locais-table__sector th:first-child {
+    @apply relative pl-8;
+  }
+
+  /* small "└" mark that links each subitem to its group (same style as .pp-nav-sub::before) */
+  .pp-locais-table__sector th:first-child::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 18px;
+    width: 8px;
+    height: 3.5px;
+    border-left: 1px solid var(--pp-palette-gray-500);
+    border-bottom: 1px solid var(--pp-palette-gray-500);
+  }
+
+  .pp-locais-preferencia--cancelamento .pp-locais-table__sector th:first-child {
+    padding-left: 12px;
+  }
+
+  .pp-locais-preferencia--cancelamento .pp-locais-table__sector th:first-child::before {
+    content: none;
+  }
+
+  .pp-locais-preferencia__choice {
+    @apply flex cursor-pointer items-center gap-2.5;
+  }
+
+  .pp-locais-preferencia__choice .pp-check {
+    margin-inline: 0;
+  }
+
+  .pp-locais-date {
+    position: relative;
+    width: 145px;
+    height: 32px;
+    padding-left: 32px;
+    background: white url("/assets/icons/type-sidebar--icon-calendar--filled-false--monochrome-false.svg") no-repeat 8px center / 16px;
+    color: var(--color-muted);
+  }
+
+  .pp-locais-date::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 7px;
+    width: 18px;
+    height: 18px;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Respiro entre um grupo de locais e o próximo. */
+  .pp-locais-table tr.pp-locais-table__gap > td {
+    @apply h-3 border-0 p-0;
+  }
+
+  /* ------------------------------------------------ entrada dos overlays */
+  .pp-modal[open] {
+    animation: pp-fade-in-up 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .pp-modal[open]::backdrop {
+    animation: pp-fade-in 200ms ease-out both;
+  }
+
+  .pp-nav-sub-list:not([hidden]),
+  .pp-rail-menu:not([hidden]) {
+    animation: pp-fade-in-up 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+}
+
+/* Fade com leve subida, usado ao abrir modais e submenus. */
+@keyframes pp-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pp-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-modal[open],
+  .pp-modal[open]::backdrop,
+  .pp-nav-sub-list:not([hidden]),
+  .pp-rail-menu:not([hidden]) {
+    animation: none;
+  }
+}

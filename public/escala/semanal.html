@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Escalas · Semanal · Pega Plantão</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body class="h-full font-sans text-[15px] text-muted antialiased">
+    <div class="flex h-full min-h-screen flex-col">
+      <!-- ============================================================ header -->
+      <header class="flex h-[69px] shrink-0 items-center pr-5 pl-5">
+        <a
+          href="/"
+          class="flex shrink-0 items-center gap-1.5 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+          aria-label="Pega Plantão — início"
+        >
+          <img src="/assets/logo.svg" alt="" width="192" height="24" class="max-sm:w-[145px]" />
+        </a>
+
+        <details class="relative ml-2 lg:hidden">
+          <summary aria-label="Escalas" class="grid size-9 cursor-pointer list-none place-items-center rounded-full border border-primary-100 bg-white text-primary-500">
+            <pp-icon type="sidebar" name="workscale" class="size-6"></pp-icon>
+          </summary>
+          <nav aria-label="Escalas" class="pp-rail-menu pp-account-menu left-0 right-auto">
+            <a href="/escala/semanal.html" aria-current="page" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="weekly"></pp-icon>Semanal</a>
+          </nav>
+        </details>
+
+        <nav aria-label="Você está aqui" class="ml-[34px] hidden items-center gap-2.5 text-[13.5px] sm:flex">
+          <span>Escalas</span>
+          <pp-icon type="ui" name="chevronRight" stroke-width="1.9" class="size-4 text-gray-300"></pp-icon>
+          <span class="font-medium text-ink">Semanal</span>
+        </nav>
+
+        <div class="relative ml-auto flex items-center gap-[22px]">
+          <!-- success toast: logo à esquerda do ícone de busca -->
+          <div class="pointer-events-none absolute top-1/2 right-[calc(100%+20px)] z-50 w-max -translate-y-1/2">
+            <div
+              id="toast"
+              hidden
+              role="status"
+              aria-live="polite"
+              class="flex max-w-[calc(100vw-168px)] translate-y-2 items-center gap-2.5 rounded-md bg-green-700 px-4 py-3 text-[13px] font-medium text-white opacity-0 shadow-lg shadow-black/20 transition-all duration-200"
+            >
+              <pp-icon type="ui" name="circleCheck" class="size-5"></pp-icon>
+              <span data-toast-text>Preferências salvas com sucesso.</span>
+            </div>
+          </div>
+          
+          <button
+            type="button"
+            aria-label="Buscar"
+            title="Buscar"
+            class="grid size-6 place-items-center rounded-md text-gray-700 transition-colors hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+          >
+            <pp-icon type="topbar" name="search" class="size-[22px]"></pp-icon>
+          </button>
+
+          <button
+            type="button"
+            aria-label="Notificações"
+            title="Notificações"
+            class="relative grid size-6 place-items-center rounded-md text-gray-700 transition-colors hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+          >
+            <pp-icon type="sidebarandtopbar" name="notification" class="size-[22px]"></pp-icon>
+            <span class="absolute -top-0.5 -right-0.5 size-[7px] rounded-full bg-tertiary-500 ring-2 ring-primary-25"></span>
+          </button>
+
+          <div id="account-menu-container" class="relative shrink-0">
+            <button
+              type="button"
+              id="account-menu-toggle"
+              aria-label="Conta de Diego"
+              aria-expanded="false"
+              aria-controls="account-menu"
+              class="grid size-6 place-items-center rounded-full bg-[linear-gradient(145deg,#0b2b52_0%,#155fae_100%)] text-[10px] font-semibold text-white ring-2 ring-white/70 transition-transform hover:scale-[1.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+            >
+              DG
+            </button>
+            <nav id="account-menu" aria-label="Menu da conta" class="pp-rail-menu pp-account-menu" hidden>
+              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Meus dados">
+                <pp-icon type="sidebarWorkscale" name="professional"></pp-icon>Meus dados
+              </button>
+              <a href="/account-preferences.html" class="pp-rail-menu__item">
+                <pp-icon type="sidebar" name="settings"></pp-icon>Preferências
+              </a>
+              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Central de Ajuda">
+                <pp-icon type="topbar" name="helpDesk"></pp-icon>Central de Ajuda
+              </button>
+              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Sair">
+                <pp-icon type="sidebar" name="logout"></pp-icon>Sair
+              </button>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- divisor sob o topbar -->
+      <div aria-hidden="true" class="h-px shrink-0 bg-primary-50"></div>
+
+      <div class="relative flex min-h-0 flex-1">
+        <!-- divisor ao lado da sidebar -->
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute -top-px bottom-0 left-[88px] hidden w-px bg-[linear-gradient(to_bottom,var(--pp-palette-primary-50),rgba(188,242,255,0))] lg:block"
+        ></div>
+        <!-- menu -->
+        <!-- utilizar aria-current="page" no link correspondente ao módulo ativo -->
+        <nav aria-label="Módulos" class="hidden min-h-0 w-[85px] shrink-0 flex-col items-center gap-[18px] overflow-y-auto pt-[23px] scrollbar-slim lg:flex">
+          <button type="button" title="Painel" aria-label="Painel" aria-expanded="false" aria-controls="rail-painel" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="dashboard" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-painel" class="pp-rail-menu" aria-label="Painel" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebar" name="dashboard"></pp-icon>Resumo</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="report"></pp-icon>Relatórios</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="finance"></pp-icon>Balanço</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="tickets"></pp-icon>Chamados</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="hours"></pp-icon>Carga horária</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="anualHours"></pp-icon>Carga horária anual</a>
+          </div>
+          <button type="button" title="Escalas" aria-label="Escalas" aria-current="page" aria-expanded="false" aria-controls="rail-escalas" data-rail-toggle class="pp-rail-link pp-rail-link--selected">
+            <pp-icon type="sidebar" name="workscale" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-escalas" class="pp-rail-menu" aria-label="Escalas" hidden>
+            <a href="/escala/semanal.html" aria-current="page" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="weekly"></pp-icon>Semanal</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="monthly"></pp-icon>Mensal</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="professional"></pp-icon>Profissional</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="search"></pp-icon>Busca</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="models"></pp-icon>Modelo</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="checkinJustify"></pp-icon>Justificativas de horário</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebar" name="calendarCancel"></pp-icon>Cancelamentos de Agenda</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="tools" name="syncServices"></pp-icon>Sincronização de Plantões</a>
+          </div>
+          <button type="button" title="Profissionais" aria-label="Profissionais" aria-expanded="false" aria-controls="rail-profissionais" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="professionals" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-profissionais" class="pp-rail-menu" aria-label="Profissionais" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="professionals"></pp-icon>Profissionais</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="professionalShield"></pp-icon>Coordenadores</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="viewers"></pp-icon>Visualizadores</a>
+          </div>
+          <button type="button" title="Configurações" aria-label="Configurações" aria-expanded="false" aria-controls="rail-configuracoes" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="settings" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-configuracoes" class="pp-rail-menu" aria-label="Configurações" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Locais e Setores</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="professionalsGroup"></pp-icon>Grupos</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="dutyTypes"></pp-icon>Tipos de Plantão</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="dutysituations"></pp-icon>Situações do Plantão</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="values"></pp-icon>Valores</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="bonus"></pp-icon>Bonificações</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="bankAccounts"></pp-icon>Contas Bancárias</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="businessSubmit"></pp-icon>Cadastros de CNPJ</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="vacation"></pp-icon>Feriados</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="autoSettings"></pp-icon>Auto-Ajustes</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="contractTypes"></pp-icon>Tipos de Contratação</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="productivity"></pp-icon>Produtividades</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="ability"></pp-icon>Habilidades</a>
+          </div>
+          <button type="button" title="Financeiro" aria-label="Financeiro" aria-expanded="false" aria-controls="rail-financeiro" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="finance" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-financeiro" class="pp-rail-menu" aria-label="Financeiro" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarFinance" name="closure"></pp-icon>Fechamento</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarFinance" name="advance"></pp-icon>Adiantamento</a>
+          </div>
+          <button type="button" title="Credenciamento" aria-label="Credenciamento" aria-expanded="false" aria-controls="rail-credenciamento" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="documents" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-credenciamento" class="pp-rail-menu" aria-label="Credenciamento" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Documentos</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="professionalsGroup"></pp-icon>Tipos de Documentos</a>
+          </div>
+          <a href="#" title="Registros" aria-label="Registros" class="pp-rail-link">
+            <pp-icon type="sidebar" name="post" class="size-[25px]"></pp-icon>
+          </a>
+          <a href="#" title="Mensagens" aria-label="Mensagens" class="pp-rail-link">
+            <pp-icon type="topbar" name="messagesOrEmails" class="size-[25px]"></pp-icon>
+          </a>
+        </nav>
+
+        <main class="min-h-0 min-w-0 flex-1 overflow-y-auto px-4 pt-4 pb-6 lg:pr-7 lg:pl-7" aria-label="Escala semanal">
+          <div class="flex min-h-[56px] flex-wrap items-center justify-between gap-3 border-b border-cyan-200 py-2">
+            <div>
+              <h1 class="text-[15px] font-medium text-primary-500">HMPP - Hospital e Maternidade Pega Plantão</h1>
+              <p class="text-[11px] text-muted">Escala ilustrativa · dados de exemplo</p>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="relative">
+                <label for="sector-search" class="pp-select-label">Setor</label>
+                <input id="sector-search" type="search" placeholder="Digite o nome do setor" class="pp-input w-[192px]" />
+              </div>
+              <button type="button" class="pp-btn" data-weekly-placeholder="Opções">
+                <pp-icon type="tools" name="filter" monochrome="true" class="size-4"></pp-icon>Opções
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto scrollbar-slim" tabindex="0" aria-label="Calendário semanal, role horizontalmente para ver todos os dias">
+            <div class="pp-weekly-calendar">
+              <div class="pp-weekly-header">
+                <div class="pp-weekly-period">
+                  <pp-icon type="sidebar" name="calendar" class="size-7"></pp-icon>
+                  <span id="weekly-month"></span>
+                  <button type="button" id="previous-week" class="pp-weekly-arrow ml-auto" aria-label="Semana anterior">
+                    <pp-icon type="ui" name="chevronRight" class="size-5 rotate-180"></pp-icon>
+                  </button>
+                </div>
+                <div id="weekly-days" class="pp-weekly-days"></div>
+                <button type="button" id="next-week" class="pp-weekly-arrow" aria-label="Próxima semana">
+                  <pp-icon type="ui" name="chevronRight" class="size-5"></pp-icon>
+                </button>
+              </div>
+              <div id="weekly-sectors"></div>
+              <p id="weekly-empty" class="py-6 text-sm" hidden>Nenhum setor encontrado.</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- support chat -->
+    <button
+      type="button"
+      aria-label="Abrir conversa com o suporte"
+      title="Fale com o suporte"
+      class="fixed right-5 bottom-5 z-20 grid size-10 place-items-center rounded-full border border-primary-100 bg-white text-primary-500 shadow-[0_2px_10px_rgba(33,79,141,0.12)] transition-colors hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+      data-help="suporte"
+    >
+      <pp-icon type="topbar" name="helpDesk" class="size-[25px]"></pp-icon>
+    </button>
+
+    <dialog id="create-shift-modal" class="pp-modal pp-shift-modal" aria-labelledby="create-shift-title">
+      <form id="create-shift-form" class="pp-modal__layout">
+        <div class="pp-modal__header pp-shift-header">
+          <h2 id="create-shift-title" class="pp-shift-title">
+            <pp-icon type="services" name="duty" class="size-8"></pp-icon>
+            Criar Plantão
+          </h2>
+          <div class="pp-shift-header-actions">
+            <span>Informar:</span>
+            <label><input type="checkbox" name="inform-coordinators" /> Coordenador(es)</label>
+            <label><input type="checkbox" name="inform-professionals" /> Profissional(is)</label>
+            <span>Opções:</span>
+            <button type="button" class="pp-btn pp-btn--outline pp-btn--icon" title="Limpar formulário" aria-label="Limpar formulário" data-shift-reset>
+              <pp-icon type="tools" name="delete" class="size-5"></pp-icon>
+            </button>
+            <button type="submit" class="pp-btn">
+              <pp-icon type="ui" name="circleCheck" class="size-5"></pp-icon>Salvar e criar plantão
+            </button>
+          </div>
+          <button type="button" class="pp-modal__close" aria-label="Fechar" data-shift-close>
+            <pp-icon type="appbar" name="modalClose" class="size-5"></pp-icon>
+          </button>
+        </div>
+        <div class="pp-shift-content scrollbar-slim">
+          <nav class="pp-shift-nav" aria-label="Seções do plantão">
+            <button type="button" class="pp-nav-item pp-shift-nav-item" aria-current="page" data-shift-section="informacoes">
+              <pp-icon type="modalProfessionals" name="info" class="size-5"></pp-icon><span>Informações</span>
+            </button>
+            <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="detalhes">
+              <pp-icon type="modalProfessionals" name="medic" class="size-5"></pp-icon><span>Detalhes</span>
+            </button>
+            <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="habilidades">
+              <pp-icon type="modalProfessionals" name="ability" class="size-5"></pp-icon><span>Habilidades</span>
+            </button>
+            <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="anunciar">
+              <pp-icon type="sidebar" name="announce" class="size-5"></pp-icon><span>Anunciar</span>
+            </button>
+            <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="pagamentos">
+              <pp-icon type="sidebarSettings" name="values" class="size-5"></pp-icon><span>Pagamentos</span>
+            </button>
+          </nav>
+          <div class="pp-shift-panel">
+            <p class="pp-shift-notice" id="shift-notice" role="status" hidden></p>
+            <div data-shift-panel="informacoes">
+              <section class="pp-shift-section">
+                <h3>Configure o Setor, Tipo e Valor:</h3>
+                <div class="pp-shift-box pp-shift-settings">
+                  <div class="pp-field">
+                    <label for="shift-sector" class="pp-select-label">Setor</label>
+                    <select id="shift-sector" name="sector" class="pp-select">
+                      <option>Setor Omar Philips</option>
+                      <option>Setor Pediatria Delicada II</option>
+                    </select>
+                  </div>
+                  <div class="pp-field">
+                    <label for="shift-type" class="pp-select-label">Tipo</label>
+                    <select id="shift-type" name="type" class="pp-select"><option>CH Clínico</option><option>Plantão</option></select>
+                  </div>
+                </div>
+              </section>
+              <section class="pp-shift-section">
+                <div class="pp-shift-section-heading">
+                  <h3>Informe a duração em dias e horas:</h3>
+                  <label class="pp-shift-repeat-label"><input id="shift-repeat" type="checkbox" name="repeat" /> Repetir</label>
+                </div>
+                <div class="pp-shift-box pp-shift-duration">
+                  <label class="pp-field"><span>Início</span><input id="shift-start-time" type="time" name="start-time" value="08:00" /></label>
+                  <label class="pp-field"><span>Fim</span><input id="shift-end-time" type="time" name="end-time" value="17:30" /></label>
+                  <label class="pp-field"><span>Duração</span><input id="shift-duration" value="09:30" readonly /></label>
+                  <label class="pp-field"><span>Valor (R$)</span><input type="number" name="value" min="0" step="0.01" value="1250.00" /></label>
+                  <label class="pp-field"><span>Data de início</span><input id="shift-date" type="date" name="date" /></label>
+                  <fieldset id="shift-repeat-fields" class="pp-shift-repeat" disabled>
+                    <legend>Dias da semana</legend>
+                    <label class="pp-field"><span>Repetir até</span><input type="date" name="repeat-until" /></label>
+                    <div class="pp-shift-weekdays" aria-label="Dias da semana">
+                      <label title="Segunda-feira"><input type="checkbox" name="weekdays" value="1" aria-label="Segunda-feira" /><span>S</span></label>
+                      <label title="Terça-feira"><input type="checkbox" name="weekdays" value="2" aria-label="Terça-feira" /><span>T</span></label>
+                      <label title="Quarta-feira"><input type="checkbox" name="weekdays" value="3" aria-label="Quarta-feira" /><span>Q</span></label>
+                      <label title="Quinta-feira"><input type="checkbox" name="weekdays" value="4" aria-label="Quinta-feira" /><span>Q</span></label>
+                      <label title="Sexta-feira"><input type="checkbox" name="weekdays" value="5" aria-label="Sexta-feira" /><span>S</span></label>
+                      <label title="Sábado"><input type="checkbox" name="weekdays" value="6" aria-label="Sábado" /><span>S</span></label>
+                      <label title="Domingo"><input type="checkbox" name="weekdays" value="0" aria-label="Domingo" /><span>D</span></label>
+                    </div>
+                  </fieldset>
+                </div>
+              </section>
+              <section class="pp-shift-section">
+                <h3>Selecione o(s) profissional(is) para este plantão:</h3>
+                <div class="pp-shift-box pp-shift-professionals">
+                  <div class="pp-shift-professional-row">
+                    <div class="pp-field">
+                      <label for="shift-fixed-professional" class="pp-select-label">Profissional fixo</label>
+                      <select id="shift-fixed-professional" name="fixed-professional" class="pp-select">
+                        <option value="">Selecione um profissional</option>
+                        <option>Alfonso Calzoni</option><option>Gretchen George</option><option>Alena Septimus</option>
+                      </select>
+                    </div>
+                    <label><input type="checkbox" name="list-fixed" /> Listar todos</label>
+                    <label><input type="checkbox" name="coverage" /> Precisa de cobertura</label>
+                    <div class="pp-field pp-shift-situation">
+                      <label for="shift-situation" class="pp-select-label">Situação</label>
+                      <select id="shift-situation" name="situation" class="pp-select"><option>Designado</option><option>Pendente</option></select>
+                    </div>
+                  </div>
+                  <div class="pp-shift-professional-row">
+                    <div class="pp-field">
+                      <label for="shift-professional" class="pp-select-label">Profissional de plantão</label>
+                      <select id="shift-professional" name="shift-professional" class="pp-select">
+                        <option value="">Selecione um profissional</option>
+                        <option>Alfonso Calzoni</option><option>Gretchen George</option><option>Alena Septimus</option>
+                      </select>
+                    </div>
+                    <label><input type="checkbox" name="list-professionals" /> Listar todos</label>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <section id="shift-other-section" hidden>
+              <h3 id="shift-other-title"></h3>
+              <p>Esta seção está em construção.</p>
+            </section>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+    <script src="/weekly-schedule.js"></script>
+  </body>
+</html>

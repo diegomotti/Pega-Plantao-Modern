@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Preferências · Pega Plantão</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body class="h-full font-sans text-[15px] text-muted antialiased">
+    <div class="flex h-full min-h-screen flex-col">
+      <!-- ============================================================ header -->
+      <header class="flex h-[69px] shrink-0 items-center pr-5 pl-5">
+        <a
+          href="/"
+          class="flex shrink-0 items-center gap-1.5 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+          aria-label="Pega Plantão — início"
+        >
+          <img src="/assets/logo.svg" alt="" width="192" height="24" class="max-sm:w-[145px]" />
+        </a>
+
+        <details class="relative ml-2 lg:hidden">
+          <summary aria-label="Escalas" class="grid size-9 cursor-pointer list-none place-items-center rounded-full border border-primary-100 bg-white text-primary-500">
+            <pp-icon type="sidebar" name="workscale" class="size-6"></pp-icon>
+          </summary>
+          <nav aria-label="Escalas" class="pp-rail-menu pp-account-menu left-0 right-auto">
+            <a href="/escala/semanal.html" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="weekly"></pp-icon>Semanal</a>
+          </nav>
+        </details>
+
+        <nav aria-label="Você está aqui" class="ml-[34px] hidden items-center gap-2.5 text-[13.5px] sm:flex">
+          <a href="/" class="transition-colors hover:text-primary-500">Contas</a>
+          <pp-icon type="ui" name="chevronRight" stroke-width="1.9" class="size-4 text-gray-300"></pp-icon>
+          <span class="font-medium text-ink">Preferências</span>
+        </nav>
+
+        <div class="relative ml-auto flex items-center gap-[22px]">
+          <!-- success toast: logo à esquerda do ícone de busca -->
+          <div class="pointer-events-none absolute top-1/2 right-[calc(100%+20px)] z-50 w-max -translate-y-1/2">
+            <div
+              id="toast"
+              hidden
+              role="status"
+              aria-live="polite"
+              class="flex max-w-[calc(100vw-168px)] translate-y-2 items-center gap-2.5 rounded-md bg-green-700 px-4 py-3 text-[13px] font-medium text-white opacity-0 shadow-lg shadow-black/20 transition-all duration-200"
+            >
+              <pp-icon type="ui" name="circleCheck" class="size-5"></pp-icon>
+              <span data-toast-text>Preferências salvas com sucesso.</span>
+            </div>
+          </div>
+          
+          <button
+            type="button"
+            aria-label="Buscar"
+            title="Buscar"
+            class="grid size-6 place-items-center rounded-md text-gray-700 transition-colors hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+          >
+            <pp-icon type="topbar" name="search" class="size-[22px]"></pp-icon>
+          </button>
+
+          <button
+            type="button"
+            aria-label="Notificações"
+            title="Notificações"
+            class="relative grid size-6 place-items-center rounded-md text-gray-700 transition-colors hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+          >
+            <pp-icon type="sidebarandtopbar" name="notification" class="size-[22px]"></pp-icon>
+            <span class="absolute -top-0.5 -right-0.5 size-[7px] rounded-full bg-tertiary-500 ring-2 ring-primary-25"></span>
+          </button>
+
+          <div id="account-menu-container" class="relative shrink-0">
+            <button
+              type="button"
+              id="account-menu-toggle"
+              aria-label="Conta de Diego"
+              aria-expanded="false"
+              aria-controls="account-menu"
+              class="grid size-6 place-items-center rounded-full bg-[linear-gradient(145deg,#0b2b52_0%,#155fae_100%)] text-[10px] font-semibold text-white ring-2 ring-white/70 transition-transform hover:scale-[1.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+            >
+              DG
+            </button>
+            <nav id="account-menu" aria-label="Menu da conta" class="pp-rail-menu pp-account-menu" hidden>
+              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Meus dados">
+                <pp-icon type="sidebarWorkscale" name="professional"></pp-icon>Meus dados
+              </button>
+              <a href="/account-preferences.html" aria-current="page" class="pp-rail-menu__item">
+                <pp-icon type="sidebar" name="settings"></pp-icon>Preferências
+              </a>
+              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Central de Ajuda">
+                <pp-icon type="topbar" name="helpDesk"></pp-icon>Central de Ajuda
+              </button>
+              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Sair">
+                <pp-icon type="sidebar" name="logout"></pp-icon>Sair
+              </button>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- divisor sob o topbar -->
+      <div aria-hidden="true" class="h-px shrink-0 bg-primary-50"></div>
+
+      <div class="relative flex min-h-0 flex-1">
+        <!-- divisor ao lado da sidebar -->
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute -top-px bottom-0 left-[88px] hidden w-px bg-[linear-gradient(to_bottom,var(--pp-palette-primary-50),rgba(188,242,255,0))] lg:block"
+        ></div>
+        <!-- menu -->
+        <!-- utilizar aria-current="page" no link correspondente ao módulo ativo -->
+        <nav aria-label="Módulos" class="hidden min-h-0 w-[85px] shrink-0 flex-col items-center gap-[18px] overflow-y-auto pt-[23px] scrollbar-slim lg:flex">
+          <button type="button" title="Painel" aria-label="Painel" aria-expanded="false" aria-controls="rail-painel" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="dashboard" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-painel" class="pp-rail-menu" aria-label="Painel" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebar" name="dashboard"></pp-icon>Resumo</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="report"></pp-icon>Relatórios</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="finance"></pp-icon>Balanço</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="tickets"></pp-icon>Chamados</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="hours"></pp-icon>Carga horária</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="anualHours"></pp-icon>Carga horária anual</a>
+          </div>
+          <button type="button" title="Escalas" aria-label="Escalas" aria-expanded="false" aria-controls="rail-escalas" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="workscale" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-escalas" class="pp-rail-menu" aria-label="Escalas" hidden>
+            <a href="/escala/semanal.html" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="weekly"></pp-icon>Semanal</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="monthly"></pp-icon>Mensal</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="professional"></pp-icon>Profissional</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="search"></pp-icon>Busca</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="models"></pp-icon>Modelo</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="checkinJustify"></pp-icon>Justificativas de horário</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebar" name="calendarCancel"></pp-icon>Cancelamentos de Agenda</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="tools" name="syncServices"></pp-icon>Sincronização de Plantões</a>
+          </div>
+          <button type="button" title="Profissionais" aria-label="Profissionais" aria-expanded="false" aria-controls="rail-profissionais" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="professionals" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-profissionais" class="pp-rail-menu" aria-label="Profissionais" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="professionals"></pp-icon>Profissionais</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="professionalShield"></pp-icon>Coordenadores</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="viewers"></pp-icon>Visualizadores</a>
+          </div>
+          <button type="button" title="Configurações" aria-label="Configurações" aria-expanded="false" aria-controls="rail-configuracoes" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="settings" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-configuracoes" class="pp-rail-menu" aria-label="Configurações" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Locais e Setores</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="professionalsGroup"></pp-icon>Grupos</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="dutyTypes"></pp-icon>Tipos de Plantão</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="dutysituations"></pp-icon>Situações do Plantão</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="values"></pp-icon>Valores</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="bonus"></pp-icon>Bonificações</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="bankAccounts"></pp-icon>Contas Bancárias</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="businessSubmit"></pp-icon>Cadastros de CNPJ</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="vacation"></pp-icon>Feriados</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="autoSettings"></pp-icon>Auto-Ajustes</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="contractTypes"></pp-icon>Tipos de Contratação</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="productivity"></pp-icon>Produtividades</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="ability"></pp-icon>Habilidades</a>
+          </div>
+          <button type="button" title="Financeiro" aria-label="Financeiro" aria-expanded="false" aria-controls="rail-financeiro" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="finance" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-financeiro" class="pp-rail-menu" aria-label="Financeiro" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarFinance" name="closure"></pp-icon>Fechamento</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarFinance" name="advance"></pp-icon>Adiantamento</a>
+          </div>
+          <button type="button" title="Credenciamento" aria-label="Credenciamento" aria-expanded="false" aria-controls="rail-credenciamento" data-rail-toggle class="pp-rail-link">
+            <pp-icon type="sidebar" name="documents" class="size-[25px]"></pp-icon>
+          </button>
+          <div id="rail-credenciamento" class="pp-rail-menu" aria-label="Credenciamento" hidden>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Documentos</a>
+            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="professionalsGroup"></pp-icon>Tipos de Documentos</a>
+          </div>
+          <a href="#" title="Registros" aria-label="Registros" class="pp-rail-link">
+            <pp-icon type="sidebar" name="post" class="size-[25px]"></pp-icon>
+          </a>
+          <a href="#" title="Mensagens" aria-label="Mensagens" class="pp-rail-link">
+            <pp-icon type="topbar" name="messagesOrEmails" class="size-[25px]"></pp-icon>
+          </a>
+        </nav>
+
+        <!-- ========================================================= sidebar -->
+        <aside class="hidden min-h-0 w-[284px] shrink-0 overflow-y-auto scrollbar-slim lg:block">
+          <nav id="prefs-nav" aria-label="Ajustes de preferências" class="pt-[29px]">
+            <button
+              type="button"
+              id="nav-plantoes-toggle"
+              aria-expanded="true"
+              aria-controls="nav-plantoes"
+              data-nav-toggle
+              class="pp-nav-item"
+            >
+              <span>Plantões</span>
+              <pp-icon
+                type="ui" name="chevronDown"
+                stroke-width="2.2"
+                class="size-4 text-primary-500 transition-transform duration-200"
+                data-chevron
+              ></pp-icon>
+            </button>
+
+            <div id="nav-plantoes" class="pp-nav-sub-list">
+              <a href="#anuncios" aria-current="page" class="pp-nav-sub pp-nav-sub--active">
+                <span>Anúncios</span>
+              </a>
+              <a href="#bloqueio" class="pp-nav-sub"><span>Bloqueio</span></a>
+              <a href="#cancelamento-de-agenda" class="pp-nav-sub"><span>Cancelamento de Agenda</span></a>
+              <a href="#divisoes" class="pp-nav-sub"><span>Divisões</span></a>
+              <a href="#passagens" class="pp-nav-sub"><span>Passagens</span></a>
+              <a href="#trocas" class="pp-nav-sub"><span>Trocas</span></a>
+            </div>
+
+            <button type="button" class="pp-nav-item" aria-expanded="false" aria-controls="nav-alertas" data-nav-toggle>
+              <span>Alertas</span>
+              <pp-icon type="ui" name="chevronDown" stroke-width="2.2" class="size-4 -rotate-90 text-primary-500 transition-transform duration-200" data-chevron></pp-icon>
+            </button>
+            <div id="nav-alertas" class="pp-nav-sub-list" hidden>
+              <a href="#afastamentos" class="pp-nav-sub pp-nav-sub--alerts justify-between"><span>Afastamentos</span></a>
+              <a href="#conflitos-de-horarios" class="pp-nav-sub pp-nav-sub--alerts"><span>Conflitos de horários</span></a>
+              <a href="#horas-consecutivas" class="pp-nav-sub pp-nav-sub--alerts"><span>Horas consecutivas</span></a>
+              <a href="#horas-consecutivas-por-setor" class="pp-nav-sub pp-nav-sub--alerts"><span>Horas consecutivas por setor</span></a>
+              <a href="#horas-semanais" class="pp-nav-sub pp-nav-sub--alerts"><span>Horas semanais</span></a>
+              <a href="#horas-mensais" class="pp-nav-sub pp-nav-sub--alerts"><span>Horas mensais</span></a>
+              <a href="#intervalo-interjornada" class="pp-nav-sub pp-nav-sub--alerts"><span>Intervalo Interjornada</span></a>
+              <a href="#plantoes-consecutivos" class="pp-nav-sub pp-nav-sub--alerts"><span>Plantões consecutivos</span></a>
+            </div>
+            <a href="#emails-e-notificacoes" class="pp-nav-item"><span>E-mails e Notificações</span></a>
+            <a href="#credenciamento" class="pp-nav-item">
+              <span class="flex items-center gap-2.5">
+                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-[17px] shrink-0 text-primary-500"></pp-icon>
+                <span>Credenciamento</span>
+              </span>
+            </a>
+            <a href="#financeiro-avancado" class="pp-nav-item">
+              <span class="flex items-center gap-2.5">
+                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-[17px] shrink-0 text-tertiary-500"></pp-icon>
+                <span>Financeiro Avançado</span>
+              </span>
+            </a>
+            <button type="button" class="pp-nav-item" aria-expanded="false" aria-controls="nav-registro" data-nav-toggle>
+              <span class="flex items-center gap-2.5">
+                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-[17px] shrink-0 text-primary-700"></pp-icon>
+                <span>Registro de Entrada e Saída Avançado</span>
+              </span>
+              <pp-icon type="ui" name="chevronDown" stroke-width="2.2" class="size-4 shrink-0 -rotate-90 text-primary-500 transition-transform duration-200" data-chevron></pp-icon>
+            </button>
+            <div id="nav-registro" class="pp-nav-sub-list" hidden>
+              <a href="#geral-e-avancado" class="pp-nav-sub gap-2">
+                <span>Geral e Avançado</span>
+                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-3 shrink-0 text-primary-700"></pp-icon>
+              </a>
+              <a href="#configuracoes-adicionais" class="pp-nav-sub"><span>Configurações adicionais</span></a>
+              <a href="#tolerancia" class="pp-nav-sub"><span>Tolerância</span></a>
+            </div>
+            <a href="#valores-padroes" class="pp-nav-item"><span>Valores padrões</span></a>
+            <a href="#visualizacao-da-escala" class="pp-nav-item"><span>Visualização da Escala</span></a>
+          </nav>
+        </aside>
+
+        <!-- ============================================================ main -->
+        <main class="min-h-0 min-w-0 -ml-[1px] flex-1 overflow-y-auto scrollbar-slim">
+          <div class="flex min-h-full flex-col px-4 pt-6 pb-6 md:px-6 lg:pt-[33px] lg:pr-[31px] lg:pb-[21px] lg:pl-0">
+            <!-- compact navigation for small screens -->
+            <details class="mb-5 rounded-[12px] border border-line bg-white/80 lg:hidden">
+              <summary
+                class="flex cursor-pointer list-none items-center justify-between px-5 py-3.5 text-[15px] font-medium text-primary-500"
+              >
+                <span data-prefs-current>Plantões · Anúncios</span>
+                <pp-icon type="ui" name="chevronDown" stroke-width="2.2" class="size-4"></pp-icon>
+              </summary>
+              <div id="prefs-nav-mobile" class="border-t border-nav-line pb-2"></div>
+            </details>
+
+            <form id="prefs-form" class="flex flex-1 flex-col" novalidate>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <!-- ------------------------------------------------- card 1 -->
+                <div class="pp-card min-h-[100px]">
+                  <span class="shrink-0" aria-hidden="true">
+                    <svg viewBox="0 0 55 60" class="h-[60px] w-[55px]" fill="none">
+                      <!-- document -->
+                      <rect x="1" y="1" width="36" height="56" rx="6" stroke="#1678dc" stroke-width="2" />
+                      <rect x="14" y="1" width="12" height="7" rx="2.5" fill="#fff" stroke="#1678dc" stroke-width="2" />
+                      <!-- chat bubble -->
+                      <rect x="14.3" y="9.3" width="40" height="31" rx="6.5" fill="#fcb315" />
+                      <path d="M21.5 40v8.2l7.6-8.2h-7.6Z" fill="#fcb315" />
+                      <rect x="20.5" y="16.6" width="25.5" height="2.6" rx="1.3" fill="#fff" />
+                      <rect x="20.5" y="23.4" width="25.5" height="2.6" rx="1.3" fill="#fff" />
+                      <rect x="20.5" y="30.2" width="17.5" height="2.6" rx="1.3" fill="#fff" />
+                      <!-- alert badge -->
+                      <circle cx="48.4" cy="12" r="6.8" fill="#214f8d" stroke="#fff" stroke-width="2.2" />
+                      <rect x="47.6" y="8.4" width="1.7" height="4.5" rx="0.85" fill="#fff" />
+                      <circle cx="48.45" cy="15.5" r="1" fill="#fff" />
+                    </svg>
+                  </span>
+
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Enviar notificação quando um profissional anunciar um plantão</h2>
+                    <p class="pp-card__desc">
+                      Envia notificação aos profissionais do setor do qual pertence o plantão anunciado por um profissional.
+                    </p>
+                  </div>
+
+                  <label class="pp-check" title="Enviar notificação quando um profissional anunciar um plantão">
+                    <input type="checkbox" name="notificarAnuncio" class="sr-only" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+
+                <!-- ------------------------------------------------- card 2 -->
+                <div class="pp-card min-h-[85px]">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Horário limite para candidatura</h2>
+                    <p class="pp-card__desc">
+                      Os profissionais poderão se candidatar aos plantões até o limite especificado ao lado.
+                    </p>
+                  </div>
+
+                  <div class="relative shrink-0" data-select>
+                    <label for="limite-candidatura" id="limite-candidatura-label" class="pp-select-label">Selecione uma opção</label>
+                    <select
+                      id="limite-candidatura"
+                      name="limiteCandidatura"
+                      class="sr-only"
+                      tabindex="-1"
+                      aria-hidden="true"
+                    >
+                      <option value="fim-do-planton" selected>Fim do plantão</option>
+                      <option value="inicio-do-planton">Início do plantão</option>
+                      <option value="24h-antes">24 horas antes</option>
+                      <option value="12h-antes">12 horas antes</option>
+                      <option value="6h-antes">6 horas antes</option>
+                    </select>
+                    <button
+                      type="button"
+                      class="pp-select"
+                      data-select-trigger
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      aria-controls="limite-candidatura-menu"
+                      aria-labelledby="limite-candidatura-label limite-candidatura-value"
+                    >
+                      <span id="limite-candidatura-value" data-select-value>Fim do plantão</span>
+                    </button>
+                    <pp-icon
+                      type="ui" name="chevronDown"
+                      stroke-width="2.4"
+                      data-select-chevron
+                      class="pointer-events-none absolute top-1/2 right-2 size-4 -translate-y-1/2 text-gray-500 transition-transform duration-200"
+                    ></pp-icon>
+                    <ul
+                      id="limite-candidatura-menu"
+                      class="pp-select-menu"
+                      role="listbox"
+                      data-select-menu
+                      aria-labelledby="limite-candidatura-label"
+                      hidden
+                    ></ul>
+                  </div>
+                </div>
+
+                <!-- ------------------------------------------------- card 3 -->
+                <div class="pp-card min-h-[85px]">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir aos profissionais</h2>
+                    <p class="pp-card__desc">
+                      Configure os Locais e Setores que os profissionais poderão interagir com os anúncios.
+                    </p>
+                  </div>
+
+                  <button type="button" class="pp-btn shrink-0" data-locais>
+                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>
+                    Configurar Locais e Setores
+                  </button>
+                </div>
+              </div>
+
+              <div class="mt-[24px] flex justify-center">
+                <button type="submit" class="pp-btn">
+                  <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>
+                  Salvar Preferências
+                </button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#bloqueio" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[100px] py-3">
+                  <pp-icon type="tools" name="blockedUser" class="size-[60px]" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Criar data para bloqueio de alteração de plantões</h2>
+                    <p class="pp-card__desc">Esta opção permite criar uma data limite para coordenadores alterarem, apagarem ou criarem plantões. Saiba mais.</p>
+                  </div>
+                  <label class="pp-check" title="Criar data para bloqueio de alteração de plantões">
+                    <input type="checkbox" name="bloqueioAtivo" class="sr-only" aria-label="Criar data para bloqueio de alteração de plantões" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Grupo de coordenadores que podem alterar plantões anteriores a data limite</h2>
+                    <p class="pp-card__desc">Grupo de coordenadores selecionado não será afetado pelo bloqueio de alteração de plantões.</p>
+                  </div>
+                  <div class="relative shrink-0">
+                    <label for="grupo-bloqueio" class="pp-select-label">Selecione uma opção</label>
+                    <select id="grupo-bloqueio" name="grupoBloqueio" class="pp-select">
+                      <option value="coringas">Coringas</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="pp-card min-h-[100px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Tipo de data limite para bloqueio</h2>
+                    <p class="pp-card__desc">Permite criar uma data limite padrão para todos os locais ou separadamente.<br />Plantões anteriores a data definida só poderão ser alterados pelo grupo de coordenadores selecionados acima.</p>
+                  </div>
+                  <div class="relative shrink-0">
+                    <label for="tipo-bloqueio" class="pp-select-label">Selecione uma opção</label>
+                    <select id="tipo-bloqueio" name="tipoBloqueio" class="pp-select">
+                      <option value="geral">Bloqueio geral</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Bloqueio por Locais e Setores</h2>
+                    <p class="pp-card__desc">Configure a data limite de bloqueio separadamente para cada Local e Setor.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0" data-locais-preferencia="bloqueio">
+                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                  </button>
+                </div>
+              </div>
+              <div class="mt-[24px] flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#cancelamento-de-agenda" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[100px] py-3">
+                  <pp-icon type="services" name="exit" class="size-[60px]" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Criar data para bloqueio de alteração de plantões</h2>
+                    <p class="pp-card__desc">Ativa o botão Cancelar Agenda, possibilitando ao profissional cancelar a agenda ou plantão por um determinado período.</p>
+                  </div>
+                  <label class="pp-check" title="Permitir cancelamento de agenda">
+                    <input type="checkbox" name="cancelamentoAtivo" class="sr-only" aria-label="Permitir cancelamento de agenda" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Locais e Setores disponíveis para Cancelamento de Agenda.</h2>
+                    <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão solicitar o cancelamento.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0" data-locais-preferencia="cancelamento">
+                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                  </button>
+                </div>
+              </div>
+              <div class="mt-[24px] flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#divisoes" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[100px] py-3">
+                  <pp-icon type="services" name="split" class="size-[60px]" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Dividir plantão</h2>
+                    <p class="pp-card__desc">Permitir que o profissional divida o plantão em 2 partes.</p>
+                  </div>
+                  <label class="pp-check" title="Dividir plantão">
+                    <input type="checkbox" name="divisaoAtiva" class="sr-only" aria-label="Dividir plantão" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Locais e Setores disponíveis para dividir os plantões.</h2>
+                    <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão dividir os plantões.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0" data-locais-pendente>
+                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                  </button>
+                </div>
+              </div>
+              <div class="mt-[24px] flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#passagens" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[100px] py-3">
+                  <pp-icon type="services" name="professionalsPass" class="size-[60px]" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Passar plantão</h2>
+                    <p class="pp-card__desc">Permitir que profissionais passem plantões para outros profissionais que trabalham na sua empresa.</p>
+                  </div>
+                  <label class="pp-check" title="Passar plantão">
+                    <input type="checkbox" name="passagemAtiva" class="sr-only" aria-label="Passar plantão" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Apenas entre profissionais do mesmo setor</h2>
+                    <p class="pp-card__desc">Restringe a passagem de plantões a apenas profissionais do setor do plantão.</p>
+                  </div>
+                  <label class="pp-check" title="Apenas entre profissionais do mesmo setor">
+                    <input type="checkbox" name="passagemMesmoSetor" class="sr-only" aria-label="Apenas entre profissionais do mesmo setor" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Locais e Setores disponíveis para passar os plantões.</h2>
+                    <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão passar os plantões.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0" data-locais-preferencia="passagens">
+                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                  </button>
+                </div>
+              </div>
+              <div class="mt-[24px] flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <section id="prefs-other-tab" class="flex flex-1 flex-col" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[85px]">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title" data-other-tab-title></h2>
+                    <p class="pp-card__desc" data-other-tab-desc></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-[24px] flex justify-center">
+                <button type="button" class="pp-btn" data-save-other>
+                  <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>
+                  Salvar Preferências
+                </button>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <dialog id="locais-modal" class="pp-modal pp-modal__places" aria-labelledby="locais-modal-title" aria-describedby="locais-example-note">
+      <form id="locais-form" class="pp-modal__layout">
+        <div class="pp-modal__header align-items-center">
+          <h2 id="locais-modal-title" class="text-base font-semibold text-ink">Locais e Setores</h2>
+          <button type="button" class="pp-modal__close focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500" aria-label="Fechar" data-modal-close>
+            <pp-icon type="appbar" name="modalClose" class="size-5"></pp-icon>
+          </button>
+        </div>
+
+        <div class="pp-modal__body scrollbar-slim">
+          <div class="overflow-x-auto">
+            <table class="pp-locais-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="p-0">
+                    <input id="locais-search" type="search" placeholder="Pesquise por um local ou setor..." autocomplete="off" class="pp-input mb-4 w-full max-w-[360px]" autofocus />
+                  </th>
+                  <th scope="col">Anunciar</th>
+                  <th scope="col">Escolha manual</th>
+                  <th scope="col">Escolha automática</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <p id="locais-empty" class="mt-4 text-sm text-muted" hidden>Nenhum local ou setor encontrado.</p>
+        </div>
+
+        <div class="pp-modal__footer gap-3 justify-between">
+          <button type="button" class="pp-btn" data-modal-close>
+            <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-5"></pp-icon>
+            Ok, continuar editando.
+          </button>
+          <button type="button" class="pp-btn" data-modal-close>
+            <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-5"></pp-icon>
+            Salvar preferências
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="locais-preferencia-modal" class="pp-modal pp-modal__places" aria-labelledby="locais-preferencia-title">
+      <form id="locais-preferencia-form" class="pp-modal__layout">
+        <div class="pp-modal__header">
+          <h2 id="locais-preferencia-title" class="text-base font-semibold text-ink">Locais e Setores</h2>
+          <button type="button" class="pp-modal__close focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500" aria-label="Fechar" data-preferencia-close>
+            <pp-icon type="appbar" name="modalClose" class="size-5"></pp-icon>
+          </button>
+        </div>
+        <div class="pp-modal__body scrollbar-slim">
+          <div class="overflow-x-auto">
+            <table class="pp-locais-table pp-locais-preferencia">
+              <thead>
+                <tr>
+                  <th scope="col" class="p-0">
+                    <label for="locais-preferencia-search" class="sr-only">Pesquise por um local ou setor</label>
+                    <input id="locais-preferencia-search" type="search" placeholder="Pesquise por um local ou setor..." autocomplete="off" class="pp-input mb-4 w-full max-w-[360px]" />
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <p id="locais-preferencia-empty" class="mt-4 text-sm text-muted" hidden>Nenhum local ou setor encontrado.</p>
+        </div>
+        <div class="pp-modal__footer">
+          <button type="submit" class="pp-btn">
+            <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-5"></pp-icon>Ok
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- support chat -->
+    <button
+      type="button"
+      aria-label="Abrir conversa com o suporte"
+      title="Fale com o suporte"
+      class="fixed right-5 bottom-5 z-20 grid size-10 place-items-center rounded-full border border-primary-100 bg-white text-primary-500 shadow-[0_2px_10px_rgba(33,79,141,0.12)] transition-colors hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+      data-help="suporte"
+    >
+      <pp-icon type="topbar" name="helpDesk" class="size-[25px]"></pp-icon>
+    </button>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

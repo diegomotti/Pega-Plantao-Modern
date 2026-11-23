@@ -1,0 +1,3498 @@
+[
+  {
+    "file": "type-appbar--icon-back--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "back",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: back | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-back--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "back",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: back | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-close--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "close",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: close | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-close--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "close",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: close | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-filter--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "filter",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: filter | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-filter--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "filter",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: filter | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-modalClose--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "modalClose",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: modalClose | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-options--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "options",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: options | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-options--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "options",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: options | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-optionsWeb--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "optionsWeb",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: optionsWeb | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-radioIcon--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "radioIcon",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: radioIcon | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-radioIcon--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "radioIcon",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: radioIcon | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-radioIconActive--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "radioIconActive",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: radioIconActive | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-radioIconActive--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "radioIconActive",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: radioIconActive | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-radioIconActive--filled-true--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "radioIconActive",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: appbar | icon: radioIconActive | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-recuse--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "recuse",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: recuse | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-saveOrConfirm--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "saveOrConfirm",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: saveOrConfirm | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-serviceTypes--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "serviceTypes",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: serviceTypes | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-serviceTypes--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "serviceTypes",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: serviceTypes | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-shell--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "shell",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: shell | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-shell--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "shell",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: shell | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-appbar--icon-shellWithNotification--filled-false--monochrome-false.svg",
+    "type": "appbar",
+    "icon": "shellWithNotification",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: appbar | icon: shellWithNotification | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-appbar--icon-shellWithNotification--filled-false--monochrome-true.svg",
+    "type": "appbar",
+    "icon": "shellWithNotification",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: appbar | icon: shellWithNotification | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-documents--icon-attach--filled-false--monochrome-false.svg",
+    "type": "documents",
+    "icon": "attach",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: documents | icon: attach | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-documents--icon-fileApproved--filled-false--monochrome-false.svg",
+    "type": "documents",
+    "icon": "fileApproved",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: documents | icon: fileApproved | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-documents--icon-fileExpired--filled-false--monochrome-false.svg",
+    "type": "documents",
+    "icon": "fileExpired",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: documents | icon: fileExpired | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-documents--icon-fileNotSended--filled-false--monochrome-false.svg",
+    "type": "documents",
+    "icon": "fileNotSended",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: documents | icon: fileNotSended | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-documents--icon-fileRecused--filled-false--monochrome-false.svg",
+    "type": "documents",
+    "icon": "fileRecused",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: documents | icon: fileRecused | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-documents--icon-fileSended--filled-false--monochrome-false.svg",
+    "type": "documents",
+    "icon": "fileSended",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: documents | icon: fileSended | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-documents--icon-settings--filled-false--monochrome-false.svg",
+    "type": "documents",
+    "icon": "settings",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: documents | icon: settings | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-ability--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "ability",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: ability | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-ability--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "ability",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: ability | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-attachment--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "attachment",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: attachment | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-attachment--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "attachment",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: attachment | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-bankAccounts--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "bankAccounts",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: bankAccounts | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-bonus--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "bonus",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: bonus | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-bonus--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "bonus",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: bonus | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-bonus--filled-true--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "bonus",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: bonus | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-bonus--filled-true--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "bonus",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: bonus | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-contract--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "contract",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: contract | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-groups--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "groups",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: groups | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-groups--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "groups",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: groups | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-groups--filled-true--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "groups",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: groups | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-groups--filled-true--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "groups",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: groups | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-hours--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "hours",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: hours | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-hours--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "hours",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: hours | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-info--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "info",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: info | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-info--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "info",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: info | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-medic--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "medic",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: medic | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-vacation--filled-false--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "vacation",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: vacation | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-vacation--filled-false--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "vacation",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: vacation | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-modalProfessionals--icon-vacation--filled-true--monochrome-false.svg",
+    "type": "modalProfessionals",
+    "icon": "vacation",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: modalProfessionals | icon: vacation | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-modalProfessionals--icon-vacation--filled-true--monochrome-true.svg",
+    "type": "modalProfessionals",
+    "icon": "vacation",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: modalProfessionals | icon: vacation | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-notifications--icon-announceRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "announceRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: announceRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-announceUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "announceUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: announceUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-candidateAcceptRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "candidateAcceptRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: candidateAcceptRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-candidateAcceptUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "candidateAcceptUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: candidateAcceptUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-candidateRecuseRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "candidateRecuseRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: candidateRecuseRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-candidateRecuseUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "candidateRecuseUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: candidateRecuseUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-duplicatedHourRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "duplicatedHourRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: duplicatedHourRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-duplicatedHourUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "duplicatedHourUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: duplicatedHourUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-dutyOnVacationRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "dutyOnVacationRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: dutyOnVacationRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-dutyOnVacationUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "dutyOnVacationUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: dutyOnVacationUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-limitDutyMonthlyRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "limitDutyMonthlyRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: limitDutyMonthlyRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-limitDutyMonthlyUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "limitDutyMonthlyUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: limitDutyMonthlyUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-limitHourRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "limitHourRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: limitHourRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-limitHourUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "limitHourUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: limitHourUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-limitHourWeeklyRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "limitHourWeeklyRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: limitHourWeeklyRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-limitHourWeeklyUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "limitHourWeeklyUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: limitHourWeeklyUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-sectorOnConsecutiveHoursRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "sectorOnConsecutiveHoursRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: sectorOnConsecutiveHoursRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-sectorOnConsecutiveHoursUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "sectorOnConsecutiveHoursUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: sectorOnConsecutiveHoursUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-switchRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "switchRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: switchRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-switchUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "switchUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: switchUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-userError--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "userError",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: userError | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-userErrorRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "userErrorRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: userErrorRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-waitingApprovalRead--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "waitingApprovalRead",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: waitingApprovalRead | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notifications--icon-waitingApprovalUnread--filled-false--monochrome-false.svg",
+    "type": "notifications",
+    "icon": "waitingApprovalUnread",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notifications | icon: waitingApprovalUnread | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-designatedToService--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "designatedToService",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: designatedToService | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-justifyCheckinAccepted--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "justifyCheckinAccepted",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: justifyCheckinAccepted | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-justifyCheckinRefused--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "justifyCheckinRefused",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: justifyCheckinRefused | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-justifyCheckinRequested--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "justifyCheckinRequested",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: justifyCheckinRequested | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-newOfferToBuy--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "newOfferToBuy",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: newOfferToBuy | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-offerToBuyAccepted--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "offerToBuyAccepted",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: offerToBuyAccepted | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-offerToBuyCanceled--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "offerToBuyCanceled",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: offerToBuyCanceled | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-offerToBuyRefused--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "offerToBuyRefused",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: offerToBuyRefused | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-relievedFromService--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "relievedFromService",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: relievedFromService | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-requestConfirmation--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "requestConfirmation",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: requestConfirmation | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-serviceDataHasChanged--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "serviceDataHasChanged",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: serviceDataHasChanged | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-serviceExchangeAccepted--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "serviceExchangeAccepted",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: serviceExchangeAccepted | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-serviceExchangeModerationReproved--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "serviceExchangeModerationReproved",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: serviceExchangeModerationReproved | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-serviceExchangeNeedsModeration--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "serviceExchangeNeedsModeration",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: serviceExchangeNeedsModeration | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-serviceExchangeRefused--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "serviceExchangeRefused",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: serviceExchangeRefused | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-serviceExchangeRequested--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "serviceExchangeRequested",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: serviceExchangeRequested | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-notificationsProfessional--icon-userMessageId--filled-false--monochrome-false.svg",
+    "type": "notificationsProfessional",
+    "icon": "userMessageId",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: notificationsProfessional | icon: userMessageId | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-address--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "address",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: address | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-building--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "building",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: building | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-building--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "building",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: building | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-building--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "building",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: building | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-candidates--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "candidates",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: candidates | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-candidates--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "candidates",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: candidates | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkin--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkin",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: checkin | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkin--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "checkin",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: checkin | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-checkin--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkin",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: checkin | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkinAlert--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkinAlert",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: checkinAlert | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkinCheckout--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkinCheckout",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: checkinCheckout | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkinCheckout--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkinCheckout",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: checkinCheckout | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkinDone--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkinDone",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: checkinDone | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkinUndone--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkinUndone",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: checkinUndone | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkout--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkout",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: checkout | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-checkout--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "checkout",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: checkout | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-checkout--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkout",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: checkout | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-clock--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "clock",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: clock | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-closed--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "closed",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: closed | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-closed--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "closed",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: closed | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-closed--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "closed",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: closed | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-description--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "description",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: description | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-description--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "description",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: description | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-duty--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "duty",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: duty | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-edit--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "edit",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: edit | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-exit--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "exit",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: exit | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-exit--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "exit",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: exit | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-extract--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "extract",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: extract | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-fav--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "fav",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: fav | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-justify--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "justify",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: justify | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-justify--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "justify",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: justify | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-justify--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "justify",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: justify | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-location--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "location",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: location | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-location--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "location",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: location | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-productivity--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "productivity",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: productivity | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-professionalsPass--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "professionalsPass",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: professionalsPass | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-professionalsPass--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "professionalsPass",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: professionalsPass | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-split--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "split",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: split | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-split--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "split",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: split | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-split--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "split",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: split | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-split--filled-true--monochrome-true.svg",
+    "type": "services",
+    "icon": "split",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: services | icon: split | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-start--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "start",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: start | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-start--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "start",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: start | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-swap--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "swap",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: swap | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-swap--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "swap",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: swap | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-swap--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "swap",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: swap | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-swap--filled-true--monochrome-true.svg",
+    "type": "services",
+    "icon": "swap",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: services | icon: swap | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-swapVerify--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "swapVerify",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: swapVerify | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-swapVerify--filled-false--monochrome-true.svg",
+    "type": "services",
+    "icon": "swapVerify",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: services | icon: swapVerify | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-swapVerify--filled-true--monochrome-false.svg",
+    "type": "services",
+    "icon": "swapVerify",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: services | icon: swapVerify | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-swapVerify--filled-true--monochrome-true.svg",
+    "type": "services",
+    "icon": "swapVerify",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: services | icon: swapVerify | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-services--icon-time--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "time",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: time | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-services--icon-update--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "update",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: update | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-about--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "about",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: about | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-about--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "about",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: about | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-announce--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "announce",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: announce | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-announce--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "announce",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: announce | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-announce--filled-true--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "announce",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebar | icon: announce | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-announce--filled-true--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "announce",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebar | icon: announce | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-announceCancel--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "announceCancel",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: announceCancel | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-announceCancel--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "announceCancel",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: announceCancel | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-calendar--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "calendar",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: calendar | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-calendar--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "calendar",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: calendar | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-calendarCancel--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "calendarCancel",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: calendarCancel | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-calendarCancel--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "calendarCancel",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: calendarCancel | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-candidates--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "candidates",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: candidates | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-candidates--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "candidates",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: candidates | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-checkinFacial--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "checkinFacial",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: checkinFacial | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-checkinFacial--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "checkinFacial",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: checkinFacial | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-dashboard--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "dashboard",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: dashboard | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-dashboard--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "dashboard",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: dashboard | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-documents--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "documents",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: documents | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-documents--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "documents",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: documents | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-finance--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "finance",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: finance | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-finance--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "finance",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: finance | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-financialStatement--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "financialStatement",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: financialStatement | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-financialStatement--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "financialStatement",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: financialStatement | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-home--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "home",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: home | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-home--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "home",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: home | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-logout--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "logout",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: logout | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-logout--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "logout",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: logout | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-myCalendar--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "myCalendar",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: myCalendar | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-myCalendar--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "myCalendar",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: myCalendar | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-preferences--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "preferences",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: preferences | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-professionals--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "professionals",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: professionals | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-professionals--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "professionals",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: professionals | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebar--icon-settings--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "settings",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: settings | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-workscale--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "workscale",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: workscale | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-workscale--filled-false--monochrome-true.svg",
+    "type": "sidebar",
+    "icon": "workscale",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebar | icon: workscale | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-notification--filled-false--monochrome-false.svg",
+    "type": "sidebarandtopbar",
+    "icon": "notification",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarandtopbar | icon: notification | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-notificationActive--filled-false--monochrome-false.svg",
+    "type": "sidebarandtopbar",
+    "icon": "notificationActive",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarandtopbar | icon: notificationActive | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-notifications--filled-false--monochrome-true.svg",
+    "type": "sidebarandtopbar",
+    "icon": "notifications",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarandtopbar | icon: notifications | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-notificationsActive--filled-false--monochrome-true.svg",
+    "type": "sidebarandtopbar",
+    "icon": "notificationsActive",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarandtopbar | icon: notificationsActive | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-pendenciesOrAlerts--filled-false--monochrome-false.svg",
+    "type": "sidebarandtopbar",
+    "icon": "pendenciesOrAlerts",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarandtopbar | icon: pendenciesOrAlerts | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-pendenciesOrAlerts--filled-false--monochrome-true.svg",
+    "type": "sidebarandtopbar",
+    "icon": "pendenciesOrAlerts",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarandtopbar | icon: pendenciesOrAlerts | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-pendenciesOrAlertsActive--filled-false--monochrome-false.svg",
+    "type": "sidebarandtopbar",
+    "icon": "pendenciesOrAlertsActive",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarandtopbar | icon: pendenciesOrAlertsActive | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarandtopbar--icon-pendenciesOrAlertsWithNotification--filled-false--monochrome-true.svg",
+    "type": "sidebarandtopbar",
+    "icon": "pendenciesOrAlertsWithNotification",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarandtopbar | icon: pendenciesOrAlertsWithNotification | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-anualHours--filled-false--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "anualHours",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: anualHours | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-anualHours--filled-false--monochrome-true.svg",
+    "type": "sidebarDashboard",
+    "icon": "anualHours",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarDashboard | icon: anualHours | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-finance--filled-false--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "finance",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: finance | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-finance--filled-true--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "finance",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: finance | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-hours--filled-false--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "hours",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: hours | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-hours--filled-false--monochrome-true.svg",
+    "type": "sidebarDashboard",
+    "icon": "hours",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarDashboard | icon: hours | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-hours--filled-true--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "hours",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: hours | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-report--filled-false--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "report",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: report | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-report--filled-false--monochrome-true.svg",
+    "type": "sidebarDashboard",
+    "icon": "report",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarDashboard | icon: report | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-tickets--filled-false--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "tickets",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: tickets | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-tickets--filled-false--monochrome-true.svg",
+    "type": "sidebarDashboard",
+    "icon": "tickets",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarDashboard | icon: tickets | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-tickets--filled-true--monochrome-false.svg",
+    "type": "sidebarDashboard",
+    "icon": "tickets",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarDashboard | icon: tickets | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarDashboard--icon-tickets--filled-true--monochrome-true.svg",
+    "type": "sidebarDashboard",
+    "icon": "tickets",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarDashboard | icon: tickets | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarFinance--icon-advance--filled-false--monochrome-false.svg",
+    "type": "sidebarFinance",
+    "icon": "advance",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarFinance | icon: advance | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarFinance--icon-advance--filled-false--monochrome-true.svg",
+    "type": "sidebarFinance",
+    "icon": "advance",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarFinance | icon: advance | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarFinance--icon-closure--filled-false--monochrome-false.svg",
+    "type": "sidebarFinance",
+    "icon": "closure",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarFinance | icon: closure | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarFinance--icon-closure--filled-false--monochrome-true.svg",
+    "type": "sidebarFinance",
+    "icon": "closure",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarFinance | icon: closure | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarProfessionals--icon-coordinators--filled-false--monochrome-true.svg",
+    "type": "sidebarProfessionals",
+    "icon": "coordinators",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarProfessionals | icon: coordinators | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarProfessionals--icon-professionals--filled-false--monochrome-false.svg",
+    "type": "sidebarProfessionals",
+    "icon": "professionals",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarProfessionals | icon: professionals | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarProfessionals--icon-professionals--filled-false--monochrome-true.svg",
+    "type": "sidebarProfessionals",
+    "icon": "professionals",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarProfessionals | icon: professionals | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarProfessionals--icon-professionalShield--filled-false--monochrome-false.svg",
+    "type": "sidebarProfessionals",
+    "icon": "professionalShield",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarProfessionals | icon: professionalShield | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarProfessionals--icon-viewers--filled-false--monochrome-false.svg",
+    "type": "sidebarProfessionals",
+    "icon": "viewers",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarProfessionals | icon: viewers | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarProfessionals--icon-viewers--filled-false--monochrome-true.svg",
+    "type": "sidebarProfessionals",
+    "icon": "viewers",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarProfessionals | icon: viewers | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-ability--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "ability",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: ability | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-ability--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "ability",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: ability | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-autoSettings--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "autoSettings",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: autoSettings | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-autoSettings--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "autoSettings",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: autoSettings | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-autoSettings--filled-true--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "autoSettings",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: autoSettings | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-autoSettings--filled-true--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "autoSettings",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: autoSettings | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-bankAccounts--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "bankAccounts",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: bankAccounts | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-bonus--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "bonus",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: bonus | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-bonus--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "bonus",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: bonus | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-bonus--filled-true--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "bonus",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: bonus | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-bonus--filled-true--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "bonus",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: bonus | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-businessSubmit--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "businessSubmit",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: businessSubmit | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-businessSubmit--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "businessSubmit",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: businessSubmit | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-businessSubmit--filled-true--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "businessSubmit",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: businessSubmit | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-businessSubmit--filled-true--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "businessSubmit",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: businessSubmit | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-contractTypes--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "contractTypes",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: contractTypes | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-contractTypes--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "contractTypes",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: contractTypes | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-contractTypes--filled-true--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "contractTypes",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: contractTypes | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-contractTypes--filled-true--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "contractTypes",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: contractTypes | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-dutysituations--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "dutysituations",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: dutysituations | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-dutysituations--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "dutysituations",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: dutysituations | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-dutyTypes--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "dutyTypes",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: dutyTypes | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-dutyTypes--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "dutyTypes",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: dutyTypes | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-groups--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "groups",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: groups | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-groups--filled-true--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "groups",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: groups | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-groups--filled-true--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "groups",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: groups | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-places--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "places",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: places | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-places--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "places",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: places | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-places--filled-true--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "places",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: places | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-places--filled-true--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "places",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: places | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-productivity--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "productivity",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: productivity | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-productivity--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "productivity",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: productivity | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-professionalsGroup--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "professionalsGroup",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: professionalsGroup | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-setAsPaid--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "setAsPaid",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: setAsPaid | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-tolerance--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "tolerance",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: tolerance | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-tolerance--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "tolerance",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: tolerance | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-vacation--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "vacation",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: vacation | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-vacation--filled-false--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "vacation",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: vacation | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-vacation--filled-true--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "vacation",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: vacation | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarSettings--icon-vacation--filled-true--monochrome-true.svg",
+    "type": "sidebarSettings",
+    "icon": "vacation",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarSettings | icon: vacation | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarSettings--icon-values--filled-false--monochrome-false.svg",
+    "type": "sidebarSettings",
+    "icon": "values",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarSettings | icon: values | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-12x36--filled-false--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "12x36",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: 12x36 | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-12x36--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "12x36",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: 12x36 | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-checkinJustify--filled-false--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "checkinJustify",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: checkinJustify | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-checkinJustify--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "checkinJustify",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: checkinJustify | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-models--filled-false--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "models",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: models | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-models--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "models",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: models | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-monthly--filled-false--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "monthly",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: monthly | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-monthly--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "monthly",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: monthly | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-professional--filled-false--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "professional",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: professional | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-professional--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "professional",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: professional | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-professional--filled-true--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "professional",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: professional | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-professional--filled-true--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "professional",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: professional | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-search--filled-false--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "search",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: search | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-search--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "search",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: search | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-unify--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "unify",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: unify | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-weekly--filled-false--monochrome-false.svg",
+    "type": "sidebarWorkscale",
+    "icon": "weekly",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarWorkscale | icon: weekly | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebarWorkscale--icon-weekly--filled-false--monochrome-true.svg",
+    "type": "sidebarWorkscale",
+    "icon": "weekly",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarWorkscale | icon: weekly | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-static--icon-dutyBag--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "dutyBag",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: dutyBag | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-dutyBag--filled-false--monochrome-true.svg",
+    "type": "static",
+    "icon": "dutyBag",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: static | icon: dutyBag | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-static--icon-evening--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "evening",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: evening | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-morning--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "morning",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: morning | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-night--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "night",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: night | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-pie--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "pie",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: pie | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-pie--filled-false--monochrome-true.svg",
+    "type": "static",
+    "icon": "pie",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: static | icon: pie | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-static--icon-science--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "science",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: science | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-addGroup--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "addGroup",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: addGroup | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-addGroup--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "addGroup",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: addGroup | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-addOrActiveUser--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "addOrActiveUser",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: addOrActiveUser | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-addOrActiveUser--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "addOrActiveUser",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: addOrActiveUser | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-areas--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "areas",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: areas | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-areas--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "areas",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: areas | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-areas--filled-true--monochrome-false.svg",
+    "type": "tools",
+    "icon": "areas",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: tools | icon: areas | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-areas--filled-true--monochrome-true.svg",
+    "type": "tools",
+    "icon": "areas",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: tools | icon: areas | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-arrowDown--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "arrowDown",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: arrowDown | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-arrowDown--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "arrowDown",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: arrowDown | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-arrowLeft--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "arrowLeft",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: arrowLeft | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-arrowLeft--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "arrowLeft",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: arrowLeft | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-arrowRight--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "arrowRight",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: arrowRight | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-arrowRight--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "arrowRight",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: arrowRight | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-arrowSlimLeft--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "arrowSlimLeft",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: arrowSlimLeft | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-arrowSlimRight--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "arrowSlimRight",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: arrowSlimRight | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-arrowUp--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "arrowUp",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: arrowUp | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-arrowUp--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "arrowUp",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: arrowUp | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-batchImport--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "batchImport",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: batchImport | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-batchImport--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "batchImport",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: batchImport | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-blockedUser--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "blockedUser",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: blockedUser | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-blockUser--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "blockUser",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: blockUser | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-bug--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "bug",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: bug | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-cache--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "cache",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: cache | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-cache--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "cache",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: cache | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-camera--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "camera",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: camera | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-camera--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "camera",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: camera | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-cancel--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "cancel",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: cancel | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-cancel--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "cancel",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: cancel | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-checkAll--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "checkAll",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: checkAll | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-checkAll--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "checkAll",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: checkAll | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-clear--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "clear",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: clear | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-clear--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "clear",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: clear | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-coordinates--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "coordinates",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: coordinates | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-coordinates--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "coordinates",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: coordinates | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-copy--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "copy",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: copy | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-csv--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "csv",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: csv | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-csv--filled-true--monochrome-false.svg",
+    "type": "tools",
+    "icon": "csv",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: tools | icon: csv | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-delete--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "delete",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: delete | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-delete--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "delete",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: delete | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-docs--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "docs",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: docs | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-docs--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "docs",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: docs | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-download--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "download",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: download | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-download--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "download",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: download | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-duplicate--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "duplicate",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: duplicate | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-duplicate--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "duplicate",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: duplicate | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-edit--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "edit",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: edit | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-edit--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "edit",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: edit | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-events--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "events",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: events | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-events--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "events",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: events | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-eyeClosed--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "eyeClosed",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: eyeClosed | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-eyeOpen--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "eyeOpen",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: eyeOpen | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-filter--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "filter",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: filter | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-filter--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "filter",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: filter | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-fullscreen--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "fullscreen",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: fullscreen | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-fullscreen--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "fullscreen",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: fullscreen | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-fullyPaid--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "fullyPaid",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: fullyPaid | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-gallery--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "gallery",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: gallery | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-gallery--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "gallery",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: gallery | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-generate--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "generate",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: generate | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-generate--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "generate",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: generate | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-hide--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "hide",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: hide | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-hide--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "hide",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: hide | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-history--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "history",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: history | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-import--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "import",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: import | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-import--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "import",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: import | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-info--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "info",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: info | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-info--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "info",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: info | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-lock--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "lock",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: lock | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-lock--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "lock",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: lock | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-login--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "login",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: login | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-login--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "login",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: login | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-logs--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "logs",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: logs | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-logs--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "logs",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: logs | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-newPassword--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "newPassword",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: newPassword | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-newPassword--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "newPassword",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: newPassword | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-padlock--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "padlock",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: padlock | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-password--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "password",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: password | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-passwordBlink--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "passwordBlink",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: passwordBlink | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-passwordBlink--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "passwordBlink",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: passwordBlink | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-passwordHide--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "passwordHide",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: passwordHide | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-passwordShow--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "passwordShow",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: passwordShow | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-pdf--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "pdf",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: pdf | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-pdf--filled-true--monochrome-false.svg",
+    "type": "tools",
+    "icon": "pdf",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: tools | icon: pdf | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-permissions--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "permissions",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: permissions | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-permissions--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "permissions",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: permissions | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-permissions--filled-true--monochrome-false.svg",
+    "type": "tools",
+    "icon": "permissions",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: tools | icon: permissions | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-permissions--filled-true--monochrome-true.svg",
+    "type": "tools",
+    "icon": "permissions",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: tools | icon: permissions | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-phone--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "phone",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: phone | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-plus--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "plus",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: plus | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-plus--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "plus",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: plus | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-preview--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "preview",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: preview | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-preview--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "preview",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: preview | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-print--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "print",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: print | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-printer--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "printer",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: printer | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-reload--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "reload",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: reload | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-reload--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "reload",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: reload | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-removeGroup--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "removeGroup",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: removeGroup | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-removeGroup--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "removeGroup",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: removeGroup | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-removeUser--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "removeUser",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: removeUser | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-removeUser--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "removeUser",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: removeUser | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-repair--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "repair",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: repair | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-repair--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "repair",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: repair | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-resetPassword--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "resetPassword",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: resetPassword | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-resetPassword--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "resetPassword",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: resetPassword | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-revision--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "revision",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: revision | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-revision--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "revision",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: revision | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-save--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "save",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: save | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-save--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "save",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: save | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-save--filled-true--monochrome-false.svg",
+    "type": "tools",
+    "icon": "save",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: tools | icon: save | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-save--filled-true--monochrome-true.svg",
+    "type": "tools",
+    "icon": "save",
+    "filled": true,
+    "monochrome": true,
+    "title": "type: tools | icon: save | filled: true | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-search--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "search",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: search | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-search--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "search",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: search | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-sendMail--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "sendMail",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: sendMail | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-sendMail--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "sendMail",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: sendMail | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-sendMailTest--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "sendMailTest",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: sendMailTest | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-sendMailTest--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "sendMailTest",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: sendMailTest | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-show--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "show",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: show | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-show--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "show",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: show | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-switch--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "switch",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: switch | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-switch--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "switch",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: switch | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-syncManual--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "syncManual",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: syncManual | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-syncManual--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "syncManual",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: syncManual | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-syncServices--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "syncServices",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: syncServices | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-tokens--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "tokens",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: tokens | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-tokens--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "tokens",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: tokens | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-uncheckAll--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "uncheckAll",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: uncheckAll | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-uncheckAll--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "uncheckAll",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: uncheckAll | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-unlock--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "unlock",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: unlock | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-unlock--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "unlock",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: unlock | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-unsync--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "unsync",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: unsync | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-unSync--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "unSync",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: unSync | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-unsyncLocal--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "unsyncLocal",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: unsyncLocal | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-unSyncLocal--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "unSyncLocal",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: unSyncLocal | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-upload--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "upload",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: upload | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-upload--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "upload",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: upload | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-whatsapp--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "whatsapp",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: whatsapp | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-whatsapp--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "whatsapp",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: whatsapp | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-xlsx--filled-false--monochrome-false.svg",
+    "type": "tools",
+    "icon": "xlsx",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: tools | icon: xlsx | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-tools--icon-xlsx--filled-true--monochrome-false.svg",
+    "type": "tools",
+    "icon": "xlsx",
+    "filled": true,
+    "monochrome": false,
+    "title": "type: tools | icon: xlsx | filled: true | monochrome: false"
+  },
+  {
+    "file": "type-topbar--icon-darkModeOff--filled-false--monochrome-false.svg",
+    "type": "topbar",
+    "icon": "darkModeOff",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: topbar | icon: darkModeOff | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-topbar--icon-darkModeOff--filled-false--monochrome-true.svg",
+    "type": "topbar",
+    "icon": "darkModeOff",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: topbar | icon: darkModeOff | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-topbar--icon-darkModeOn--filled-false--monochrome-false.svg",
+    "type": "topbar",
+    "icon": "darkModeOn",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: topbar | icon: darkModeOn | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-topbar--icon-darkModeOn--filled-false--monochrome-true.svg",
+    "type": "topbar",
+    "icon": "darkModeOn",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: topbar | icon: darkModeOn | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-topbar--icon-helpDesk--filled-false--monochrome-false.svg",
+    "type": "topbar",
+    "icon": "helpDesk",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: topbar | icon: helpDesk | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-topbar--icon-helpDesk--filled-false--monochrome-true.svg",
+    "type": "topbar",
+    "icon": "helpDesk",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: topbar | icon: helpDesk | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-topbar--icon-messagesOrEmails--filled-false--monochrome-false.svg",
+    "type": "topbar",
+    "icon": "messagesOrEmails",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: topbar | icon: messagesOrEmails | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-topbar--icon-messagesOrEmails--filled-false--monochrome-true.svg",
+    "type": "topbar",
+    "icon": "messagesOrEmails",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: topbar | icon: messagesOrEmails | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-topbar--icon-post--filled-false--monochrome-false.svg",
+    "type": "topbar",
+    "icon": "post",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: topbar | icon: post | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-topbar--icon-post--filled-false--monochrome-true.svg",
+    "type": "topbar",
+    "icon": "post",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: topbar | icon: post | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-topbar--icon-search--filled-false--monochrome-false.svg",
+    "type": "topbar",
+    "icon": "search",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: topbar | icon: search | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-topbar--icon-search--filled-false--monochrome-true.svg",
+    "type": "topbar",
+    "icon": "search",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: topbar | icon: search | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-ui--icon-check--filled-false--monochrome-false.svg",
+    "type": "ui",
+    "icon": "check",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: ui | icon: check | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-ui--icon-circleCheck--filled-false--monochrome-false.svg",
+    "type": "ui",
+    "icon": "circleCheck",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: ui | icon: circleCheck | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-ui--icon-chevronDown--filled-false--monochrome-false.svg",
+    "type": "ui",
+    "icon": "chevronDown",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: ui | icon: chevronDown | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-ui--icon-chevronRight--filled-false--monochrome-false.svg",
+    "type": "ui",
+    "icon": "chevronRight",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: ui | icon: chevronRight | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-ui--icon-gem--filled-false--monochrome-false.svg",
+    "type": "ui",
+    "icon": "gem",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: ui | icon: gem | filled: false | monochrome: false"
+  }
+]

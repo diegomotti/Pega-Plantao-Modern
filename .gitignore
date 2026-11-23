@@ -1,0 +1,4 @@
+node_modules
+.design/shots
+*.local
+.DS_Store
