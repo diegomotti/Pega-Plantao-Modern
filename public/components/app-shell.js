@@ -9,7 +9,7 @@
      <div class="flex h-full min-h-screen flex-col">
        <pp-app-header breadcrumb='[{"label":"Contas","href":"/"},{"label":"Preferências"}]'></pp-app-header>
        <div class="relative flex min-h-0 flex-1">
-         <pp-app-rail></pp-app-rail>
+         <pp-app-sidebar></pp-app-sidebar>
          <main>…</main>
        </div>
      </div>
@@ -17,10 +17,10 @@
    - <pp-app-header>: logo, menu de Escalas (mobile), toast, busca,
      notificações e menu da conta, seguido do divisor. O atributo breadcrumb
      (JSON) é opcional; itens com href viram links e o último é a página atual.
-   - <pp-app-rail>: divisor lateral e o menu de módulos (rail de 85px).
+   - <pp-app-sidebar>: divisor lateral e o menu de módulos (rail de 85px).
    - O link da página atual (rail, menu da conta e menu de Escalas) recebe
      aria-current="page" pelo endereço, e o botão do módulo que o contém fica
-     selecionado. Para forçar outro módulo use <pp-app-rail current="escalas">.
+     selecionado. Para forçar outro módulo use <pp-app-sidebar current="escalas">.
    - Os dois elementos usam display: contents, então o header e o nav
      continuam como filhos diretos do layout. O comportamento (menus, toast)
      segue em app.js.
@@ -130,7 +130,7 @@
 ></div>
 <nav aria-label="Módulos" class="hidden min-h-0 w-[85px] shrink-0 flex-col items-center gap-[18px] overflow-y-auto pt-[23px] scrollbar-slim lg:flex">
   <button type="button" title="Painel" aria-label="Painel" aria-expanded="false" aria-controls="rail-painel" data-rail-toggle class="pp-sidebar-link">
-    <pp-icon type="sidebar" name="dashboard" class="size-[25px]"></pp-icon>
+    <pp-icon type="sidebar" name="dashboard" class="size-6"></pp-icon>
   </button>
   <div id="rail-painel" class="pp-sidebar-menu" aria-label="Painel" hidden>
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebar" name="dashboard"></pp-icon>Resumo</a>
@@ -141,7 +141,7 @@
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarDashboard" name="anualHours"></pp-icon>Carga horária anual</a>
   </div>
   <button type="button" title="Escalas" aria-label="Escalas" aria-expanded="false" aria-controls="rail-escalas" data-rail-toggle class="pp-sidebar-link">
-    <pp-icon type="sidebar" name="workscale" class="size-[25px]"></pp-icon>
+    <pp-icon type="sidebar" name="workscale" class="size-6"></pp-icon>
   </button>
   <div id="rail-escalas" class="pp-sidebar-menu" aria-label="Escalas" hidden>
     <a href="/escala/semanal.html" class="pp-sidebar-menu__item"><pp-icon type="sidebarWorkscale" name="weekly"></pp-icon>Semanal</a>
@@ -154,7 +154,7 @@
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="tools" name="syncServices"></pp-icon>Sincronização de Plantões</a>
   </div>
   <button type="button" title="Profissionais" aria-label="Profissionais" aria-expanded="false" aria-controls="rail-profissionais" data-rail-toggle class="pp-sidebar-link">
-    <pp-icon type="sidebar" name="professionals" class="size-[25px]"></pp-icon>
+    <pp-icon type="sidebar" name="professionals" class="size-6"></pp-icon>
   </button>
   <div id="rail-profissionais" class="pp-sidebar-menu" aria-label="Profissionais" hidden>
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarProfessionals" name="professionals"></pp-icon>Profissionais</a>
@@ -162,7 +162,7 @@
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarProfessionals" name="viewers"></pp-icon>Visualizadores</a>
   </div>
   <button type="button" title="Configurações" aria-label="Configurações" aria-expanded="false" aria-controls="rail-configuracoes" data-rail-toggle class="pp-sidebar-link">
-    <pp-icon type="sidebar" name="settings" class="size-[25px]"></pp-icon>
+    <pp-icon type="sidebar" name="settings" class="size-6"></pp-icon>
   </button>
   <div id="rail-configuracoes" class="pp-sidebar-menu" aria-label="Configurações" hidden>
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Locais e Setores</a>
@@ -180,24 +180,24 @@
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarSettings" name="ability"></pp-icon>Habilidades</a>
   </div>
   <button type="button" title="Financeiro" aria-label="Financeiro" aria-expanded="false" aria-controls="rail-financeiro" data-rail-toggle class="pp-sidebar-link">
-    <pp-icon type="sidebar" name="finance" class="size-[25px]"></pp-icon>
+    <pp-icon type="sidebar" name="finance" class="size-6"></pp-icon>
   </button>
   <div id="rail-financeiro" class="pp-sidebar-menu" aria-label="Financeiro" hidden>
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarFinance" name="closure"></pp-icon>Fechamento</a>
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarFinance" name="advance"></pp-icon>Adiantamento</a>
   </div>
   <button type="button" title="Credenciamento" aria-label="Credenciamento" aria-expanded="false" aria-controls="rail-credenciamento" data-rail-toggle class="pp-sidebar-link">
-    <pp-icon type="sidebar" name="documents" class="size-[25px]"></pp-icon>
+    <pp-icon type="sidebar" name="documents" class="size-6"></pp-icon>
   </button>
   <div id="rail-credenciamento" class="pp-sidebar-menu" aria-label="Credenciamento" hidden>
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Documentos</a>
     <a href="#" class="pp-sidebar-menu__item"><pp-icon type="sidebarSettings" name="professionalsGroup"></pp-icon>Tipos de Documentos</a>
   </div>
   <a href="#" title="Registros" aria-label="Registros" class="pp-sidebar-link">
-    <pp-icon type="sidebar" name="post" class="size-[25px]"></pp-icon>
+    <pp-icon type="topbar" name="post" class="size-6"></pp-icon>
   </a>
   <a href="#" title="Mensagens" aria-label="Mensagens" class="pp-sidebar-link">
-    <pp-icon type="topbar" name="messagesOrEmails" class="size-[25px]"></pp-icon>
+    <pp-icon type="topbar" name="messagesOrEmails" class="size-6"></pp-icon>
   </a>
 </nav>`;
 
@@ -230,7 +230,7 @@
     }
   }
 
-  class AppRail extends HTMLElement {
+  class AppSidebar extends HTMLElement {
     connectedCallback() {
       if (this.dataset.rendered) return;
       this.dataset.rendered = "true";
@@ -248,5 +248,5 @@
   }
 
   customElements.define("pp-app-header", AppHeader);
-  customElements.define("pp-app-rail", AppRail);
+  customElements.define("pp-app-sidebar", AppSidebar);
 })();

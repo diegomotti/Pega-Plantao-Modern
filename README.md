@@ -19,7 +19,7 @@ elementos usados em todas as páginas:
   <div class="flex h-full min-h-screen flex-col">
     <pp-app-header breadcrumb='[{"label":"Contas","href":"/"},{"label":"Preferências"}]'></pp-app-header>
     <div class="relative flex min-h-0 flex-1">
-      <pp-app-rail></pp-app-rail>
+      <pp-app-sidebar></pp-app-sidebar>
       <main>…</main>
     </div>
   </div>
@@ -30,10 +30,10 @@ elementos usados em todas as páginas:
 - `<pp-app-header>` renderiza o logo, o menu de Escalas (mobile), o toast, a
   busca, as notificações, o menu da conta e o divisor abaixo. `breadcrumb` é
   opcional (JSON); itens com `href` viram links e o último é a página atual.
-- `<pp-app-rail>` renderiza o divisor lateral e o rail de módulos.
+- `<pp-app-sidebar>` renderiza o divisor lateral e o rail de módulos.
 - O link da página atual recebe `aria-current="page"` automaticamente pelo
   endereço, e o módulo que o contém fica selecionado no rail. Para forçar um
-  módulo, use `<pp-app-rail current="escalas">`.
+  módulo, use `<pp-app-sidebar current="escalas">`.
 - O script fica no `<head>` (sem `defer`) para a moldura aparecer junto com a
   página. Os elementos usam `display: contents`; menus e toast continuam em
   `app.js`.
@@ -236,7 +236,7 @@ custom element `<pp-icon>` (definido em `public/app.js`). O manifesto
 `monochrome`; cada SVG é buscado uma única vez e fica em cache.
 
 ```html
-<pp-icon type="sidebar" name="dashboard" class="size-[25px]"></pp-icon>
+<pp-icon type="sidebar" name="dashboard" class="size-6"></pp-icon>
 <pp-icon type="ui" name="chevronDown" stroke-width="2.2"></pp-icon>
 <pp-icon type="sidebarSettings" name="places" data-monochrome="true"></pp-icon>
 ```

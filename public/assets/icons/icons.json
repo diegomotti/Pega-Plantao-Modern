@@ -752,6 +752,14 @@
     "title": "type: notificationsProfessional | icon: userMessageId | filled: false | monochrome: false"
   },
   {
+    "file": "type-services--icon-add--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "add",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: add | filled: false | monochrome: false"
+  },
+  {
     "file": "type-services--icon-address--filled-false--monochrome-false.svg",
     "type": "services",
     "icon": "address",
@@ -1304,6 +1312,38 @@
     "title": "type: sidebar | icon: checkinFacial | filled: false | monochrome: true"
   },
   {
+    "file": "type-sidebar--icon-checkinFacialLiveness--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "checkinFacialLiveness",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: checkinFacialLiveness | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-checkinFacialMobile--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "checkinFacialMobile",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: checkinFacialMobile | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-checkinMobile--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "checkinMobile",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: checkinMobile | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-checkinWeb--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "checkinWeb",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: checkinWeb | filled: false | monochrome: false"
+  },
+  {
     "file": "type-sidebar--icon-dashboard--filled-false--monochrome-false.svg",
     "type": "sidebar",
     "icon": "dashboard",
@@ -1400,6 +1440,38 @@
     "title": "type: sidebar | icon: logout | filled: false | monochrome: true"
   },
   {
+    "file": "type-sidebar--icon-modulesAccreditance--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "modulesAccreditance",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: modulesAccreditance | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-modulesCheckinCheckout--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "modulesCheckinCheckout",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: modulesCheckinCheckout | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-modulesFinance--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "modulesFinance",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: modulesFinance | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-sidebar--icon-modulesSignup--filled-false--monochrome-false.svg",
+    "type": "sidebar",
+    "icon": "modulesSignup",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebar | icon: modulesSignup | filled: false | monochrome: false"
+  },
+  {
     "file": "type-sidebar--icon-myCalendar--filled-false--monochrome-false.svg",
     "type": "sidebar",
     "icon": "myCalendar",
@@ -1472,6 +1544,14 @@
     "title": "type: sidebarandtopbar | icon: notification | filled: false | monochrome: false"
   },
   {
+    "file": "type-sidebarandtopbar--icon-notification--filled-false--monochrome-true.svg",
+    "type": "sidebarandtopbar",
+    "icon": "notification",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: sidebarandtopbar | icon: notification | filled: false | monochrome: true"
+  },
+  {
     "file": "type-sidebarandtopbar--icon-notificationActive--filled-false--monochrome-false.svg",
     "type": "sidebarandtopbar",
     "icon": "notificationActive",
@@ -1480,20 +1560,12 @@
     "title": "type: sidebarandtopbar | icon: notificationActive | filled: false | monochrome: false"
   },
   {
-    "file": "type-sidebarandtopbar--icon-notifications--filled-false--monochrome-true.svg",
+    "file": "type-sidebarandtopbar--icon-notificationActive--filled-false--monochrome-true.svg",
     "type": "sidebarandtopbar",
-    "icon": "notifications",
+    "icon": "notificationActive",
     "filled": false,
     "monochrome": true,
-    "title": "type: sidebarandtopbar | icon: notifications | filled: false | monochrome: true"
-  },
-  {
-    "file": "type-sidebarandtopbar--icon-notificationsActive--filled-false--monochrome-true.svg",
-    "type": "sidebarandtopbar",
-    "icon": "notificationsActive",
-    "filled": false,
-    "monochrome": true,
-    "title": "type: sidebarandtopbar | icon: notificationsActive | filled: false | monochrome: true"
+    "title": "type: sidebarandtopbar | icon: notificationActive | filled: false | monochrome: true"
   },
   {
     "file": "type-sidebarandtopbar--icon-pendenciesOrAlerts--filled-false--monochrome-false.svg",
@@ -1662,6 +1734,14 @@
     "filled": false,
     "monochrome": true,
     "title": "type: sidebarFinance | icon: closure | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-sidebarProfessionals--icon-coordinators--filled-false--monochrome-false.svg",
+    "type": "sidebarProfessionals",
+    "icon": "coordinators",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: sidebarProfessionals | icon: coordinators | filled: false | monochrome: false"
   },
   {
     "file": "type-sidebarProfessionals--icon-coordinators--filled-false--monochrome-true.svg",
@@ -2176,6 +2256,22 @@
     "title": "type: sidebarWorkscale | icon: weekly | filled: false | monochrome: true"
   },
   {
+    "file": "type-static--icon-changePhoto--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "changePhoto",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: changePhoto | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-distance--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "distance",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: distance | filled: false | monochrome: false"
+  },
+  {
     "file": "type-static--icon-dutyBag--filled-false--monochrome-false.svg",
     "type": "static",
     "icon": "dutyBag",
@@ -2198,6 +2294,14 @@
     "filled": false,
     "monochrome": false,
     "title": "type: static | icon: evening | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-exchange--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "exchange",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: exchange | filled: false | monochrome: false"
   },
   {
     "file": "type-static--icon-morning--filled-false--monochrome-false.svg",
@@ -2230,6 +2334,22 @@
     "filled": false,
     "monochrome": true,
     "title": "type: static | icon: pie | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-static--icon-rotateLeft--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "rotateLeft",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: rotateLeft | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-static--icon-rotateRight--filled-false--monochrome-false.svg",
+    "type": "static",
+    "icon": "rotateRight",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: static | icon: rotateRight | filled: false | monochrome: false"
   },
   {
     "file": "type-static--icon-science--filled-false--monochrome-false.svg",
@@ -2502,6 +2622,14 @@
     "filled": false,
     "monochrome": true,
     "title": "type: tools | icon: clear | filled: false | monochrome: true"
+  },
+  {
+    "file": "type-tools--icon-consultant--filled-false--monochrome-true.svg",
+    "type": "tools",
+    "icon": "consultant",
+    "filled": false,
+    "monochrome": true,
+    "title": "type: tools | icon: consultant | filled: false | monochrome: true"
   },
   {
     "file": "type-tools--icon-coordinates--filled-false--monochrome-false.svg",
@@ -3464,14 +3592,6 @@
     "title": "type: ui | icon: check | filled: false | monochrome: false"
   },
   {
-    "file": "type-ui--icon-circleCheck--filled-false--monochrome-false.svg",
-    "type": "ui",
-    "icon": "circleCheck",
-    "filled": false,
-    "monochrome": false,
-    "title": "type: ui | icon: circleCheck | filled: false | monochrome: false"
-  },
-  {
     "file": "type-ui--icon-chevronDown--filled-false--monochrome-false.svg",
     "type": "ui",
     "icon": "chevronDown",
@@ -3486,6 +3606,14 @@
     "filled": false,
     "monochrome": false,
     "title": "type: ui | icon: chevronRight | filled: false | monochrome: false"
+  },
+  {
+    "file": "type-ui--icon-circleCheck--filled-false--monochrome-false.svg",
+    "type": "ui",
+    "icon": "circleCheck",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: ui | icon: circleCheck | filled: false | monochrome: false"
   },
   {
     "file": "type-ui--icon-gem--filled-false--monochrome-false.svg",

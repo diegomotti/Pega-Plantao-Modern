@@ -20,10 +20,10 @@
       <pp-app-header breadcrumb='[{"label":"Contas","href":"/"},{"label":"Preferências"}]'></pp-app-header>
 
       <div class="relative flex min-h-0 flex-1">
-        <pp-app-rail></pp-app-rail>
+        <pp-app-sidebar></pp-app-sidebar>
 
         <!-- ========================================================= sidebar -->
-        <aside class="hidden min-h-0 w-[284px] shrink-0 overflow-y-auto scrollbar-slim lg:block">
+        <aside class="hidden min-h-0 w-70 shrink-0 overflow-y-auto scrollbar-slim lg:block">
           <nav id="prefs-nav" aria-label="Ajustes de preferências" class="pt-[29px]">
             <button
               type="button"
@@ -71,19 +71,19 @@
             <a href="#emails-e-notificacoes" class="pp-nav-item"><span>E-mails e Notificações</span></a>
             <a href="#credenciamento" class="pp-nav-item">
               <span class="flex items-center gap-2.5">
-                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-[17px] shrink-0 text-primary-500"></pp-icon>
+                <pp-icon type="sidebar" name="modulesAccreditance" class="size-[18px] shrink-0"></pp-icon>
                 <span>Credenciamento</span>
               </span>
             </a>
             <a href="#financeiro-avancado" class="pp-nav-item">
               <span class="flex items-center gap-2.5">
-                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-[17px] shrink-0 text-tertiary-500"></pp-icon>
+                <pp-icon type="sidebar" name="modulesFinance" class="size-[18px] shrink-0"></pp-icon>
                 <span>Financeiro Avançado</span>
               </span>
             </a>
             <button type="button" class="pp-nav-item" aria-expanded="false" aria-controls="nav-registro" data-nav-toggle>
               <span class="flex items-center gap-2.5">
-                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-[17px] shrink-0 text-primary-700"></pp-icon>
+                <pp-icon type="sidebar" name="modulesCheckinCheckout" class="size-[18px] shrink-0"></pp-icon>
                 <span>Registro de Entrada e Saída Avançado</span>
               </span>
               <pp-icon type="ui" name="chevronDown" stroke-width="2.2" class="size-4 shrink-0 -rotate-90 text-primary-500 transition-transform duration-200" data-chevron></pp-icon>
@@ -91,7 +91,7 @@
             <div id="nav-registro" class="pp-nav-sub-list" hidden>
               <a href="#geral-e-avancado" class="pp-nav-sub gap-2">
                 <span>Geral e Avançado</span>
-                <pp-icon type="ui" name="gem" stroke-width="1.4" class="size-3 shrink-0 text-primary-700"></pp-icon>
+                <pp-icon type="sidebar" name="modulesCheckinCheckout" class="size-3.5 shrink-0"></pp-icon>
               </a>
               <a href="#configuracoes-adicionais" class="pp-nav-sub"><span>Configurações adicionais</span></a>
               <a href="#tolerancia" class="pp-nav-sub"><span>Tolerância</span></a>
@@ -151,7 +151,7 @@
                 </div>
 
                 <!-- ------------------------------------------------- card 2 -->
-                <div class="pp-card min-h-[85px]">
+                <div class="pp-card min-h-22">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Horário limite para candidatura</h2>
                     <p class="pp-card__desc">
@@ -200,7 +200,7 @@
                 </div>
 
                 <!-- ------------------------------------------------- card 3 -->
-                <div class="pp-card min-h-[85px]">
+                <div class="pp-card min-h-22">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir aos profissionais</h2>
                     <p class="pp-card__desc">
@@ -209,7 +209,7 @@
                   </div>
 
                   <button type="button" class="pp-btn shrink-0" data-locais>
-                    <pp-icon type="sidebarSettings" name="places" data-monochrome="true" class="size-4"></pp-icon>
+                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>
                     Configurar Locais e Setores
                   </button>
                 </div>
@@ -238,7 +238,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Grupo de coordenadores que podem alterar plantões anteriores à data limite</h2>
                     <p class="pp-card__desc">O grupo de coordenadores selecionado não será afetado pelo bloqueio de alteração de plantões.</p>
@@ -252,7 +252,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Tipo de data limite para bloqueio</h2>
                     <p class="pp-card__desc">Permite criar uma data limite padrão para todos os locais ou uma para cada local. Plantões anteriores a essa data só poderão ser alterados pelo grupo selecionado acima.</p>
@@ -265,7 +265,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Data limite para bloqueio</h2>
                     <p class="pp-card__desc">Defina a data limite geral ou a de cada Local, conforme o tipo de bloqueio escolhido acima.</p>
@@ -296,7 +296,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Locais e Setores disponíveis para cancelamento de agenda</h2>
                     <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão solicitar o cancelamento.</p>
@@ -327,7 +327,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que o profissional divida plantões dos setores</h2>
                     <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão dividir os plantões.</p>
@@ -358,7 +358,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Apenas entre profissionais do mesmo setor</h2>
                     <p class="pp-card__desc">Restringe a passagem de plantões a apenas profissionais do setor do plantão.</p>
@@ -368,7 +368,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que os profissionais passem plantões dos setores</h2>
                     <p class="pp-card__desc">Defina, para cada Local e Setor, se a passagem precisa de aprovação ou de justificativa.</p>
@@ -399,7 +399,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Apenas entre profissionais do mesmo setor</h2>
                     <p class="pp-card__desc">Restringe a troca de plantões a apenas profissionais do setor do plantão.</p>
@@ -409,7 +409,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que os profissionais troquem plantões dos setores</h2>
                     <p class="pp-card__desc">Defina, para cada Local e Setor, se a troca precisa de aprovação ou de justificativa.</p>
@@ -418,7 +418,7 @@
                       <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
                     </button>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Restringir trocas de plantões do mesmo período</h2>
                       <p class="pp-card__desc">Os profissionais só poderão trocar plantões cuja data de início esteja no mesmo período (semana ou mês) do plantão escolhido.</p>
@@ -427,7 +427,7 @@
                       <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
                     </button>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Quantidade de trocas permitidas no mês</h2>
                       <p class="pp-card__desc">Limita quantos plantões um profissional pode trocar por mês; em branco, não há limite. A contagem usa a data de início do plantão, não a data da troca.</p>
@@ -458,7 +458,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere um alerta</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca, mas os coordenadores serão alertados. Desmarcada, o sistema bloqueará a troca do plantão.</p>
@@ -490,7 +490,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere algum conflito</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca, mas os coordenadores serão alertados por e-mail. Desmarcada, o sistema bloqueará a troca caso o profissional já tenha outro plantão no mesmo horário.</p>
@@ -500,7 +500,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Ignorar conflitos dos setores</h2>
                     <p class="pp-card__desc">Selecione os Locais e Setores cujos conflitos de horário não geram alerta.</p>
@@ -531,7 +531,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Quantidade máxima de horas consecutivas que um profissional pode realizar</h2>
                     <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar do limite definido ao lado.</p>
@@ -541,7 +541,7 @@
                       <input id="horas-consecutivas-limite" name="horasConsecutivasLimite" type="number" min="0" max="255" step="1" inputmode="numeric" value="24" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas consecutivas.</p>
@@ -582,7 +582,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas consecutivas.</p>
@@ -592,7 +592,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Quantidade máxima de horas consecutivas por setor</h2>
                     <p class="pp-card__desc">Defina, para cada Local e Setor, o limite de horas consecutivas que gera um alerta.</p>
@@ -623,7 +623,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Quantidade de horas a ser controlada por semana</h2>
                     <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar dessas horas em uma mesma semana.</p>
@@ -633,7 +633,7 @@
                       <input id="horas-semanais-limite" name="horasSemanaisLimite" type="number" min="0" max="999" step="1" inputmode="numeric" value="60" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas semanais</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas semanais.</p>
@@ -674,7 +674,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Quantidade de horas a ser controlada por mês</h2>
                     <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar dessas horas em um mesmo mês.</p>
@@ -684,7 +684,7 @@
                       <input id="horas-mensais-limite" name="horasMensaisLimite" type="number" min="0" max="999" step="1" inputmode="numeric" value="220" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Contabilizar os plantões a partir do dia</h2>
                     <p class="pp-card__desc">O dia considerado como início do mês para gerar o alerta.</p>
@@ -694,7 +694,7 @@
                       <input id="horas-mensais-dia" name="horasMensaisDiaInicio" type="number" min="1" max="31" step="1" inputmode="numeric" value="1" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas mensais</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas mensais.</p>
@@ -735,7 +735,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Quantidade máxima de plantões que um profissional pode fazer durante o mês</h2>
                     <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar dessa quantidade em um único mês.</p>
@@ -745,7 +745,7 @@
                       <input id="plantoes-mensais-limite" name="plantoesMensaisLimite" type="number" min="0" max="999" step="1" inputmode="numeric" value="15" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Contabilizar os plantões a partir do dia</h2>
                     <p class="pp-card__desc">O dia considerado como início do mês para gerar o alerta.</p>
@@ -755,7 +755,7 @@
                       <input id="plantoes-mensais-dia" name="plantoesMensaisDiaInicio" type="number" min="1" max="31" step="1" inputmode="numeric" value="1" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite mensal</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite mensal.</p>
@@ -796,7 +796,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Quantidade de horas do intervalo interjornada</h2>
                     <p class="pp-card__desc">Um alerta será criado quando o intervalo entre plantões de um profissional dos grupos selecionados abaixo for menor que o definido.</p>
@@ -806,7 +806,7 @@
                       <input id="interjornada-horas" name="interjornadaHoras" type="number" min="0" max="999" step="1" inputmode="numeric" value="11" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que não atendam ao intervalo interjornada mínimo</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que violem o intervalo interjornada mínimo.</p>
@@ -847,7 +847,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields>
                   <legend class="sr-only">Opções do alerta</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Quantidade de dias consecutivos</h2>
                     <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo tiver plantões em mais dias seguidos do que o definido.</p>
@@ -857,7 +857,7 @@
                       <input id="plantoes-consecutivos-dias" name="plantoesConsecutivosDias" type="number" min="1" step="1" inputmode="numeric" value="6" required class="pp-number" />
                     </div>
                   </div>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que ultrapassem o limite de dias consecutivos com plantões</h2>
                     <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que ultrapassem o limite de dias consecutivos com plantões.</p>
@@ -886,7 +886,7 @@
             <form class="flex flex-1 flex-col" data-preference-tab="#emails-e-notificacoes" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
                 <div class="pp-card min-h-25 py-3">
-                  <pp-icon type="sidebarandtopbar" name="notificationActive" data-monochrome="true" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <pp-icon type="sidebarandtopbar" name="notificationActive" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Enviar lembrete sobre plantões aos profissionais</h2>
                     <p class="pp-card__desc">Os profissionais recebem no celular um lembrete sobre os plantões do dia seguinte.</p>
@@ -905,12 +905,13 @@
             <form class="flex flex-1 flex-col" data-preference-tab="#credenciamento" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
                 <div class="pp-module-banner">
+                  <pp-icon type="sidebar" name="modulesAccreditance" class="size-10 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
                     <p class="pp-module-banner__eyebrow">As funcionalidades abaixo fazem parte do</p>
                     <h2 class="pp-module-banner__title">Módulo <strong>Credenciamento</strong></h2>
                     <p class="pp-module-banner__desc">Focado em compliance, segurança jurídica e agilidade na integração de novos profissionais à rede de atendimento.</p>
                   </div>
-                  <button type="button" class="pp-btn shrink-0"><pp-icon type="ui" name="gem" monochrome="true" class="size-4"></pp-icon>Saiba mais</button>
+                  <button type="button" class="pp-btn shrink-0">Saiba mais</button>
                 </div>
                 <div class="pp-card min-h-25 py-3">
                   <pp-icon type="sidebar" name="documents" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
@@ -957,12 +958,13 @@
             <form class="flex flex-1 flex-col" data-preference-tab="#financeiro-avancado" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
                 <div class="pp-module-banner">
+                  <pp-icon type="sidebar" name="modulesFinance" class="size-10 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
                     <p class="pp-module-banner__eyebrow">As funcionalidades abaixo fazem parte do</p>
                     <h2 class="pp-module-banner__title">Módulo <strong>Financeiro Avançado</strong></h2>
                     <p class="pp-module-banner__desc">Garanta previsibilidade e transparência nos repasses, unificando o fluxo da consolidação dos plantões realizados até os pagamentos e bonificações.</p>
                   </div>
-                  <button type="button" class="pp-btn shrink-0"><pp-icon type="ui" name="gem" monochrome="true" class="size-4"></pp-icon>Saiba mais</button>
+                  <button type="button" class="pp-btn shrink-0">Saiba mais</button>
                 </div>
                 <div class="pp-card min-h-25 py-3">
                   <pp-icon type="sidebarSettings" name="bonus" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
@@ -988,7 +990,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields="produtividade">
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Profissionais visualizam produtividade</h2>
                       <p class="pp-card__desc">Os profissionais têm acesso à produtividade dos seus plantões (apenas visualização).</p>
@@ -1047,7 +1049,7 @@
                   </div>
                   <fieldset class="pp-dependent-fields" data-dependent-fields="bloquearPagos">
                     <legend class="sr-only">Opções dependentes</legend>
-                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="pp-card min-h-22 flex-wrap py-3">
                       <div class="min-w-0 flex-1 max-sm:basis-full">
                         <h2 class="pp-card__title">Grupo de coordenadores que podem alterar plantões já pagos</h2>
                         <p class="pp-card__desc">O grupo selecionado não será afetado pelo bloqueio de alteração de plantões já pagos.</p>
@@ -1073,7 +1075,7 @@
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
                 <div class="pp-card pp-card--stack min-h-25 py-3">
                   <div class="pp-card__row">
-                    <pp-icon type="tools" name="phone" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                    <pp-icon type="sidebar" name="checkinMobile" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Registro de entrada e saída (aplicativo)</h2>
                       <p class="pp-card__desc">Os profissionais registram os horários de entrada e saída pelo aplicativo, com geolocalização e cerca geográfica para validar a presença na unidade.</p>
@@ -1085,7 +1087,7 @@
                   </div>
                   <fieldset class="pp-dependent-fields pp-card__children" data-dependent-fields="checkinApp" data-hide-when-disabled disabled>
                     <legend class="sr-only">Opções do registro de entrada e saída pelo aplicativo</legend>
-                    <div class="pp-card min-h-[85px] py-3">
+                    <div class="pp-card min-h-22 py-3">
                       <div class="min-w-0 flex-1">
                         <h2 class="pp-card__title">Exigir dados de geolocalização ao informar horário de entrada e saída</h2>
                         <p class="pp-card__desc">Somente permite registros de entrada e saída com dados de geolocalização.</p>
@@ -1095,7 +1097,7 @@
                         <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                       </label>
                     </div>
-                    <div class="pp-card min-h-[85px] py-3">
+                    <div class="pp-card min-h-22 py-3">
                       <div class="min-w-0 flex-1">
                         <h2 class="pp-card__title">Exigir distância máxima</h2>
                         <p class="pp-card__desc">Somente permite registros de entrada e saída que respeitem a distância máxima (em metros) de cada setor.</p>
@@ -1107,7 +1109,7 @@
                     </div>
                     <fieldset class="pp-dependent-fields" data-dependent-fields="distancia">
                       <legend class="sr-only">Opções de distância máxima</legend>
-                      <div class="pp-card min-h-[85px] flex-wrap py-3">
+                      <div class="pp-card min-h-22 flex-wrap py-3">
                         <div class="min-w-0 flex-1">
                           <h2 class="pp-card__title">Distância máxima por setor</h2>
                           <p class="pp-card__desc">Defina a distância máxima permitida para o registro; zero ou em branco não exige distância no setor.</p>
@@ -1122,7 +1124,7 @@
                 <fieldset class="pp-dependent-fields" data-dependent-fields="checkinApp biometriaFixa biometriaApp">
                   <legend class="sr-only">Botões de iniciar e encerrar plantão</legend>
                   <div class="pp-card-grid">
-                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="pp-card min-h-22 flex-wrap py-3">
                       <div class="min-w-0 flex-1 max-sm:basis-full">
                         <h2 class="pp-card__title">Botão para iniciar plantão</h2>
                         <p class="pp-card__desc">Por quanto tempo antes do início do plantão o botão de iniciar fica disponível.</p>
@@ -1132,7 +1134,7 @@
                         <input id="botao-iniciar" name="botaoIniciar" type="text" inputmode="numeric" pattern="\d{1,2}h[0-5]\d" placeholder="12h00" title="Use o formato 12h00" value="12h00" required class="pp-number pp-number--wide" />
                       </div>
                     </div>
-                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="pp-card min-h-22 flex-wrap py-3">
                       <div class="min-w-0 flex-1 max-sm:basis-full">
                         <h2 class="pp-card__title">Botão para encerrar plantão</h2>
                         <p class="pp-card__desc">Por quanto tempo depois do término do plantão o botão de encerrar fica disponível.</p>
@@ -1145,12 +1147,13 @@
                   </div>
                 </fieldset>
                 <div class="pp-module-banner">
+                  <pp-icon type="sidebar" name="modulesCheckinCheckout" class="size-10 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
                     <p class="pp-module-banner__eyebrow">As funcionalidades abaixo fazem parte do</p>
                     <h2 class="pp-module-banner__title">Módulo <strong>Registro de Entrada e Saída Avançado</strong></h2>
                     <p class="pp-module-banner__desc">Garanta a auditoria rigorosa de presença, combatendo fraudes de ponto e garantindo a segurança jurídica da escala em tempo real.</p>
                   </div>
-                  <button type="button" class="pp-btn shrink-0"><pp-icon type="ui" name="gem" monochrome="true" class="size-4"></pp-icon>Saiba mais</button>
+                  <button type="button" class="pp-btn shrink-0">Saiba mais</button>
                 </div>
                 <div class="pp-card min-h-25 py-3">
                   <pp-icon type="sidebar" name="checkinFacial" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
@@ -1166,7 +1169,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields="biometriaFixa">
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Exigir sempre nas unidades</h2>
                       <p class="pp-card__desc">Selecione os Locais e Setores em que o registro por reconhecimento facial será sempre exigido.</p>
@@ -1180,7 +1183,7 @@
                 <fieldset class="pp-dependent-fields" data-dependent-fields="checkinApp">
                   <legend class="sr-only">Biometria facial pelo aplicativo</legend>
                   <div class="pp-card min-h-25 py-3">
-                    <pp-icon type="sidebarProfessionals" name="professionalShield" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                    <pp-icon type="sidebar" name="checkinFacialMobile" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Entrada e saída por biometria facial (aplicativo)</h2>
                       <p class="pp-card__desc">Os profissionais registram entrada e saída pelo aplicativo com biometria facial, solicitada em um novo dispositivo ou quando houver compartilhamento de acesso.</p>
@@ -1192,7 +1195,7 @@
                   </div>
                   <fieldset class="pp-dependent-fields" data-dependent-fields="biometriaApp">
                     <legend class="sr-only">Opções dependentes</legend>
-                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="pp-card min-h-22 flex-wrap py-3">
                       <div class="min-w-0 flex-1">
                         <h2 class="pp-card__title">Exigir sempre nas unidades</h2>
                         <p class="pp-card__desc">Selecione os Locais e Setores em que a verificação facial será exigida em todos os registros.</p>
@@ -1205,7 +1208,8 @@
                 </fieldset>
                 <fieldset class="pp-dependent-fields" data-dependent-fields="biometriaFixa biometriaApp">
                   <legend class="sr-only">Prova de vida</legend>
-                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="pp-card min-h-22 flex-wrap py-3">
+                    <pp-icon type="sidebar" name="checkinFacialLiveness" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Prova de vida (liveness detection)</h2>
                       <p class="pp-card__desc">Adiciona uma verificação de prova de vida ao reconhecimento facial, ajudando a prevenir fraudes com fotos, vídeos ou outras imagens.</p>
@@ -1224,7 +1228,7 @@
 
             <form class="flex flex-1 flex-col" data-preference-tab="#configuracoes-adicionais" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Registro de entrada único</h2>
                     <p class="pp-card__desc">Os profissionais só iniciam um plantão se não houver outro com registro de saída pendente.</p>
@@ -1234,7 +1238,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Registro de saída em plantões subsequentes</h2>
                     <p class="pp-card__desc">Em dois plantões seguidos (saída de um igual à entrada do outro), o profissional registra a entrada no primeiro e a saída no segundo.</p>
@@ -1244,7 +1248,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Justificar horários de entrada e saída</h2>
                     <p class="pp-card__desc">Os profissionais podem justificar todos os registros de entrada e saída realizados.</p>
@@ -1254,7 +1258,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Visualizador vê a situação de registro de entrada e saída</h2>
                     <p class="pp-card__desc">Os visualizadores veem se os profissionais estão no plantão ou atrasados, de acordo com os registros.</p>
@@ -1264,7 +1268,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Histórico de registros de entrada e saída</h2>
                     <p class="pp-card__desc">Os profissionais veem todos os registros realizados (menu Registros de presença no aplicativo).</p>
@@ -1301,7 +1305,7 @@
 
             <form class="flex flex-1 flex-col" data-preference-tab="#valores-padroes" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                <div class="pp-card min-h-22 flex-wrap py-3">
                   <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Dia de início da semana</h2>
                     <p class="pp-card__desc">Dia da semana com o qual o calendário da escala começa.</p>
@@ -1319,7 +1323,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                <div class="pp-card min-h-22 flex-wrap py-3">
                   <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Horário de início</h2>
                     <p class="pp-card__desc">Horário de início sugerido ao criar plantões, podendo ser alterado.</p>
@@ -1329,7 +1333,7 @@
                     <input id="horario-inicio" name="horarioInicio" type="time" step="60" value="07:00" required class="pp-number pp-number--wide" />
                   </div>
                 </div>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                <div class="pp-card min-h-22 flex-wrap py-3">
                   <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Duração dos plantões</h2>
                     <p class="pp-card__desc">Duração sugerida ao criar plantões (horas:minutos), podendo ser alterada.</p>
@@ -1339,7 +1343,7 @@
                     <input id="duracao-plantao" name="duracaoPlantao" type="text" inputmode="numeric" pattern="\d{1,2}:[0-5]\d" placeholder="12:00" title="Use o formato 12:00" value="12:00" required class="pp-number pp-number--wide" />
                   </div>
                 </div>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                <div class="pp-card min-h-22 flex-wrap py-3">
                   <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Profissional padrão</h2>
                     <p class="pp-card__desc">Profissão sugerida ao adicionar profissionais, podendo ser alterada.</p>
@@ -1379,7 +1383,7 @@
 
             <form class="flex flex-1 flex-col" data-preference-tab="#visualizacao-da-escala" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Coordenadores visualizam a escala completa</h2>
                     <p class="pp-card__desc">Coordenadores podem visualizar, sem alterar, a escala completa de um profissional.</p>
@@ -1389,7 +1393,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Exibir tipo de plantão para usuários do tipo visualizador</h2>
                     <p class="pp-card__desc">Exibe o tipo de plantão, na escala web e nos aplicativos, para usuários do tipo visualizador.</p>
@@ -1399,7 +1403,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Profissionais visualizam escalas</h2>
                     <p class="pp-card__desc">Os profissionais têm acesso à escala dos seus setores (apenas visualização).</p>
@@ -1411,7 +1415,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields="escalas">
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Profissionais visualizam escala completa</h2>
                       <p class="pp-card__desc">Os profissionais têm acesso à escala completa da empresa (apenas visualização).</p>
@@ -1422,7 +1426,7 @@
                     </label>
                   </div>
                 </fieldset>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Profissionais visualizam valor do plantão</h2>
                     <p class="pp-card__desc">Os profissionais veem o valor dos plantões a que têm acesso, como os seus e os anunciados.</p>
@@ -1432,7 +1436,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Exibir tipo de plantão para profissionais</h2>
                     <p class="pp-card__desc">Os profissionais veem o tipo de plantão na escala e no detalhe do plantão.</p>
@@ -1442,7 +1446,7 @@
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] py-3">
+                <div class="pp-card min-h-22 py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Profissionais visualizam relatório financeiro pessoal</h2>
                     <p class="pp-card__desc">Os profissionais podem ver o extrato dos plantões realizados.</p>
@@ -1454,7 +1458,7 @@
                 </div>
                 <fieldset class="pp-dependent-fields" data-dependent-fields="relatorio">
                   <legend class="sr-only">Opções dependentes</legend>
-                  <div class="pp-card min-h-[85px] py-3">
+                  <div class="pp-card min-h-22 py-3">
                     <div class="min-w-0 flex-1">
                       <h2 class="pp-card__title">Regras de tolerância aplicadas no relatório financeiro dos profissionais</h2>
                       <p class="pp-card__desc">Os profissionais só veem o valor dos plantões com registro de entrada e saída; plantões futuros ficam sem valor.</p>
@@ -1465,7 +1469,7 @@
                     </label>
                   </div>
                 </fieldset>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                <div class="pp-card min-h-22 flex-wrap py-3">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Data limite para visualização</h2>
                     <p class="pp-card__desc">Os profissionais visualizam a escala de cada setor até a data informada.</p>
@@ -1482,7 +1486,7 @@
 
             <section id="prefs-other-tab" class="flex flex-1 flex-col" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[85px]">
+                <div class="pp-card min-h-22">
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title" data-other-tab-title></h2>
                     <p class="pp-card__desc" data-other-tab-desc></p>
@@ -1684,7 +1688,7 @@
       class="fixed right-5 bottom-5 z-20 grid size-10 place-items-center rounded-full border border-primary-100 bg-white text-primary-500 shadow-[0_2px_10px_rgba(33,79,141,0.12)] transition-colors hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
       data-help="suporte"
     >
-      <pp-icon type="topbar" name="helpDesk" class="size-[25px]"></pp-icon>
+      <pp-icon type="topbar" name="helpDesk" class="size-6"></pp-icon>
     </button>
 
     <script src="/app.js"></script>

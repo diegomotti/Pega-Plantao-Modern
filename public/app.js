@@ -62,7 +62,7 @@ function parseSvg(markup) {
 }
 
 class PpIcon extends HTMLElement {
-  static observedAttributes = ["name", "type", "filled", "monochrome", "data-monochrome", "stroke-width"];
+  static observedAttributes = ["name", "type", "filled", "monochrome", "stroke-width"];
 
   #request = 0;
 
@@ -80,7 +80,7 @@ class PpIcon extends HTMLElement {
     const type = this.getAttribute("type") ?? undefined;
     const filledAttr = this.getAttribute("filled");
     const filled = filledAttr !== null ? filledAttr === "true" || filledAttr === "" : undefined;
-    const monochromeAttr = this.getAttribute("monochrome") ?? this.getAttribute("data-monochrome");
+    const monochromeAttr = this.getAttribute("monochrome");
     const monochrome = monochromeAttr !== null ? monochromeAttr === "true" || monochromeAttr === "" : undefined;
 
     const wantsAsset =

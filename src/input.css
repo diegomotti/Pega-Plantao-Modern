@@ -190,7 +190,7 @@
   /* AppShell (public/components/app-shell.js): os elementos não geram caixa,
      o <header> e o <nav> que eles renderizam ficam direto no layout. */
   pp-app-header,
-  pp-app-rail {
+  pp-app-sidebar {
     display: contents;
   }
 
@@ -217,7 +217,7 @@
   }
 
   .pp-sidebar-menu {
-    @apply fixed z-50 w-50 overflow-y-auto rounded-lg bg-white shadow-[0_4px_18px_rgba(0,0,0,0.2)];
+    @apply fixed z-50 w-50 overflow-y-auto rounded-lg bg-white shadow-3xl;
     max-height: calc(100vh - 16px);
   }
 
@@ -228,7 +228,7 @@
   }
 
   .pp-sidebar-menu__item {
-    @apply flex min-h-[51px] items-center gap-2.5 border-b border-primary-50 px-2.5 py-2 text-[14px] leading-[18px] text-primary-500 transition-colors hover:bg-primary-25 focus-visible:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary-500;
+    @apply flex min-h-12 items-center gap-2.5 border-b border-primary-50 px-2.5 py-2 text-[14px] leading-[18px] text-primary-500 transition-colors hover:bg-primary-25 focus-visible:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary-500;
   }
 
   .pp-sidebar-menu__item:last-child {
@@ -344,7 +344,7 @@
   }
 
   .pp-nav-sub-list {
-    @apply relative ml-[30px] overflow-hidden border-b border-nav-line pt-3 pb-3;
+    @apply relative ml-[30px] overflow-hidden border-b border-nav-line pb-3;
   }
 
   .pp-nav-sub {
