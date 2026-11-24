@@ -62,7 +62,7 @@ function parseSvg(markup) {
 }
 
 class PpIcon extends HTMLElement {
-  static observedAttributes = ["name", "type", "filled", "monochrome", "stroke-width"];
+  static observedAttributes = ["name", "type", "filled", "monochrome", "data-monochrome", "stroke-width"];
 
   #request = 0;
 
@@ -80,7 +80,7 @@ class PpIcon extends HTMLElement {
     const type = this.getAttribute("type") ?? undefined;
     const filledAttr = this.getAttribute("filled");
     const filled = filledAttr !== null ? filledAttr === "true" || filledAttr === "" : undefined;
-    const monochromeAttr = this.getAttribute("monochrome");
+    const monochromeAttr = this.getAttribute("monochrome") ?? this.getAttribute("data-monochrome");
     const monochrome = monochromeAttr !== null ? monochromeAttr === "true" || monochromeAttr === "" : undefined;
 
     const wantsAsset =
@@ -244,7 +244,7 @@ function openRailMenu(button) {
 
 rail?.addEventListener("pointerover", (event) => {
   if (event.pointerType !== "mouse" || !(event.target instanceof Element)) return;
-  const item = event.target.closest(".pp-rail-link");
+  const item = event.target.closest(".pp-sidebar-link");
   if (!item || !rail.contains(item)) return;
   if (item instanceof HTMLButtonElement && item.hasAttribute("data-rail-toggle")) {
     if (item.getAttribute("aria-expanded") !== "true") openRailMenu(item);
@@ -256,7 +256,7 @@ rail?.addEventListener("pointerover", (event) => {
 rail?.addEventListener("pointerleave", (event) => {
   if (event.pointerType !== "mouse") return;
   const focused = document.activeElement;
-  if (focused instanceof Element && focused.closest(".pp-rail-menu")) return;
+  if (focused instanceof Element && focused.closest(".pp-sidebar-menu")) return;
   closeRailMenus();
 });
 
@@ -271,7 +271,7 @@ rail?.addEventListener("click", (event) => {
     return;
   }
 
-  const menuItem = event.target.closest(".pp-rail-menu__item");
+  const menuItem = event.target.closest(".pp-sidebar-menu__item");
   if (menuItem && menuItem.getAttribute("href") === "#") {
     event.preventDefault();
     const expanded = rail.querySelector('[data-rail-toggle][aria-expanded="true"]');
@@ -452,22 +452,124 @@ function readStoredPreferences() {
 const checkbox = document.querySelector('input[name="notificarAnuncio"]');
 const limitSelect = document.querySelector('select[name="limiteCandidatura"]');
 
+/* Listas de grupos dos alertas (dados de exemplo). Cada opção é um checkbox
+   com data-multi: o formulário salva um array com os valores marcados. */
+const EXAMPLE_GROUPS = ["Coringas", "Médicos plantonistas", "Enfermagem", "Residentes", "Fisioterapia", "Web Check-In"];
+const slugify = (value) =>
+  value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+document.querySelectorAll("[data-group-list]").forEach((list) => {
+  const name = list.dataset.groupList;
+  const option = (value, label, all = false) => `<label class="pp-group-option${all ? " pp-group-option--all" : ""}">
+    <span class="pp-check"><input type="checkbox" class="sr-only" name="${name}" value="${value}" data-multi ${all ? "data-group-all" : ""} /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+    <span>${label}</span>
+  </label>`;
+  list.insertAdjacentHTML("beforeend", option("todos", "Todos os profissionais", true) + EXAMPLE_GROUPS.map((group) => option(slugify(group), group)).join(""));
+});
+
+function syncGroupList(list) {
+  const all = list.querySelector("[data-group-all]");
+  const items = Array.from(list.querySelectorAll("input[data-multi]:not([data-group-all])"));
+  if (all) all.checked = items.length > 0 && items.every((item) => item.checked);
+}
+
 const stored = readStoredPreferences();
-const locationPreferenceKeys = {
-  "#bloqueio": "locaisBloqueio",
-  "#cancelamento-de-agenda": "locaisCancelamento",
-  "#passagens": "locaisPassagens",
+/* Cada diálogo de Locais e Setores (modo) → aba onde fica e chave no
+   localStorage. Uma aba pode ter mais de um diálogo, como Trocas. */
+/* Campos salvos pelo valor digitado (limites, horários, durações, datas). */
+const VALUE_INPUT_TYPES = new Set(["number", "text", "time", "date"]);
+
+const locationStorage = {
+  bloqueio: ["#bloqueio", "locaisBloqueio"],
+  cancelamento: ["#cancelamento-de-agenda", "locaisCancelamento"],
+  divisoes: ["#divisoes", "locaisDivisoes"],
+  passagens: ["#passagens", "locaisPassagens"],
+  trocas: ["#trocas", "locaisTrocas"],
+  periodo: ["#trocas", "periodoTroca"],
+  limite: ["#trocas", "limiteTrocas"],
+  conflitos: ["#conflitos-de-horarios", "locaisConflitos"],
+  horasSetor: ["#horas-consecutivas-por-setor", "locaisHorasConsecutivas"],
+  distancia: ["#geral-e-avancado", "distanciaMaxima"],
+  biometriaFixa: ["#geral-e-avancado", "locaisBiometriaFixa"],
+  biometriaApp: ["#geral-e-avancado", "locaisBiometriaApp"],
+  provaDeVida: ["#geral-e-avancado", "taxaProvaDeVida"],
+  visualizacao: ["#visualizacao-da-escala", "dataLimiteVisualizacao"],
 };
 const locationPreferences = Object.fromEntries(
-  Object.entries(locationPreferenceKeys).map(([hash, key]) => [hash, stored[key] ?? {}])
+  Object.entries(locationStorage).map(([mode, [, key]]) => [mode, stored[key] ?? {}])
 );
 if (checkbox) checkbox.checked = stored.notificarAnuncio;
 if (limitSelect) limitSelect.value = stored.limiteCandidatura;
 preferenceForms.forEach((panel) => {
   panel.querySelectorAll("input[name], select[name]").forEach((input) => {
     if (!(input.name in stored)) return;
-    if (input instanceof HTMLInputElement && input.type === "checkbox") input.checked = stored[input.name] === true;
+    if (input instanceof HTMLInputElement && input.type === "checkbox" && input.hasAttribute("data-multi")) {
+      input.checked = Array.isArray(stored[input.name]) && stored[input.name].includes(input.value);
+    } else if (input instanceof HTMLInputElement && input.type === "checkbox") input.checked = stored[input.name] === true;
+    else if (input instanceof HTMLInputElement && input.type === "radio") input.checked = stored[input.name] === input.value;
+    else if (input instanceof HTMLInputElement && VALUE_INPUT_TYPES.has(input.type)) input.value = stored[input.name];
     else if (input instanceof HTMLSelectElement) input.value = stored[input.name];
+  });
+});
+
+document.querySelectorAll("[data-group-list]").forEach((list) => {
+  syncGroupList(list);
+  list.addEventListener("change", (event) => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement)) return;
+    if (input.hasAttribute("data-group-all")) {
+      list.querySelectorAll("input[data-multi]").forEach((item) => {
+        item.checked = input.checked;
+      });
+    }
+    syncGroupList(list);
+  });
+});
+
+document.querySelectorAll("#prefs-form .pp-card, [data-preference-tab] .pp-card").forEach((card) => {
+  /* Só conta os controles do próprio cartão: os de um grupo dependente
+     aninhado pertencem ao cartão interno, não a ele. */
+  const controls = Array.from(card.querySelectorAll("input, select, textarea, button, a")).filter((control) => {
+    const group = control.closest("[data-dependent-fields]");
+    return !group || !card.contains(group);
+  });
+  const input = controls[0];
+  if (controls.length !== 1 || !(input instanceof HTMLInputElement) || input.type !== "checkbox" || !input.closest("label.pp-check")) return;
+
+  card.classList.add("pp-card--check");
+  card.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    /* Cliques nas opções aninhadas pertencem a elas, não ao cartão pai. */
+    const dependent = event.target.closest("[data-dependent-fields]");
+    if (dependent && card.contains(dependent)) return;
+    if (event.target.closest("label, input, button, a, select, textarea") || input.matches(":disabled")) return;
+    if (window.getSelection()?.toString()) return;
+    input.focus();
+    input.click();
+  });
+});
+
+/* Cartão principal (data-master-toggle): as opções dentro de
+   [data-dependent-fields] só ficam editáveis com ele marcado, como no sistema
+   atual (Bloqueio, Cancelamento, Divisões, Passagens, Trocas e Alertas). */
+/* data-dependent-fields="chave" segue o checkbox data-master-toggle="chave";
+   sem valor, segue o checkbox principal sem valor. Várias chaves separadas por
+   espaço habilitam o grupo quando qualquer uma estiver marcada (e habilitada).
+   Grupos aninhados ficam desabilitados junto com o grupo de fora. */
+function syncDependentFields(panel) {
+  panel.querySelectorAll("fieldset[data-dependent-fields]").forEach((fields) => {
+    const keys = fields.dataset.dependentFields.split(/\s+/).filter(Boolean);
+    const toggles = (keys.length ? keys : [""])
+      .map((key) => panel.querySelector(`[data-master-toggle="${key}"]`))
+      .filter((toggle) => toggle instanceof HTMLInputElement);
+    if (toggles.length) fields.disabled = !toggles.some((toggle) => toggle.checked && !toggle.matches(":disabled"));
+  });
+}
+
+preferenceForms.forEach((panel) => {
+  syncDependentFields(panel);
+  panel.addEventListener("change", (event) => {
+    if (event.target instanceof Element && event.target.matches("[data-master-toggle]")) syncDependentFields(panel);
   });
 });
 
@@ -528,16 +630,17 @@ function setupSelect(root) {
     build();
     sync();
     menu.hidden = false;
-    menu.classList.remove("pp-select-menu--above");
+    menu.classList.remove("pp-select-menu--above", "pp-select-menu--right");
     const menuBounds = menu.getBoundingClientRect();
     const rootBounds = root.getBoundingClientRect();
-    const scrollContainer = root.closest(".pp-shift-content");
+    const scrollContainer = root.closest(".pp-shift-content, main");
     const visibleBounds = scrollContainer?.getBoundingClientRect();
     const bottom = Math.min(window.innerHeight, visibleBounds?.bottom ?? window.innerHeight);
     const top = Math.max(0, visibleBounds?.top ?? 0);
     if (menuBounds.bottom > bottom && rootBounds.top - top > bottom - rootBounds.bottom) {
       menu.classList.add("pp-select-menu--above");
     }
+    menu.classList.toggle("pp-select-menu--right", menuBounds.right > window.innerWidth);
     trigger.setAttribute("aria-expanded", "true");
     chevron?.classList.add("rotate-180");
     openedSelect = { root, close };
@@ -644,7 +747,7 @@ document.querySelectorAll("[data-select]").forEach((root) => setupSelect(root));
 
 let nextSelectId = 0;
 function enhanceSelect(select) {
-  if (!(select instanceof HTMLSelectElement) || select.closest("[data-select]") || select.multiple || select.size > 1) return;
+  if (!(select instanceof HTMLSelectElement) || select.closest("[data-select]") || select.hasAttribute("data-native-select") || select.multiple || select.size > 1) return;
 
   if (!select.id) {
     do {
@@ -737,12 +840,21 @@ document.querySelectorAll("#prefs-form, [data-preference-tab]").forEach((panel) 
     try {
       const raw = localStorage.getItem(PREFS_KEY);
       const values = raw ? JSON.parse(raw) : {};
+      const multi = {};
       panel.querySelectorAll("input[name], select[name]").forEach((input) => {
-        if (input instanceof HTMLInputElement && input.type === "checkbox") values[input.name] = input.checked;
+        if (input instanceof HTMLInputElement && input.type === "checkbox" && input.hasAttribute("data-multi")) {
+          multi[input.name] ??= [];
+          if (input.checked) multi[input.name].push(input.value);
+        } else if (input instanceof HTMLInputElement && input.type === "checkbox") values[input.name] = input.checked;
+        else if (input instanceof HTMLInputElement && input.type === "radio") { if (input.checked) values[input.name] = input.value; }
+        else if (input instanceof HTMLInputElement && VALUE_INPUT_TYPES.has(input.type)) values[input.name] = input.value;
         else if (input instanceof HTMLSelectElement) values[input.name] = input.value;
       });
-      const locationKey = locationPreferenceKeys[panel.dataset.preferenceTab];
-      if (locationKey) values[locationKey] = locationPreferences[panel.dataset.preferenceTab];
+      if (panel.dataset.preferenceTab === "#tolerancia") values.toleranciaParametros = toleranciaParametros;
+      Object.assign(values, multi);
+      Object.entries(locationStorage).forEach(([mode, [hash, key]]) => {
+        if (hash === panel.dataset.preferenceTab) values[key] = locationPreferences[mode];
+      });
       localStorage.setItem(PREFS_KEY, JSON.stringify(values));
       showToast("Preferências salvas com sucesso.");
     } catch (error) {
@@ -873,13 +985,29 @@ const preferenceLocationsForm = document.querySelector("#locais-preferencia-form
 const preferenceLocationsTable = document.querySelector(".pp-locais-preferencia");
 const preferenceLocationsSearch = document.querySelector("#locais-preferencia-search");
 const preferenceLocationsEmpty = document.querySelector("#locais-preferencia-empty");
+const preferenceLocationsTitle = document.querySelector("#locais-preferencia-title");
+/* level "local": uma linha por Local (sem setores), como Bloqueio por local,
+   Período para troca e Limite mensal no sistema atual.
+   choice: checkbox ao lado do nome do setor (Cancelamento, Divisões). */
+const approvalColumns = [{ key: "aprovacao", label: "Necessita aprovação" }, { key: "justificativa", label: "Necessita justificativa" }];
 const locationModes = {
-  bloqueio: { hash: "#bloqueio", columns: [{ key: "data", label: "Data limite" }] },
-  cancelamento: { hash: "#cancelamento-de-agenda", columns: [] },
-  passagens: {
-    hash: "#passagens",
-    columns: [{ key: "aprovacao", label: "Requer aprovação" }, { key: "justificativa", label: "Requer justificativa" }],
+  bloqueio: { level: "local", columns: [{ key: "data", label: "Data limite", type: "date" }] },
+  cancelamento: { columns: [], choice: "Permitir cancelamento" },
+  divisoes: { columns: [], choice: "Permitir divisão" },
+  passagens: { columns: approvalColumns },
+  trocas: { columns: approvalColumns },
+  periodo: {
+    level: "local",
+    columns: [{ key: "periodo", label: "Período", type: "select", options: [["", "Sem restrição"], ["semana", "Semana"], ["mes", "Mês"]] }],
   },
+  limite: { level: "local", columns: [{ key: "quantidade", label: "Quantidade", type: "number", placeholder: "Sem limite" }] },
+  conflitos: { columns: [{ key: "ignorar", label: "Ignorar conflitos" }] },
+  horasSetor: { columns: [{ key: "horas", label: "Horas consecutivas", type: "number" }] },
+  distancia: { columns: [{ key: "metros", label: "Distância máxima (metros)", type: "number", max: 99999, placeholder: "Sem limite" }] },
+  biometriaFixa: { columns: [{ key: "exigir", label: "Exigir sempre" }] },
+  biometriaApp: { columns: [{ key: "exigir", label: "Exigir sempre" }] },
+  provaDeVida: { columns: [{ key: "taxa", label: "Taxa de verificação (%)", type: "number", max: 100, placeholder: "0" }] },
+  visualizacao: { columns: [{ key: "data", label: "Data limite", type: "date" }] },
 };
 let currentLocationMode;
 
@@ -894,6 +1022,24 @@ function preferenceDate(label, sectorId = "") {
   return `<input type="date" class="pp-input pp-locais-date" data-field="data" ${sectorId ? `data-preference-sector="${sectorId}"` : "data-preference-all-dates"} aria-label="${label}" />`;
 }
 
+function preferenceNumber(field, label, sectorId = "", group = false, placeholder = "—", max = 999) {
+  return `<input type="number" min="0" max="${max}" step="1" inputmode="numeric" class="pp-number pp-number--table" data-field="${field}" ${group ? "data-preference-all-number" : `data-preference-sector="${sectorId}"`} aria-label="${label}" placeholder="${placeholder}" />`;
+}
+
+/* <select> nativo (data-native-select): o menu próprio do pp-select seria
+   cortado pela rolagem da tabela do diálogo. */
+function preferenceSelect(column, label, sectorId) {
+  const options = column.options.map(([value, text]) => `<option value="${value}">${text}</option>`).join("");
+  return `<select class="pp-input pp-locais-select" data-native-select data-field="${column.key}" data-preference-sector="${sectorId}" aria-label="${label}">${options}</select>`;
+}
+
+function preferenceCell(column, label, sectorId = "", group = false) {
+  if (column.type === "number") return preferenceNumber(column.key, label, sectorId, group, column.placeholder, column.max);
+  if (column.type === "date") return `<input type="date" class="pp-input pp-locais-date" data-field="${column.key}" ${group ? "data-preference-all-number" : `data-preference-sector="${sectorId}"`} aria-label="${label}" />`;
+  if (column.type === "select") return preferenceSelect(column, label, sectorId);
+  return preferenceCheck(column.key, label, sectorId, group);
+}
+
 function syncPreferenceGroups() {
   preferenceLocationsTable?.querySelectorAll("[data-preference-group]").forEach((groupCheck) => {
     const group = groupCheck.closest("tbody");
@@ -901,6 +1047,11 @@ function syncPreferenceGroups() {
     const checked = Array.from(checks).filter((input) => input.checked).length;
     groupCheck.checked = checks.length > 0 && checked === checks.length;
     groupCheck.indeterminate = checked > 0 && checked < checks.length;
+  });
+  preferenceLocationsTable?.querySelectorAll("[data-preference-all-number]").forEach((allNumber) => {
+    const group = allNumber.closest("tbody");
+    const numbers = Array.from(group.querySelectorAll(`[data-preference-sector][data-field="${allNumber.dataset.field}"]`), (input) => input.value);
+    allNumber.value = numbers.length && numbers.every((value) => value === numbers[0]) ? numbers[0] : "";
   });
   const allDates = preferenceLocationsTable?.querySelector("[data-preference-all-dates]");
   if (allDates) {
@@ -932,34 +1083,41 @@ function renderPreferenceLocations(mode) {
   heading.querySelectorAll("[data-preference-heading]").forEach((cell) => cell.remove());
   columns.forEach(({ label }) => heading.insertAdjacentHTML("beforeend", `<th scope="col" data-preference-heading>${label}</th>`));
   preferenceLocationsTable.querySelectorAll("tbody").forEach((body) => body.remove());
-  preferenceLocationsTable.classList.toggle("pp-locais-preferencia--cancelamento", mode === "cancelamento");
+  preferenceLocationsTable.classList.toggle("pp-locais-preferencia--cancelamento", Boolean(config.choice));
+  preferenceLocationsTitle.textContent = config.level === "local" ? "Locais" : "Locais e Setores";
+  preferenceLocationsSearch.placeholder = config.level === "local" ? "Pesquise por um local..." : "Pesquise por um local ou setor...";
 
-  const groups = mode === "bloqueio"
-    ? [{ name: "Todos", sectors: exampleLocations.flatMap((location) => location.sectors.map((sector) => ({ ...sector, location: location.name }))) }]
-    : exampleLocations.map((location) => ({
-        ...location,
-        sectors: location.sectors.map((sector) => ({ ...sector, location: location.name })),
-      }));
-  groups.forEach((group, index) => {
-    const groupCells = mode === "bloqueio"
-      ? `<td>${preferenceDate("Data limite para todos os setores")}</td>`
-      : columns.map((column) => `<td>${preferenceCheck(column.key, `${column.label}: todos os setores de ${group.name}`, "", true)}</td>`).join("");
-    const rows = group.sectors.map((sector) => {
-      const fullName = `${sector.name}, ${sector.location}`;
-      const name = mode === "bloqueio" ? `${sector.name} — ${sector.location}` : sector.name;
-      const cells = mode === "bloqueio"
-        ? `<td>${preferenceDate(`Data limite: ${fullName}`, sector.id)}</td>`
-        : columns.map((column) => `<td>${preferenceCheck(column.key, `${column.label}: ${fullName}`, sector.id)}</td>`).join("");
-      const sectorName = mode === "cancelamento"
-        ? `<label class="pp-locais-preferencia__choice"><span class="pp-check"><input type="checkbox" class="sr-only" data-preference-sector="${sector.id}" data-field="permitido" aria-label="Permitir cancelamento: ${fullName}" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>${name}</label>`
-        : name;
-      return `<tr class="pp-locais-table__sector" data-preference-row data-search="${fullName}"><th scope="row" class="font-normal">${sectorName}</th>${cells}</tr>`;
+  if (config.level === "local") {
+    /* Bloqueio geral: uma única data para todos os locais. */
+    const tipo = document.querySelector('select[name="tipoBloqueio"]')?.value;
+    const rows = mode === "bloqueio" && tipo !== "local"
+      ? [{ id: "todos", name: "Todos os locais" }]
+      : exampleLocations.map((location, index) => ({ id: `local-${index + 1}`, name: location.name }));
+    const body = rows.map(({ id, name }) => {
+      const cells = columns.map((column) => `<td>${preferenceCell(column, `${column.label}: ${name}`, id)}</td>`).join("");
+      return `<tr class="pp-locais-table__sector pp-locais-table__local" data-preference-row data-search="${name}"><th scope="row" class="font-normal">${name}</th>${cells}</tr>`;
     }).join("");
-    const gap = locationGroupGap(index, groups.length, columns.length + 1);
-    preferenceLocationsTable.insertAdjacentHTML("beforeend", `<tbody><tr class="pp-locais-table__group"><th scope="row">${group.name}</th>${groupCells}</tr>${rows}${gap}</tbody>`);
-  });
+    preferenceLocationsTable.insertAdjacentHTML("beforeend", `<tbody>${body}</tbody>`);
+  } else {
+    exampleLocations.forEach((location, index) => {
+      const groupCells = columns.map((column) => `<td>${preferenceCell(column, `${column.label}: todos os setores de ${location.name}`, "", true)}</td>`).join("");
+      const groupName = config.choice
+        ? `<label class="pp-locais-preferencia__choice">${preferenceCheck("permitido", `${config.choice}: todos os setores de ${location.name}`, "", true)}${location.name}</label>`
+        : location.name;
+      const rows = location.sectors.map((sector) => {
+        const fullName = `${sector.name}, ${location.name}`;
+        const cells = columns.map((column) => `<td>${preferenceCell(column, `${column.label}: ${fullName}`, sector.id)}</td>`).join("");
+        const sectorName = config.choice
+          ? `<label class="pp-locais-preferencia__choice">${preferenceCheck("permitido", `${config.choice}: ${fullName}`, sector.id)}${sector.name}</label>`
+          : sector.name;
+        return `<tr class="pp-locais-table__sector" data-preference-row data-search="${fullName}"><th scope="row" class="font-normal">${sectorName}</th>${cells}</tr>`;
+      }).join("");
+      const gap = locationGroupGap(index, exampleLocations.length, columns.length + 1);
+      preferenceLocationsTable.insertAdjacentHTML("beforeend", `<tbody><tr class="pp-locais-table__group"><th scope="row">${groupName}</th>${groupCells}</tr>${rows}${gap}</tbody>`);
+    });
+  }
 
-  const values = locationPreferences[config.hash];
+  const values = locationPreferences[mode];
   preferenceLocationsTable.querySelectorAll("[data-preference-sector]").forEach((input) => {
     const value = values[input.dataset.preferenceSector]?.[input.dataset.field];
     if (input.type === "checkbox") input.checked = value === true;
@@ -980,6 +1138,10 @@ preferenceLocationsTable?.addEventListener("change", (event) => {
     input.closest("tbody").querySelectorAll(`[data-preference-sector][data-field="${input.dataset.field}"]`).forEach((sector) => {
       sector.checked = input.checked;
     });
+  } else if (input.hasAttribute("data-preference-all-number")) {
+    input.closest("tbody").querySelectorAll(`[data-preference-sector][data-field="${input.dataset.field}"]`).forEach((sector) => {
+      sector.value = input.value;
+    });
   } else if (input.hasAttribute("data-preference-all-dates")) {
     preferenceLocationsTable.querySelectorAll('[data-preference-sector][data-field="data"]').forEach((sector) => {
       sector.value = input.value;
@@ -995,7 +1157,7 @@ preferenceLocationsForm?.addEventListener("submit", (event) => {
     values[id] ??= {};
     values[id][input.dataset.field] = input.type === "checkbox" ? input.checked : input.value;
   });
-  locationPreferences[locationModes[currentLocationMode].hash] = values;
+  locationPreferences[currentLocationMode] = values;
   preferenceLocationsModal.close();
 });
 preferenceLocationsModal?.addEventListener("keydown", (event) => {
@@ -1029,3 +1191,191 @@ if ("EventSource" in window && !new URLSearchParams(location.search).has("no-rel
   liveReload.addEventListener("reload", () => location.reload());
 }
 
+
+/* ------------------------------------------------------------- tolerância */
+/* Parâmetros de tolerância de entrada e saída: cada um vale para um período e
+   tem a regra geral e, opcionalmente, regras por local. As alterações ficam em
+   memória e são gravadas por "Salvar Preferências" (toleranciaParametros). */
+const TOLERANCIA_PADRAO = {
+  entrada: "00:30",
+  saida: "00:30",
+  antecipada: "sim",
+  antecipadaTempo: "00:00",
+  postergada: "sim",
+  postergadaTempo: "00:00",
+  acrescimo: "sim",
+  acrescimoTempo: "00:01",
+  desconto: "sim",
+  descontoTempo: "00:01",
+  sobreposicao: "nao",
+};
+let toleranciaParametros = Array.isArray(stored.toleranciaParametros)
+  ? stored.toleranciaParametros
+  : [{ id: "p1", inicio: "2026-04-01", fim: "2027-10-01", regra: { ...TOLERANCIA_PADRAO }, locais: [] }];
+
+const toleranciaLista = document.querySelector("#tolerancia-lista");
+const toleranciaModal = document.querySelector("#tolerancia-modal");
+const toleranciaForm = document.querySelector("#tolerancia-form");
+let toleranciaEdicao = null; // { parametroId, localId?, tipo: "parametro" | "local" }
+
+const formatarData = (iso) => (iso ? iso.split("-").reverse().join("/") : "—");
+const simNao = (regra, chave) => (regra[chave] === "sim" ? `Sim / ${regra[`${chave}Tempo`]}` : "Não");
+const nomeDoLocal = (id) => exampleLocations[Number(id.replace("local-", "")) - 1]?.name ?? id;
+
+function toleranciaResumo(regra) {
+  return [
+    ["Tolerância de entrada", regra.entrada],
+    ["Tolerância de saída", regra.saida],
+    ["Considerar entrada antecipada", simNao(regra, "antecipada")],
+    ["Considerar saída postergada", simNao(regra, "postergada")],
+    ["Calcular acréscimos em blocos", simNao(regra, "acrescimo")],
+    ["Calcular descontos em blocos", simNao(regra, "desconto")],
+    ["Ignorar sobreposição em plantões consecutivos no mesmo setor", regra.sobreposicao === "sim" ? "Sim" : "Não"],
+  ]
+    .map(([rotulo, valor]) => `<div class="pp-tolerancia__rule"><dt>${rotulo}</dt><dd>${valor}</dd></div>`)
+    .join("");
+}
+
+function iconButton(action, icon, label, extra = "") {
+  return `<button type="button" class="pp-btn pp-btn--outline pp-btn--icon ${extra}" data-tolerancia-action="${action}" aria-label="${label}" title="${label}">
+    <pp-icon type="tools" name="${icon}" class="size-4"></pp-icon>
+  </button>`;
+}
+
+function renderTolerancias() {
+  if (!toleranciaLista) return;
+  if (!toleranciaParametros.length) {
+    toleranciaLista.innerHTML = `<p class="pp-tolerancia__empty">Nenhum parâmetro de tolerância. Use <strong>Novo parâmetro</strong> para criar o primeiro.</p>`;
+    return;
+  }
+  toleranciaLista.innerHTML = toleranciaParametros
+    .map((parametro) => {
+      const periodo = `${formatarData(parametro.inicio)} – ${formatarData(parametro.fim)}`;
+      const locais = parametro.locais.length
+        ? `<ul class="pp-tolerancia__locais-list">${parametro.locais
+            .map(
+              (local) => `<li data-local-id="${local.id}">
+                <div class="min-w-0 flex-1"><p class="font-medium text-ink">${nomeDoLocal(local.local)}</p><p class="text-[12px]">Entrada ${local.regra.entrada} · Saída ${local.regra.saida}</p></div>
+                ${iconButton("editar-local", "edit", `Editar regra de ${nomeDoLocal(local.local)}`)}
+                ${iconButton("excluir-local", "delete", `Excluir regra de ${nomeDoLocal(local.local)}`, "pp-btn--red")}
+              </li>`
+            )
+            .join("")}</ul>`
+        : `<p class="pp-tolerancia__empty">Nenhuma regra por local.</p>`;
+      return `<article class="pp-tolerancia" data-parametro-id="${parametro.id}" aria-label="Parâmetro ${periodo}">
+        <header class="pp-tolerancia__header">
+          <h3>${periodo}</h3>
+          <span class="pp-tolerancia__tag">Regra geral</span>
+          ${iconButton("excluir", "delete", `Excluir parâmetro ${periodo}`, "pp-btn--red")}
+          ${iconButton("editar", "edit", `Editar parâmetro ${periodo}`)}
+        </header>
+        <div class="pp-tolerancia__body">
+          <dl class="pp-tolerancia__rules">${toleranciaResumo(parametro.regra)}</dl>
+          <section class="pp-tolerancia__locais" aria-label="Regras por local">
+            <h4>Regra por local</h4>
+            <button type="button" class="pp-btn pp-btn--outline self-start" data-tolerancia-action="novo-local">
+              <pp-icon type="tools" name="plus" class="size-4"></pp-icon>Adicionar tolerância por local
+            </button>
+            ${locais}
+          </section>
+        </div>
+      </article>`;
+    })
+    .join("");
+}
+
+function syncToleranciaSubcampos() {
+  toleranciaForm?.querySelectorAll("[data-yn-sub]").forEach((sub) => {
+    const ativo = toleranciaForm.elements[sub.dataset.ynSub].value === "sim";
+    sub.hidden = !ativo;
+    sub.querySelector("input").disabled = !ativo;
+  });
+}
+
+function abrirTolerancia(edicao, dados, titulo) {
+  toleranciaEdicao = edicao;
+  const local = edicao.tipo === "local";
+  toleranciaModal.querySelector("#tolerancia-modal-title").textContent = titulo;
+  toleranciaForm.querySelector("[data-tolerancia-periodo]").hidden = local;
+  toleranciaForm.querySelector("[data-tolerancia-periodo]").disabled = local;
+  toleranciaForm.querySelector("[data-tolerancia-local]").hidden = !local;
+  const select = toleranciaForm.elements.local;
+  select.disabled = !local;
+  select.innerHTML = exampleLocations.map((item, index) => `<option value="local-${index + 1}">${item.name}</option>`).join("");
+  const valores = { ...TOLERANCIA_PADRAO, ...dados };
+  Object.entries(valores).forEach(([nome, valor]) => {
+    const campo = toleranciaForm.elements[nome];
+    if (!campo) return;
+    if (campo instanceof RadioNodeList) campo.value = valor;
+    else campo.value = valor;
+  });
+  syncToleranciaSubcampos();
+  toleranciaModal.showModal();
+}
+
+toleranciaForm?.addEventListener("change", (event) => {
+  if (event.target instanceof HTMLInputElement && event.target.type === "radio") syncToleranciaSubcampos();
+});
+
+toleranciaForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!toleranciaForm.reportValidity()) return;
+  const dados = Object.fromEntries(new FormData(toleranciaForm));
+  const regra = Object.fromEntries(Object.keys(TOLERANCIA_PADRAO).map((chave) => [chave, dados[chave] ?? TOLERANCIA_PADRAO[chave]]));
+  const { tipo, parametroId, localId } = toleranciaEdicao;
+  if (tipo === "parametro") {
+    if (dados.fim < dados.inicio) {
+      toleranciaForm.elements.fim.setCustomValidity("O fim do período deve ser depois do início.");
+      toleranciaForm.reportValidity();
+      toleranciaForm.elements.fim.setCustomValidity("");
+      return;
+    }
+    const existente = toleranciaParametros.find((item) => item.id === parametroId);
+    if (existente) Object.assign(existente, { inicio: dados.inicio, fim: dados.fim, regra });
+    else toleranciaParametros.push({ id: `p${Date.now()}`, inicio: dados.inicio, fim: dados.fim, regra, locais: [] });
+  } else {
+    const parametro = toleranciaParametros.find((item) => item.id === parametroId);
+    const existente = parametro.locais.find((item) => item.id === localId);
+    if (existente) Object.assign(existente, { local: dados.local, regra });
+    else parametro.locais.push({ id: `l${Date.now()}`, local: dados.local, regra });
+  }
+  toleranciaModal.close();
+  renderTolerancias();
+});
+
+toleranciaModal?.querySelector("[data-tolerancia-close]")?.addEventListener("click", () => toleranciaModal.close());
+
+document.querySelector("[data-tolerancia-novo]")?.addEventListener("click", () => {
+  const hoje = new Date().toISOString().slice(0, 10);
+  abrirTolerancia({ tipo: "parametro" }, { inicio: hoje, fim: "" }, "Novo parâmetro de tolerância");
+});
+
+toleranciaLista?.addEventListener("click", (event) => {
+  const botao = event.target instanceof Element ? event.target.closest("[data-tolerancia-action]") : null;
+  if (!botao) return;
+  const parametro = toleranciaParametros.find((item) => item.id === botao.closest("[data-parametro-id]").dataset.parametroId);
+  const localId = botao.closest("[data-local-id]")?.dataset.localId;
+  const local = parametro.locais.find((item) => item.id === localId);
+  switch (botao.dataset.toleranciaAction) {
+    case "editar":
+      abrirTolerancia({ tipo: "parametro", parametroId: parametro.id }, { inicio: parametro.inicio, fim: parametro.fim, ...parametro.regra }, "Alterar parâmetros de tolerância");
+      break;
+    case "excluir":
+      toleranciaParametros = toleranciaParametros.filter((item) => item !== parametro);
+      renderTolerancias();
+      showToast("Parâmetro removido. Salve as preferências para confirmar.");
+      break;
+    case "novo-local":
+      abrirTolerancia({ tipo: "local", parametroId: parametro.id }, { ...parametro.regra }, "Tolerância por local");
+      break;
+    case "editar-local":
+      abrirTolerancia({ tipo: "local", parametroId: parametro.id, localId }, { local: local.local, ...local.regra }, "Tolerância por local");
+      break;
+    case "excluir-local":
+      parametro.locais = parametro.locais.filter((item) => item !== local);
+      renderTolerancias();
+      break;
+  }
+});
+
+renderTolerancias();

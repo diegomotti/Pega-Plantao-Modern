@@ -4,6 +4,41 @@ Página inicial e reconstrução da tela **Contas → Preferências → Plantõe
 do Pega Plantão com **HTML + Tailwind CSS**, seguindo a estrutura do projeto Lumen DS
 (`public/` estático + `src/input.css` + servidor Node mínimo — sem Vite/TypeScript).
 
+## AppShell (topbar e rail)
+
+O topbar e o rail de módulos ficam em `public/components/app-shell.js`, como dois
+elementos usados em todas as páginas:
+
+```html
+<head>
+  …
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/components/app-shell.js"></script>
+</head>
+<body>
+  <div class="flex h-full min-h-screen flex-col">
+    <pp-app-header breadcrumb='[{"label":"Contas","href":"/"},{"label":"Preferências"}]'></pp-app-header>
+    <div class="relative flex min-h-0 flex-1">
+      <pp-app-rail></pp-app-rail>
+      <main>…</main>
+    </div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+```
+
+- `<pp-app-header>` renderiza o logo, o menu de Escalas (mobile), o toast, a
+  busca, as notificações, o menu da conta e o divisor abaixo. `breadcrumb` é
+  opcional (JSON); itens com `href` viram links e o último é a página atual.
+- `<pp-app-rail>` renderiza o divisor lateral e o rail de módulos.
+- O link da página atual recebe `aria-current="page"` automaticamente pelo
+  endereço, e o módulo que o contém fica selecionado no rail. Para forçar um
+  módulo, use `<pp-app-rail current="escalas">`.
+- O script fica no `<head>` (sem `defer`) para a moldura aparecer junto com a
+  página. Os elementos usam `display: contents`; menus e toast continuam em
+  `app.js`.
+- Para mudar um item do topbar ou do rail, edite só `app-shell.js`.
+
 ## Rodar
 
 ```bash
@@ -41,15 +76,75 @@ server.js                servidor estático de public/ + live reload (SSE)
 .design/                 referência do Figma + ferramentas de comparação de pixels
 ```
 
-Anúncios, Bloqueio, Cancelamento de Agenda, Divisões e Passagens têm conteúdo
-próprio, acessível por fragmentos como `account-preferences.html#bloqueio`.
-As opções dessas telas são salvas no `localStorage` deste navegador.
-Os seletores de Bloqueio mostram apenas os valores da referência. Os diálogos de
-Locais e Setores de Bloqueio, Cancelamento e Passagens usam hospitais e setores
-de exemplo: **Ok** mantém as alterações em edição e **Salvar Preferências** as
-grava no navegador; fechar o diálogo descarta as alterações ainda não confirmadas.
-A configuração de Locais e Setores de Divisões ainda está em construção. As demais
-seções continuam como áreas ilustrativas.
+As abas de **Plantões** (Anúncios, Bloqueio, Cancelamento de Agenda, Divisões,
+Passagens e Trocas) seguem o sistema atual
+(`/Escala/Preferencias`) e são acessíveis por fragmentos como
+`account-preferences.html#trocas`. As opções são salvas no `localStorage` deste
+navegador.
+
+Regras de habilitação: em Bloqueio, Cancelamento de Agenda, Divisões, Passagens
+e Trocas, o primeiro cartão (`data-master-toggle`) habilita as opções dentro de
+`<fieldset data-dependent-fields>`; desmarcado, elas ficam esmaecidas e
+desabilitadas. Em Anúncios a notificação não controla os demais cartões.
+Cartões que contêm apenas um checkbox podem ser acionados em toda a sua área;
+cartões com outros controles mantêm as ações independentes. Cartões marcados
+ficam destacados, inclusive ao recarregar preferências salvas.
+
+O diálogo de Locais e Setores (`#locais-preferencia-modal`) é montado conforme a
+aba, com hospitais e setores de exemplo (`locationModes` em `app.js`). Uma aba
+pode ter mais de um diálogo: Trocas reúne também o Período para troca e o Limite
+mensal do sistema atual, e cada diálogo é salvo na sua própria chave
+(`locationStorage`).
+
+| aba | linhas | colunas |
+| --- | --- | --- |
+| Bloqueio | "Todos os locais" (Bloqueio geral) ou um por Local (Bloqueio por local) | Data limite |
+| Cancelamento de Agenda, Divisões | setores, com checkbox ao lado do nome | — |
+| Passagens, Trocas | setores | Necessita aprovação, Necessita justificativa |
+| Trocas › Restringir trocas do mesmo período | Locais | Período (Sem restrição, Semana, Mês) |
+| Trocas › Quantidade de trocas permitidas no mês | Locais | Quantidade (em branco = sem limite) |
+
+**Ok** mantém as alterações em edição e **Salvar Preferências** as grava no
+navegador; fechar o diálogo descarta as alterações ainda não confirmadas. O
+diálogo de Anúncios (`#locais-modal`) ainda é ilustrativo e não é salvo.
+
+### Demais abas
+
+E-mails e Notificações, Credenciamento, Financeiro Avançado, Registro de Entrada
+e Saída Avançado (Geral e Avançado, Configurações adicionais e Tolerância),
+Valores padrões e Visualização da Escala seguem o sistema atual. Regras de
+habilitação:
+
+- Uma aba pode ter vários cartões principais: `data-master-toggle="chave"`
+  habilita `<fieldset data-dependent-fields="chave">`. Com várias chaves
+  separadas por espaço, o grupo fica habilitado se qualquer uma estiver marcada
+  (ex.: os botões de iniciar e encerrar plantão ficam ativos com qualquer forma
+  de registro de entrada e saída). Grupos podem ser aninhados (Gestão de
+  pagamento → Bloquear alteração de plantões já pagos → Grupo de coordenadores).
+- Credenciamento, Financeiro Avançado e Geral e Avançado mostram a faixa do
+  módulo contratado (`.pp-module-banner`); o botão **Saiba mais** ainda não tem
+  destino.
+- Novos diálogos de Locais e Setores: distância máxima por setor, biometria
+  facial (dispositivo fixo e aplicativo), taxa de prova de vida e data limite
+  para visualização da escala.
+- Tolerância: lista de parâmetros por período com a regra geral e regras por
+  local; **Novo parâmetro**, editar e excluir abrem o diálogo
+  `#tolerancia-modal`. As alterações são gravadas com **Salvar Preferências**
+  (`toleranciaParametros`).
+- Campos de texto, hora e data com `name` também são salvos no `localStorage`.
+
+As nove abas de **Alertas** (Afastamentos, Conflitos de horários, Horas
+consecutivas, Horas consecutivas por setor, Horas semanais, Horas mensais,
+Plantões mensais, Intervalo interjornada e Plantões consecutivos) seguem o
+conteúdo do sistema atual. Em cada uma, as opções ficam dentro de
+`<fieldset data-dependent-fields>` e só são editáveis com **Habilitar alerta**
+(`data-master-toggle`) marcado. Os limites usam `pp-number` (campo numérico com o
+mesmo formato e rótulo flutuante do `pp-select`) e são salvos como texto. As
+listas de grupos (`data-group-list`, com grupos de exemplo) usam checkboxes
+`data-multi`, salvos como array; **Todos os profissionais** marca ou desmarca a
+lista inteira. Conflitos de horários e Horas consecutivas por setor usam o
+diálogo de Locais e Setores (coluna de checkbox e coluna numérica,
+respectivamente). As demais seções continuam como áreas ilustrativas.
 
 ### Botões
 
@@ -143,7 +238,15 @@ custom element `<pp-icon>` (definido em `public/app.js`). O manifesto
 ```html
 <pp-icon type="sidebar" name="dashboard" class="size-[25px]"></pp-icon>
 <pp-icon type="ui" name="chevronDown" stroke-width="2.2"></pp-icon>
+<pp-icon type="sidebarSettings" name="places" data-monochrome="true"></pp-icon>
 ```
+
+`data-monochrome="true"` (ou apenas `data-monochrome`) solicita a variante
+monocromática, normalmente branca para botões coloridos. Use `"false"` ou
+omita o atributo para a variante colorida, adequada a botões brancos. Se a
+variante solicitada não existir, o componente usa outra variante do ícone.
+O atributo existente `monochrome` continua aceito e tem precedência quando
+ambos são informados. Alterações dos atributos atualizam o ícone.
 
 O grupo `type="ui"` reúne os glifos que não existem no catálogo do Lumen DS e
 que antes ficavam inline no `app.js`:

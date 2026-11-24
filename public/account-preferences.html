@@ -12,181 +12,15 @@
     />
     <title>Preferências · Pega Plantão</title>
     <link rel="stylesheet" href="/styles.css" />
+    <script src="/components/app-shell.js"></script>
   </head>
 
   <body class="h-full font-sans text-[15px] text-muted antialiased">
     <div class="flex h-full min-h-screen flex-col">
-      <!-- ============================================================ header -->
-      <header class="flex h-[69px] shrink-0 items-center pr-5 pl-5">
-        <a
-          href="/"
-          class="flex shrink-0 items-center gap-1.5 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
-          aria-label="Pega Plantão — início"
-        >
-          <img src="/assets/logo.svg" alt="" width="192" height="24" class="max-sm:w-[145px]" />
-        </a>
-
-        <details class="relative ml-2 lg:hidden">
-          <summary aria-label="Escalas" class="grid size-9 cursor-pointer list-none place-items-center rounded-full border border-primary-100 bg-white text-primary-500">
-            <pp-icon type="sidebar" name="workscale" class="size-6"></pp-icon>
-          </summary>
-          <nav aria-label="Escalas" class="pp-rail-menu pp-account-menu left-0 right-auto">
-            <a href="/escala/semanal.html" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="weekly"></pp-icon>Semanal</a>
-          </nav>
-        </details>
-
-        <nav aria-label="Você está aqui" class="ml-[34px] hidden items-center gap-2.5 text-[13.5px] sm:flex">
-          <a href="/" class="transition-colors hover:text-primary-500">Contas</a>
-          <pp-icon type="ui" name="chevronRight" stroke-width="1.9" class="size-4 text-gray-300"></pp-icon>
-          <span class="font-medium text-ink">Preferências</span>
-        </nav>
-
-        <div class="relative ml-auto flex items-center gap-[22px]">
-          <!-- success toast: logo à esquerda do ícone de busca -->
-          <div class="pointer-events-none absolute top-1/2 right-[calc(100%+20px)] z-50 w-max -translate-y-1/2">
-            <div
-              id="toast"
-              hidden
-              role="status"
-              aria-live="polite"
-              class="flex max-w-[calc(100vw-168px)] translate-y-2 items-center gap-2.5 rounded-md bg-green-700 px-4 py-3 text-[13px] font-medium text-white opacity-0 shadow-lg shadow-black/20 transition-all duration-200"
-            >
-              <pp-icon type="ui" name="circleCheck" class="size-5"></pp-icon>
-              <span data-toast-text>Preferências salvas com sucesso.</span>
-            </div>
-          </div>
-          
-          <button
-            type="button"
-            aria-label="Buscar"
-            title="Buscar"
-            class="grid size-6 place-items-center rounded-md text-gray-700 transition-colors hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
-          >
-            <pp-icon type="topbar" name="search" class="size-[22px]"></pp-icon>
-          </button>
-
-          <button
-            type="button"
-            aria-label="Notificações"
-            title="Notificações"
-            class="relative grid size-6 place-items-center rounded-md text-gray-700 transition-colors hover:text-primary-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
-          >
-            <pp-icon type="sidebarandtopbar" name="notification" class="size-[22px]"></pp-icon>
-            <span class="absolute -top-0.5 -right-0.5 size-[7px] rounded-full bg-tertiary-500 ring-2 ring-primary-25"></span>
-          </button>
-
-          <div id="account-menu-container" class="relative shrink-0">
-            <button
-              type="button"
-              id="account-menu-toggle"
-              aria-label="Conta de Diego"
-              aria-expanded="false"
-              aria-controls="account-menu"
-              class="grid size-6 place-items-center rounded-full bg-[linear-gradient(145deg,#0b2b52_0%,#155fae_100%)] text-[10px] font-semibold text-white ring-2 ring-white/70 transition-transform hover:scale-[1.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
-            >
-              DG
-            </button>
-            <nav id="account-menu" aria-label="Menu da conta" class="pp-rail-menu pp-account-menu" hidden>
-              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Meus dados">
-                <pp-icon type="sidebarWorkscale" name="professional"></pp-icon>Meus dados
-              </button>
-              <a href="/account-preferences.html" aria-current="page" class="pp-rail-menu__item">
-                <pp-icon type="sidebar" name="settings"></pp-icon>Preferências
-              </a>
-              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Central de Ajuda">
-                <pp-icon type="topbar" name="helpDesk"></pp-icon>Central de Ajuda
-              </button>
-              <button type="button" class="pp-rail-menu__item w-full text-left" data-account-action="Sair">
-                <pp-icon type="sidebar" name="logout"></pp-icon>Sair
-              </button>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      <!-- divisor sob o topbar -->
-      <div aria-hidden="true" class="h-px shrink-0 bg-primary-50"></div>
+      <pp-app-header breadcrumb='[{"label":"Contas","href":"/"},{"label":"Preferências"}]'></pp-app-header>
 
       <div class="relative flex min-h-0 flex-1">
-        <!-- divisor ao lado da sidebar -->
-        <div
-          aria-hidden="true"
-          class="pointer-events-none absolute -top-px bottom-0 left-[88px] hidden w-px bg-[linear-gradient(to_bottom,var(--pp-palette-primary-50),rgba(188,242,255,0))] lg:block"
-        ></div>
-        <!-- menu -->
-        <!-- utilizar aria-current="page" no link correspondente ao módulo ativo -->
-        <nav aria-label="Módulos" class="hidden min-h-0 w-[85px] shrink-0 flex-col items-center gap-[18px] overflow-y-auto pt-[23px] scrollbar-slim lg:flex">
-          <button type="button" title="Painel" aria-label="Painel" aria-expanded="false" aria-controls="rail-painel" data-rail-toggle class="pp-rail-link">
-            <pp-icon type="sidebar" name="dashboard" class="size-[25px]"></pp-icon>
-          </button>
-          <div id="rail-painel" class="pp-rail-menu" aria-label="Painel" hidden>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebar" name="dashboard"></pp-icon>Resumo</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="report"></pp-icon>Relatórios</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="finance"></pp-icon>Balanço</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="tickets"></pp-icon>Chamados</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="hours"></pp-icon>Carga horária</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarDashboard" name="anualHours"></pp-icon>Carga horária anual</a>
-          </div>
-          <button type="button" title="Escalas" aria-label="Escalas" aria-expanded="false" aria-controls="rail-escalas" data-rail-toggle class="pp-rail-link">
-            <pp-icon type="sidebar" name="workscale" class="size-[25px]"></pp-icon>
-          </button>
-          <div id="rail-escalas" class="pp-rail-menu" aria-label="Escalas" hidden>
-            <a href="/escala/semanal.html" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="weekly"></pp-icon>Semanal</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="monthly"></pp-icon>Mensal</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="professional"></pp-icon>Profissional</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="search"></pp-icon>Busca</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="models"></pp-icon>Modelo</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarWorkscale" name="checkinJustify"></pp-icon>Justificativas de horário</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebar" name="calendarCancel"></pp-icon>Cancelamentos de Agenda</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="tools" name="syncServices"></pp-icon>Sincronização de Plantões</a>
-          </div>
-          <button type="button" title="Profissionais" aria-label="Profissionais" aria-expanded="false" aria-controls="rail-profissionais" data-rail-toggle class="pp-rail-link">
-            <pp-icon type="sidebar" name="professionals" class="size-[25px]"></pp-icon>
-          </button>
-          <div id="rail-profissionais" class="pp-rail-menu" aria-label="Profissionais" hidden>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="professionals"></pp-icon>Profissionais</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="professionalShield"></pp-icon>Coordenadores</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarProfessionals" name="viewers"></pp-icon>Visualizadores</a>
-          </div>
-          <button type="button" title="Configurações" aria-label="Configurações" aria-expanded="false" aria-controls="rail-configuracoes" data-rail-toggle class="pp-rail-link">
-            <pp-icon type="sidebar" name="settings" class="size-[25px]"></pp-icon>
-          </button>
-          <div id="rail-configuracoes" class="pp-rail-menu" aria-label="Configurações" hidden>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Locais e Setores</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="professionalsGroup"></pp-icon>Grupos</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="dutyTypes"></pp-icon>Tipos de Plantão</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="dutysituations"></pp-icon>Situações do Plantão</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="values"></pp-icon>Valores</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="bonus"></pp-icon>Bonificações</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="bankAccounts"></pp-icon>Contas Bancárias</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="businessSubmit"></pp-icon>Cadastros de CNPJ</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="vacation"></pp-icon>Feriados</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="autoSettings"></pp-icon>Auto-Ajustes</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="contractTypes"></pp-icon>Tipos de Contratação</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="productivity"></pp-icon>Produtividades</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="ability"></pp-icon>Habilidades</a>
-          </div>
-          <button type="button" title="Financeiro" aria-label="Financeiro" aria-expanded="false" aria-controls="rail-financeiro" data-rail-toggle class="pp-rail-link">
-            <pp-icon type="sidebar" name="finance" class="size-[25px]"></pp-icon>
-          </button>
-          <div id="rail-financeiro" class="pp-rail-menu" aria-label="Financeiro" hidden>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarFinance" name="closure"></pp-icon>Fechamento</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarFinance" name="advance"></pp-icon>Adiantamento</a>
-          </div>
-          <button type="button" title="Credenciamento" aria-label="Credenciamento" aria-expanded="false" aria-controls="rail-credenciamento" data-rail-toggle class="pp-rail-link">
-            <pp-icon type="sidebar" name="documents" class="size-[25px]"></pp-icon>
-          </button>
-          <div id="rail-credenciamento" class="pp-rail-menu" aria-label="Credenciamento" hidden>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="places"></pp-icon>Documentos</a>
-            <a href="#" class="pp-rail-menu__item"><pp-icon type="sidebarSettings" name="professionalsGroup"></pp-icon>Tipos de Documentos</a>
-          </div>
-          <a href="#" title="Registros" aria-label="Registros" class="pp-rail-link">
-            <pp-icon type="sidebar" name="post" class="size-[25px]"></pp-icon>
-          </a>
-          <a href="#" title="Mensagens" aria-label="Mensagens" class="pp-rail-link">
-            <pp-icon type="topbar" name="messagesOrEmails" class="size-[25px]"></pp-icon>
-          </a>
-        </nav>
+        <pp-app-rail></pp-app-rail>
 
         <!-- ========================================================= sidebar -->
         <aside class="hidden min-h-0 w-[284px] shrink-0 overflow-y-auto scrollbar-slim lg:block">
@@ -230,7 +64,8 @@
               <a href="#horas-consecutivas-por-setor" class="pp-nav-sub pp-nav-sub--alerts"><span>Horas consecutivas por setor</span></a>
               <a href="#horas-semanais" class="pp-nav-sub pp-nav-sub--alerts"><span>Horas semanais</span></a>
               <a href="#horas-mensais" class="pp-nav-sub pp-nav-sub--alerts"><span>Horas mensais</span></a>
-              <a href="#intervalo-interjornada" class="pp-nav-sub pp-nav-sub--alerts"><span>Intervalo Interjornada</span></a>
+              <a href="#plantoes-mensais" class="pp-nav-sub pp-nav-sub--alerts"><span>Plantões mensais</span></a>
+              <a href="#intervalo-interjornada" class="pp-nav-sub pp-nav-sub--alerts"><span>Intervalo interjornada</span></a>
               <a href="#plantoes-consecutivos" class="pp-nav-sub pp-nav-sub--alerts"><span>Plantões consecutivos</span></a>
             </div>
             <a href="#emails-e-notificacoes" class="pp-nav-item"><span>E-mails e Notificações</span></a>
@@ -283,7 +118,7 @@
             <form id="prefs-form" class="flex flex-1 flex-col" novalidate>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
                 <!-- ------------------------------------------------- card 1 -->
-                <div class="pp-card min-h-[100px]">
+                <div class="pp-card min-h-25">
                   <span class="shrink-0" aria-hidden="true">
                     <svg viewBox="0 0 55 60" class="h-[60px] w-[55px]" fill="none">
                       <!-- document -->
@@ -335,9 +170,6 @@
                     >
                       <option value="fim-do-planton" selected>Fim do plantão</option>
                       <option value="inicio-do-planton">Início do plantão</option>
-                      <option value="24h-antes">24 horas antes</option>
-                      <option value="12h-antes">12 horas antes</option>
-                      <option value="6h-antes">6 horas antes</option>
                     </select>
                     <button
                       type="button"
@@ -377,13 +209,13 @@
                   </div>
 
                   <button type="button" class="pp-btn shrink-0" data-locais>
-                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>
+                    <pp-icon type="sidebarSettings" name="places" data-monochrome="true" class="size-4"></pp-icon>
                     Configurar Locais e Setores
                   </button>
                 </div>
               </div>
 
-              <div class="mt-[24px] flex justify-center">
+              <div class="mt-6 flex justify-center">
                 <button type="submit" class="pp-btn">
                   <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>
                   Salvar Preferências
@@ -393,146 +225,1257 @@
 
             <form class="flex flex-1 flex-col" data-preference-tab="#bloqueio" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[100px] py-3">
-                  <pp-icon type="tools" name="blockedUser" class="size-[60px]" aria-hidden="true"></pp-icon>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="tools" name="blockedUser" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Criar data para bloqueio de alteração de plantões</h2>
-                    <p class="pp-card__desc">Esta opção permite criar uma data limite para coordenadores alterarem, apagarem ou criarem plantões. Saiba mais.</p>
+                    <p class="pp-card__desc">Esta opção permite criar uma data limite para coordenadores alterarem, apagarem ou criarem plantões.</p>
                   </div>
                   <label class="pp-check" title="Criar data para bloqueio de alteração de plantões">
-                    <input type="checkbox" name="bloqueioAtivo" class="sr-only" aria-label="Criar data para bloqueio de alteração de plantões" />
+                    <input type="checkbox" name="bloqueioAtivo" class="sr-only" aria-label="Criar data para bloqueio de alteração de plantões" data-master-toggle />
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
-                  <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Grupo de coordenadores que podem alterar plantões anteriores a data limite</h2>
-                    <p class="pp-card__desc">Grupo de coordenadores selecionado não será afetado pelo bloqueio de alteração de plantões.</p>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Grupo de coordenadores que podem alterar plantões anteriores à data limite</h2>
+                    <p class="pp-card__desc">O grupo de coordenadores selecionado não será afetado pelo bloqueio de alteração de plantões.</p>
                   </div>
-                  <div class="relative shrink-0">
-                    <label for="grupo-bloqueio" class="pp-select-label">Selecione uma opção</label>
-                    <select id="grupo-bloqueio" name="grupoBloqueio" class="pp-select">
-                      <option value="coringas">Coringas</option>
-                    </select>
+                    <div class="relative shrink-0">
+                      <label for="grupo-bloqueio" class="pp-select-label">Selecione uma opção</label>
+                      <select id="grupo-bloqueio" name="grupoBloqueio" class="pp-select">
+                        <option value="coordenacao-geral">Coordenação geral</option>
+                        <option value="supervisores">Supervisores de escala</option>
+                        <option value="coringas">Coringas</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="pp-card min-h-[100px] flex-wrap py-3">
-                  <div class="min-w-0 flex-1">
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
                     <h2 class="pp-card__title">Tipo de data limite para bloqueio</h2>
-                    <p class="pp-card__desc">Permite criar uma data limite padrão para todos os locais ou separadamente.<br />Plantões anteriores a data definida só poderão ser alterados pelo grupo de coordenadores selecionados acima.</p>
+                    <p class="pp-card__desc">Permite criar uma data limite padrão para todos os locais ou uma para cada local. Plantões anteriores a essa data só poderão ser alterados pelo grupo selecionado acima.</p>
                   </div>
-                  <div class="relative shrink-0">
-                    <label for="tipo-bloqueio" class="pp-select-label">Selecione uma opção</label>
-                    <select id="tipo-bloqueio" name="tipoBloqueio" class="pp-select">
-                      <option value="geral">Bloqueio geral</option>
-                    </select>
+                    <div class="relative shrink-0">
+                      <label for="tipo-bloqueio" class="pp-select-label">Selecione uma opção</label>
+                      <select id="tipo-bloqueio" name="tipoBloqueio" class="pp-select">
+                        <option value="geral">Bloqueio geral</option>
+                        <option value="local">Bloqueio por local</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
-                  <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Bloqueio por Locais e Setores</h2>
-                    <p class="pp-card__desc">Configure a data limite de bloqueio separadamente para cada Local e Setor.</p>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Data limite para bloqueio</h2>
+                    <p class="pp-card__desc">Defina a data limite geral ou a de cada Local, conforme o tipo de bloqueio escolhido acima.</p>
                   </div>
-                  <button type="button" class="pp-btn shrink-0" data-locais-preferencia="bloqueio">
-                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
-                  </button>
-                </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="bloqueio">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar datas limite
+                    </button>
+                  </div>
+                </fieldset>
               </div>
-              <div class="mt-[24px] flex justify-center">
+              <div class="mt-6 flex justify-center">
                 <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
               </div>
             </form>
 
             <form class="flex flex-1 flex-col" data-preference-tab="#cancelamento-de-agenda" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[100px] py-3">
-                  <pp-icon type="services" name="exit" class="size-[60px]" aria-hidden="true"></pp-icon>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="services" name="exit" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Criar data para bloqueio de alteração de plantões</h2>
-                    <p class="pp-card__desc">Ativa o botão Cancelar Agenda, possibilitando ao profissional cancelar a agenda ou plantão por um determinado período.</p>
+                    <h2 class="pp-card__title">Cancelamento de agenda</h2>
+                    <p class="pp-card__desc">Permitir que profissionais solicitem o cancelamento de um plantão.</p>
                   </div>
-                  <label class="pp-check" title="Permitir cancelamento de agenda">
-                    <input type="checkbox" name="cancelamentoAtivo" class="sr-only" aria-label="Permitir cancelamento de agenda" />
+                  <label class="pp-check" title="Cancelamento de agenda">
+                    <input type="checkbox" name="cancelamentoAtivo" class="sr-only" aria-label="Cancelamento de agenda" data-master-toggle />
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
-                  <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Locais e Setores disponíveis para Cancelamento de Agenda.</h2>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Locais e Setores disponíveis para cancelamento de agenda</h2>
                     <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão solicitar o cancelamento.</p>
                   </div>
-                  <button type="button" class="pp-btn shrink-0" data-locais-preferencia="cancelamento">
-                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
-                  </button>
-                </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="cancelamento">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                </fieldset>
               </div>
-              <div class="mt-[24px] flex justify-center">
+              <div class="mt-6 flex justify-center">
                 <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
               </div>
             </form>
 
             <form class="flex flex-1 flex-col" data-preference-tab="#divisoes" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[100px] py-3">
-                  <pp-icon type="services" name="split" class="size-[60px]" aria-hidden="true"></pp-icon>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="services" name="split" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Dividir plantão</h2>
+                    <h2 class="pp-card__title">Divisão de plantão</h2>
                     <p class="pp-card__desc">Permitir que o profissional divida o plantão em 2 partes.</p>
                   </div>
-                  <label class="pp-check" title="Dividir plantão">
-                    <input type="checkbox" name="divisaoAtiva" class="sr-only" aria-label="Dividir plantão" />
+                  <label class="pp-check" title="Divisão de plantão">
+                    <input type="checkbox" name="divisaoAtiva" class="sr-only" aria-label="Divisão de plantão" data-master-toggle />
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
-                <div class="pp-card min-h-[85px] flex-wrap py-3">
-                  <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Locais e Setores disponíveis para dividir os plantões.</h2>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que o profissional divida plantões dos setores</h2>
                     <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão dividir os plantões.</p>
                   </div>
-                  <button type="button" class="pp-btn shrink-0" data-locais-pendente>
-                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
-                  </button>
-                </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="divisoes">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                </fieldset>
               </div>
-              <div class="mt-[24px] flex justify-center">
+              <div class="mt-6 flex justify-center">
                 <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
               </div>
             </form>
 
             <form class="flex flex-1 flex-col" data-preference-tab="#passagens" hidden>
               <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
-                <div class="pp-card min-h-[100px] py-3">
-                  <pp-icon type="services" name="professionalsPass" class="size-[60px]" aria-hidden="true"></pp-icon>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="services" name="professionalsPass" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
                   <div class="min-w-0 flex-1">
                     <h2 class="pp-card__title">Passar plantão</h2>
                     <p class="pp-card__desc">Permitir que profissionais passem plantões para outros profissionais que trabalham na sua empresa.</p>
                   </div>
                   <label class="pp-check" title="Passar plantão">
-                    <input type="checkbox" name="passagemAtiva" class="sr-only" aria-label="Passar plantão" />
+                    <input type="checkbox" name="passagemAtiva" class="sr-only" aria-label="Passar plantão" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Apenas entre profissionais do mesmo setor</h2>
+                    <p class="pp-card__desc">Restringe a passagem de plantões a apenas profissionais do setor do plantão.</p>
+                  </div>
+                    <label class="pp-check" title="Apenas entre profissionais do mesmo setor">
+                    <input type="checkbox" name="passagemMesmoSetor" class="sr-only" aria-label="Apenas entre profissionais do mesmo setor" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que os profissionais passem plantões dos setores</h2>
+                    <p class="pp-card__desc">Defina, para cada Local e Setor, se a passagem precisa de aprovação ou de justificativa.</p>
+                  </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="passagens">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#trocas" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="services" name="swap" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Troca de plantão</h2>
+                    <p class="pp-card__desc">Permitir que profissionais troquem plantões entre si (apenas profissionais que trabalham na sua empresa).</p>
+                  </div>
+                  <label class="pp-check" title="Troca de plantão">
+                    <input type="checkbox" name="trocaAtiva" class="sr-only" aria-label="Troca de plantão" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Apenas entre profissionais do mesmo setor</h2>
+                    <p class="pp-card__desc">Restringe a troca de plantões a apenas profissionais do setor do plantão.</p>
+                  </div>
+                    <label class="pp-check" title="Apenas entre profissionais do mesmo setor">
+                    <input type="checkbox" name="trocaMesmoSetor" class="sr-only" aria-label="Apenas entre profissionais do mesmo setor" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que os profissionais troquem plantões dos setores</h2>
+                    <p class="pp-card__desc">Defina, para cada Local e Setor, se a troca precisa de aprovação ou de justificativa.</p>
+                  </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="trocas">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Restringir trocas de plantões do mesmo período</h2>
+                      <p class="pp-card__desc">Os profissionais só poderão trocar plantões cuja data de início esteja no mesmo período (semana ou mês) do plantão escolhido.</p>
+                    </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="periodo">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Quantidade de trocas permitidas no mês</h2>
+                      <p class="pp-card__desc">Limita quantos plantões um profissional pode trocar por mês; em branco, não há limite. A contagem usa a data de início do plantão, não a data da troca.</p>
+                    </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="limite">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#afastamentos" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="notifications" name="dutyOnVacationUnread" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">Você receberá um alerta quando um profissional estiver em um plantão durante um período de afastamento, como férias ou folga.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de afastamentos">
+                    <input type="checkbox" name="afastamentosAlerta" class="sr-only" aria-label="Habilitar alerta de afastamentos" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere um alerta</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca, mas os coordenadores serão alertados. Desmarcada, o sistema bloqueará a troca do plantão.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere um alerta">
+                    <input type="checkbox" name="afastamentosPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere um alerta" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#conflitos-de-horarios" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="notifications" name="duplicatedHourUnread" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">Você receberá um alerta quando um profissional estiver em dois plantões no mesmo horário.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de conflitos de horários">
+                    <input type="checkbox" name="conflitosAlerta" class="sr-only" aria-label="Habilitar alerta de conflitos de horários" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere algum conflito</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca, mas os coordenadores serão alertados por e-mail. Desmarcada, o sistema bloqueará a troca caso o profissional já tenha outro plantão no mesmo horário.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere algum conflito">
+                    <input type="checkbox" name="conflitosPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que gere algum conflito" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Ignorar conflitos dos setores</h2>
+                    <p class="pp-card__desc">Selecione os Locais e Setores cujos conflitos de horário não geram alerta.</p>
+                  </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="conflitos">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#horas-consecutivas" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="services" name="time" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">O sistema criará um alerta sempre que um profissional dos grupos selecionados abaixo fizer mais horas consecutivas do que o limite definido.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de horas consecutivas">
+                    <input type="checkbox" name="horasConsecutivasAlerta" class="sr-only" aria-label="Habilitar alerta de horas consecutivas" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Quantidade máxima de horas consecutivas que um profissional pode realizar</h2>
+                    <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar do limite definido ao lado.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="horas-consecutivas-limite" class="pp-select-label">Horas</label>
+                      <input id="horas-consecutivas-limite" name="horasConsecutivasLimite" type="number" min="0" max="255" step="1" inputmode="numeric" value="24" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas consecutivas.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas">
+                    <input type="checkbox" name="horasConsecutivasPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card flex-wrap py-4">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Controlar horas consecutivas dos profissionais dos grupos selecionados</h2>
+                    <p class="pp-card__desc">Um alerta será criado quando necessário.</p>
+                  </div>
+                    <fieldset class="pp-group-list" data-group-list="horasConsecutivasGrupos">
+                      <legend class="sr-only">Grupos</legend>
+                    </fieldset>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#horas-consecutivas-por-setor" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="notifications" name="sectorOnConsecutiveHoursUnread" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">O sistema criará um alerta sempre que um profissional fizer mais horas consecutivas do que o limite definido para o setor.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de horas consecutivas por setor">
+                    <input type="checkbox" name="horasSetorAlerta" class="sr-only" aria-label="Habilitar alerta de horas consecutivas por setor" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas consecutivas.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas">
+                    <input type="checkbox" name="horasSetorPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas consecutivas" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Quantidade máxima de horas consecutivas por setor</h2>
+                    <p class="pp-card__desc">Defina, para cada Local e Setor, o limite de horas consecutivas que gera um alerta.</p>
+                  </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="horasSetor">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#horas-semanais" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="notifications" name="limitHourWeeklyUnread" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">Você receberá um alerta quando um profissional extrapolar a quantidade máxima de horas semanais.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de horas semanais">
+                    <input type="checkbox" name="horasSemanaisAlerta" class="sr-only" aria-label="Habilitar alerta de horas semanais" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Quantidade de horas a ser controlada por semana</h2>
+                    <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar dessas horas em uma mesma semana.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="horas-semanais-limite" class="pp-select-label">Horas</label>
+                      <input id="horas-semanais-limite" name="horasSemanaisLimite" type="number" min="0" max="999" step="1" inputmode="numeric" value="60" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas semanais</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas semanais.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas semanais">
+                    <input type="checkbox" name="horasSemanaisPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas semanais" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card flex-wrap py-4">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Controlar horas semanais dos profissionais dos grupos selecionados</h2>
+                    <p class="pp-card__desc">Um alerta será criado sempre que um plantão for criado e o profissional designado ultrapassar as horas semanais.</p>
+                  </div>
+                    <fieldset class="pp-group-list" data-group-list="horasSemanaisGrupos">
+                      <legend class="sr-only">Grupos</legend>
+                    </fieldset>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#horas-mensais" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="notifications" name="limitHourUnread" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">Você receberá um alerta quando um profissional extrapolar a quantidade máxima de horas mensais.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de horas mensais">
+                    <input type="checkbox" name="horasMensaisAlerta" class="sr-only" aria-label="Habilitar alerta de horas mensais" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Quantidade de horas a ser controlada por mês</h2>
+                    <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar dessas horas em um mesmo mês.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="horas-mensais-limite" class="pp-select-label">Horas</label>
+                      <input id="horas-mensais-limite" name="horasMensaisLimite" type="number" min="0" max="999" step="1" inputmode="numeric" value="220" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Contabilizar os plantões a partir do dia</h2>
+                    <p class="pp-card__desc">O dia considerado como início do mês para gerar o alerta.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="horas-mensais-dia" class="pp-select-label">Dia</label>
+                      <input id="horas-mensais-dia" name="horasMensaisDiaInicio" type="number" min="1" max="31" step="1" inputmode="numeric" value="1" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas mensais</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite de horas mensais.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas mensais">
+                    <input type="checkbox" name="horasMensaisPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite de horas mensais" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card flex-wrap py-4">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Controlar horas mensais dos profissionais dos grupos selecionados</h2>
+                    <p class="pp-card__desc">Um alerta será criado sempre que um plantão for criado e o profissional designado ultrapassar as horas mensais.</p>
+                  </div>
+                    <fieldset class="pp-group-list" data-group-list="horasMensaisGrupos">
+                      <legend class="sr-only">Grupos</legend>
+                    </fieldset>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#plantoes-mensais" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="notifications" name="limitDutyMonthlyUnread" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">Você receberá um alerta quando um profissional extrapolar a quantidade máxima de plantões por mês.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de plantões mensais">
+                    <input type="checkbox" name="plantoesMensaisAlerta" class="sr-only" aria-label="Habilitar alerta de plantões mensais" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Quantidade máxima de plantões que um profissional pode fazer durante o mês</h2>
+                    <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo passar dessa quantidade em um único mês.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="plantoes-mensais-limite" class="pp-select-label">Plantões</label>
+                      <input id="plantoes-mensais-limite" name="plantoesMensaisLimite" type="number" min="0" max="999" step="1" inputmode="numeric" value="15" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Contabilizar os plantões a partir do dia</h2>
+                    <p class="pp-card__desc">O dia considerado como início do mês para gerar o alerta.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="plantoes-mensais-dia" class="pp-select-label">Dia</label>
+                      <input id="plantoes-mensais-dia" name="plantoesMensaisDiaInicio" type="number" min="1" max="31" step="1" inputmode="numeric" value="1" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite mensal</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que extrapolem o limite mensal.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite mensal">
+                    <input type="checkbox" name="plantoesMensaisPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que extrapolem o limite mensal" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card flex-wrap py-4">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Controlar quantidade de plantões dos profissionais dos grupos selecionados</h2>
+                    <p class="pp-card__desc">Um alerta será criado sempre que um profissional for designado a mais plantões do que o permitido.</p>
+                  </div>
+                    <fieldset class="pp-group-list" data-group-list="plantoesMensaisGrupos">
+                      <legend class="sr-only">Grupos</legend>
+                    </fieldset>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#intervalo-interjornada" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="services" name="clock" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">Você receberá um alerta quando um profissional tiver plantões que não respeitam o intervalo interjornada mínimo.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de intervalo interjornada">
+                    <input type="checkbox" name="interjornadaAlerta" class="sr-only" aria-label="Habilitar alerta de intervalo interjornada" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Quantidade de horas do intervalo interjornada</h2>
+                    <p class="pp-card__desc">Um alerta será criado quando o intervalo entre plantões de um profissional dos grupos selecionados abaixo for menor que o definido.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="interjornada-horas" class="pp-select-label">Horas</label>
+                      <input id="interjornada-horas" name="interjornadaHoras" type="number" min="0" max="999" step="1" inputmode="numeric" value="11" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que não atendam ao intervalo interjornada mínimo</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que violem o intervalo interjornada mínimo.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que não atendam ao intervalo interjornada mínimo">
+                    <input type="checkbox" name="interjornadaPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que não atendam ao intervalo interjornada mínimo" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card flex-wrap py-4">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Controlar intervalo interjornada dos profissionais dos grupos selecionados</h2>
+                    <p class="pp-card__desc">Um alerta será criado sempre que um plantão for criado e o profissional designado tiver plantões que violem o intervalo definido.</p>
+                  </div>
+                    <fieldset class="pp-group-list" data-group-list="interjornadaGrupos">
+                      <legend class="sr-only">Grupos</legend>
+                    </fieldset>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#plantoes-consecutivos" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebar" name="calendar" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Habilitar alerta</h2>
+                    <p class="pp-card__desc">Você receberá um alerta quando um profissional ultrapassar a quantidade configurada de plantões em dias consecutivos.</p>
+                  </div>
+                  <label class="pp-check" title="Habilitar alerta de plantões consecutivos">
+                    <input type="checkbox" name="plantoesConsecutivosAlerta" class="sr-only" aria-label="Habilitar alerta de plantões consecutivos" data-master-toggle />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields>
+                  <legend class="sr-only">Opções do alerta</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Quantidade de dias consecutivos</h2>
+                    <p class="pp-card__desc">Um alerta será criado quando um profissional dos grupos selecionados abaixo tiver plantões em mais dias seguidos do que o definido.</p>
+                  </div>
+                    <div class="relative shrink-0">
+                      <label for="plantoes-consecutivos-dias" class="pp-select-label">Dias</label>
+                      <input id="plantoes-consecutivos-dias" name="plantoesConsecutivosDias" type="number" min="1" step="1" inputmode="numeric" value="6" required class="pp-number" />
+                    </div>
+                  </div>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Permitir que profissionais troquem ou candidatem-se a plantões mesmo que ultrapassem o limite de dias consecutivos com plantões</h2>
+                    <p class="pp-card__desc">Marcando esta opção, o profissional conseguirá efetuar a troca e um alerta será criado no sistema. Desmarcada, o sistema bloqueará trocas de plantão e escolhas de candidatos que ultrapassem o limite de dias consecutivos com plantões.</p>
+                  </div>
+                    <label class="pp-check" title="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que ultrapassem o limite de dias consecutivos com plantões">
+                    <input type="checkbox" name="plantoesConsecutivosPermitir" class="sr-only" aria-label="Permitir que profissionais troquem ou candidatem-se a plantões mesmo que ultrapassem o limite de dias consecutivos com plantões" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                  </div>
+                  <div class="pp-card flex-wrap py-4">
+                    <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Controlar dias consecutivos com plantões dos profissionais dos grupos selecionados</h2>
+                    <p class="pp-card__desc">Um alerta será criado sempre que um plantão for criado e o profissional designado ultrapassar o limite de dias consecutivos.</p>
+                  </div>
+                    <fieldset class="pp-group-list" data-group-list="plantoesConsecutivosGrupos">
+                      <legend class="sr-only">Grupos</legend>
+                    </fieldset>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#emails-e-notificacoes" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebarandtopbar" name="notificationActive" data-monochrome="true" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Enviar lembrete sobre plantões aos profissionais</h2>
+                    <p class="pp-card__desc">Os profissionais recebem no celular um lembrete sobre os plantões do dia seguinte.</p>
+                  </div>
+                  <label class="pp-check" title="Enviar lembrete sobre plantões aos profissionais">
+                    <input type="checkbox" name="lembretePlantoes" class="sr-only" aria-label="Enviar lembrete sobre plantões aos profissionais" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#credenciamento" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-module-banner">
+                  <div class="min-w-0 flex-1">
+                    <p class="pp-module-banner__eyebrow">As funcionalidades abaixo fazem parte do</p>
+                    <h2 class="pp-module-banner__title">Módulo <strong>Credenciamento</strong></h2>
+                    <p class="pp-module-banner__desc">Focado em compliance, segurança jurídica e agilidade na integração de novos profissionais à rede de atendimento.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0"><pp-icon type="ui" name="gem" monochrome="true" class="size-4"></pp-icon>Saiba mais</button>
+                </div>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebar" name="documents" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Gestão de documentos</h2>
+                    <p class="pp-card__desc">Habilita o módulo de credenciamento: cadastro e segmentação de documentos, envio pelo próprio profissional, fluxos de aprovação e controle de vencimentos e de documentação obrigatória.</p>
+                  </div>
+                  <label class="pp-check" title="Gestão de documentos">
+                    <input type="checkbox" name="gestaoDocumentos" class="sr-only" aria-label="Gestão de documentos" data-master-toggle="" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="">
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-25 py-3">
+                    <pp-icon type="documents" name="fileNotSended" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Bloqueio de documentação obrigatória</h2>
+                      <p class="pp-card__desc">Coordenadores sem permissão e profissionais serão bloqueados ao escalar ou movimentar plantões de um profissional sem a documentação obrigatória.</p>
+                    </div>
+                    <label class="pp-check" title="Bloqueio de documentação obrigatória">
+                      <input type="checkbox" name="bloqueioDocObrigatoria" class="sr-only" aria-label="Bloqueio de documentação obrigatória" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                  <div class="pp-card min-h-25 py-3">
+                    <pp-icon type="documents" name="fileExpired" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Bloqueio de documentação obrigatória vencida</h2>
+                      <p class="pp-card__desc">Coordenadores sem permissão e profissionais serão bloqueados ao escalar ou movimentar plantões de um profissional com documentação obrigatória vencida.</p>
+                    </div>
+                    <label class="pp-check" title="Bloqueio de documentação obrigatória vencida">
+                      <input type="checkbox" name="bloqueioDocVencida" class="sr-only" aria-label="Bloqueio de documentação obrigatória vencida" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#financeiro-avancado" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-module-banner">
+                  <div class="min-w-0 flex-1">
+                    <p class="pp-module-banner__eyebrow">As funcionalidades abaixo fazem parte do</p>
+                    <h2 class="pp-module-banner__title">Módulo <strong>Financeiro Avançado</strong></h2>
+                    <p class="pp-module-banner__desc">Garanta previsibilidade e transparência nos repasses, unificando o fluxo da consolidação dos plantões realizados até os pagamentos e bonificações.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0"><pp-icon type="ui" name="gem" monochrome="true" class="size-4"></pp-icon>Saiba mais</button>
+                </div>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebarSettings" name="bonus" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Gestão de bonificações</h2>
+                    <p class="pp-card__desc">Cria o cadastro de bonificações nas configurações, o vínculo da bonificação no cadastro do profissional, os valores das bonificações e um relatório com os cálculos financeiros.</p>
+                  </div>
+                  <label class="pp-check" title="Gestão de bonificações">
+                    <input type="checkbox" name="gestaoBonificacoes" class="sr-only" aria-label="Gestão de bonificações" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="services" name="productivity" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Produtividade</h2>
+                    <p class="pp-card__desc">Cria o cadastro de produtividades nas configurações, uma aba no plantão para lançá-las, os valores das produtividades e um relatório com os cálculos financeiros.</p>
+                  </div>
+                  <label class="pp-check" title="Produtividade">
+                    <input type="checkbox" name="produtividade" class="sr-only" aria-label="Produtividade" data-master-toggle="produtividade" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="produtividade">
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Profissionais visualizam produtividade</h2>
+                      <p class="pp-card__desc">Os profissionais têm acesso à produtividade dos seus plantões (apenas visualização).</p>
+                    </div>
+                    <label class="pp-check" title="Profissionais visualizam produtividade">
+                      <input type="checkbox" name="produtividadeVisivel" class="sr-only" aria-label="Profissionais visualizam produtividade" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                </fieldset>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebarFinance" name="closure" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Fechamento (remessa bancária CNAB 240)</h2>
+                    <p class="pp-card__desc">Habilita o fechamento financeiro e a geração do arquivo de remessa bancária para pagamento em lote dos profissionais.</p>
+                  </div>
+                  <label class="pp-check" title="Fechamento (remessa bancária CNAB 240)">
+                    <input type="checkbox" name="cnab240" class="sr-only" aria-label="Fechamento (remessa bancária CNAB 240)" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebarSettings" name="values" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Valor bruto</h2>
+                    <p class="pp-card__desc">Exibe o campo Valor bruto na tela de Valores e no Relatório financeiro agrupado.</p>
+                  </div>
+                  <label class="pp-check" title="Valor bruto">
+                    <input type="checkbox" name="valorBruto" class="sr-only" aria-label="Valor bruto" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebarSettings" name="setAsPaid" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Gestão de pagamento</h2>
+                    <p class="pp-card__desc">Cria uma aba no plantão e no perfil dos profissionais para registrar pagamentos, com opções de controle e bloqueio, pagamento em lote e relatórios de pagamentos.</p>
+                  </div>
+                  <label class="pp-check" title="Gestão de pagamento">
+                    <input type="checkbox" name="gestaoPagamento" class="sr-only" aria-label="Gestão de pagamento" data-master-toggle="pagamento" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="pagamento">
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-25 py-3">
+                    <pp-icon type="tools" name="lock" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Bloquear alteração de plantões já pagos</h2>
+                      <p class="pp-card__desc">Os coordenadores não poderão alterar nem apagar plantões marcados como pagos.</p>
+                    </div>
+                    <label class="pp-check" title="Bloquear alteração de plantões já pagos">
+                      <input type="checkbox" name="bloquearPagos" class="sr-only" aria-label="Bloquear alteração de plantões já pagos" data-master-toggle="bloquearPagos" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                  <fieldset class="pp-dependent-fields" data-dependent-fields="bloquearPagos">
+                    <legend class="sr-only">Opções dependentes</legend>
+                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                      <div class="min-w-0 flex-1 max-sm:basis-full">
+                        <h2 class="pp-card__title">Grupo de coordenadores que podem alterar plantões já pagos</h2>
+                        <p class="pp-card__desc">O grupo selecionado não será afetado pelo bloqueio de alteração de plantões já pagos.</p>
+                      </div>
+                      <div class="relative shrink-0">
+                        <label for="grupo-plantoes-pagos" class="pp-select-label">Selecione uma opção</label>
+                        <select id="grupo-plantoes-pagos" name="grupoPlantoesPagos" class="pp-select">
+                          <option value="coordenacao-geral">Coordenação geral</option>
+                          <option value="supervisores">Supervisores de escala</option>
+                          <option value="financeiro">Financeiro</option>
+                        </select>
+                      </div>
+                    </div>
+                  </fieldset>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#geral-e-avancado" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card pp-card--stack min-h-25 py-3">
+                  <div class="pp-card__row">
+                    <pp-icon type="tools" name="phone" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Registro de entrada e saída (aplicativo)</h2>
+                      <p class="pp-card__desc">Os profissionais registram os horários de entrada e saída pelo aplicativo, com geolocalização e cerca geográfica para validar a presença na unidade.</p>
+                    </div>
+                    <label class="pp-check" title="Registro de entrada e saída (aplicativo)">
+                      <input type="checkbox" name="registroApp" class="sr-only" aria-label="Registro de entrada e saída (aplicativo)" data-master-toggle="checkinApp" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                  <fieldset class="pp-dependent-fields pp-card__children" data-dependent-fields="checkinApp" data-hide-when-disabled disabled>
+                    <legend class="sr-only">Opções do registro de entrada e saída pelo aplicativo</legend>
+                    <div class="pp-card min-h-[85px] py-3">
+                      <div class="min-w-0 flex-1">
+                        <h2 class="pp-card__title">Exigir dados de geolocalização ao informar horário de entrada e saída</h2>
+                        <p class="pp-card__desc">Somente permite registros de entrada e saída com dados de geolocalização.</p>
+                      </div>
+                      <label class="pp-check" title="Exigir dados de geolocalização ao informar horário de entrada e saída">
+                        <input type="checkbox" name="exigirGeolocalizacao" class="sr-only" aria-label="Exigir dados de geolocalização ao informar horário de entrada e saída" />
+                        <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                      </label>
+                    </div>
+                    <div class="pp-card min-h-[85px] py-3">
+                      <div class="min-w-0 flex-1">
+                        <h2 class="pp-card__title">Exigir distância máxima</h2>
+                        <p class="pp-card__desc">Somente permite registros de entrada e saída que respeitem a distância máxima (em metros) de cada setor.</p>
+                      </div>
+                      <label class="pp-check" title="Exigir distância máxima">
+                        <input type="checkbox" name="exigirDistancia" class="sr-only" aria-label="Exigir distância máxima" data-master-toggle="distancia" />
+                        <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                      </label>
+                    </div>
+                    <fieldset class="pp-dependent-fields" data-dependent-fields="distancia">
+                      <legend class="sr-only">Opções de distância máxima</legend>
+                      <div class="pp-card min-h-[85px] flex-wrap py-3">
+                        <div class="min-w-0 flex-1">
+                          <h2 class="pp-card__title">Distância máxima por setor</h2>
+                          <p class="pp-card__desc">Defina a distância máxima permitida para o registro; zero ou em branco não exige distância no setor.</p>
+                        </div>
+                        <button type="button" class="pp-btn shrink-0" data-locais-preferencia="distancia">
+                          <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                        </button>
+                      </div>
+                    </fieldset>
+                  </fieldset>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="checkinApp biometriaFixa biometriaApp">
+                  <legend class="sr-only">Botões de iniciar e encerrar plantão</legend>
+                  <div class="pp-card-grid">
+                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                      <div class="min-w-0 flex-1 max-sm:basis-full">
+                        <h2 class="pp-card__title">Botão para iniciar plantão</h2>
+                        <p class="pp-card__desc">Por quanto tempo antes do início do plantão o botão de iniciar fica disponível.</p>
+                      </div>
+                      <div class="relative shrink-0">
+                        <label for="botao-iniciar" class="pp-select-label">Horas</label>
+                        <input id="botao-iniciar" name="botaoIniciar" type="text" inputmode="numeric" pattern="\d{1,2}h[0-5]\d" placeholder="12h00" title="Use o formato 12h00" value="12h00" required class="pp-number pp-number--wide" />
+                      </div>
+                    </div>
+                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                      <div class="min-w-0 flex-1 max-sm:basis-full">
+                        <h2 class="pp-card__title">Botão para encerrar plantão</h2>
+                        <p class="pp-card__desc">Por quanto tempo depois do término do plantão o botão de encerrar fica disponível.</p>
+                      </div>
+                      <div class="relative shrink-0">
+                        <label for="botao-encerrar" class="pp-select-label">Horas</label>
+                        <input id="botao-encerrar" name="botaoEncerrar" type="text" inputmode="numeric" pattern="\d{1,2}h[0-5]\d" placeholder="12h00" title="Use o formato 12h00" value="12h00" required class="pp-number pp-number--wide" />
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="pp-module-banner">
+                  <div class="min-w-0 flex-1">
+                    <p class="pp-module-banner__eyebrow">As funcionalidades abaixo fazem parte do</p>
+                    <h2 class="pp-module-banner__title">Módulo <strong>Registro de Entrada e Saída Avançado</strong></h2>
+                    <p class="pp-module-banner__desc">Garanta a auditoria rigorosa de presença, combatendo fraudes de ponto e garantindo a segurança jurídica da escala em tempo real.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0"><pp-icon type="ui" name="gem" monochrome="true" class="size-4"></pp-icon>Saiba mais</button>
+                </div>
+                <div class="pp-card min-h-25 py-3">
+                  <pp-icon type="sidebar" name="checkinFacial" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Entrada e saída por biometria facial (dispositivo fixo na unidade)</h2>
+                    <p class="pp-card__desc">Os profissionais registram entrada e saída em um dispositivo com câmera instalado na unidade, como um tablet, com biometria facial para confirmar a identidade.</p>
+                    <p class="pp-card__note">Acesso à biometria facial: /checkin ou /conectar</p>
+                  </div>
+                  <label class="pp-check" title="Entrada e saída por biometria facial (dispositivo fixo na unidade)">
+                    <input type="checkbox" name="biometriaFixa" class="sr-only" aria-label="Entrada e saída por biometria facial (dispositivo fixo na unidade)" data-master-toggle="biometriaFixa" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="biometriaFixa">
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Exigir sempre nas unidades</h2>
+                      <p class="pp-card__desc">Selecione os Locais e Setores em que o registro por reconhecimento facial será sempre exigido.</p>
+                      <p class="pp-card__note">Parte da configuração é feita no perfil do coordenador que fica conectado no tablet.</p>
+                    </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="biometriaFixa">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                    </button>
+                  </div>
+                </fieldset>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="checkinApp">
+                  <legend class="sr-only">Biometria facial pelo aplicativo</legend>
+                  <div class="pp-card min-h-25 py-3">
+                    <pp-icon type="sidebarProfessionals" name="professionalShield" class="size-15 shrink-0" aria-hidden="true"></pp-icon>
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Entrada e saída por biometria facial (aplicativo)</h2>
+                      <p class="pp-card__desc">Os profissionais registram entrada e saída pelo aplicativo com biometria facial, solicitada em um novo dispositivo ou quando houver compartilhamento de acesso.</p>
+                    </div>
+                    <label class="pp-check" title="Entrada e saída por biometria facial (aplicativo)">
+                      <input type="checkbox" name="biometriaApp" class="sr-only" aria-label="Entrada e saída por biometria facial (aplicativo)" data-master-toggle="biometriaApp" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                  <fieldset class="pp-dependent-fields" data-dependent-fields="biometriaApp">
+                    <legend class="sr-only">Opções dependentes</legend>
+                    <div class="pp-card min-h-[85px] flex-wrap py-3">
+                      <div class="min-w-0 flex-1">
+                        <h2 class="pp-card__title">Exigir sempre nas unidades</h2>
+                        <p class="pp-card__desc">Selecione os Locais e Setores em que a verificação facial será exigida em todos os registros.</p>
+                      </div>
+                      <button type="button" class="pp-btn shrink-0" data-locais-preferencia="biometriaApp">
+                        <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                      </button>
+                    </div>
+                  </fieldset>
+                </fieldset>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="biometriaFixa biometriaApp">
+                  <legend class="sr-only">Prova de vida</legend>
+                  <div class="pp-card min-h-[85px] flex-wrap py-3">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Prova de vida (liveness detection)</h2>
+                      <p class="pp-card__desc">Adiciona uma verificação de prova de vida ao reconhecimento facial, ajudando a prevenir fraudes com fotos, vídeos ou outras imagens.</p>
+                      <p class="pp-card__note">Recurso com custo adicional: fale com a nossa equipe para contratar e ativar.</p>
+                    </div>
+                    <button type="button" class="pp-btn shrink-0" data-locais-preferencia="provaDeVida">
+                      <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar taxa de verificação
+                    </button>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#configuracoes-adicionais" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Registro de entrada único</h2>
+                    <p class="pp-card__desc">Os profissionais só iniciam um plantão se não houver outro com registro de saída pendente.</p>
+                  </div>
+                  <label class="pp-check" title="Registro de entrada único">
+                    <input type="checkbox" name="registroUnico" class="sr-only" aria-label="Registro de entrada único" />
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
                 <div class="pp-card min-h-[85px] py-3">
                   <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Apenas entre profissionais do mesmo setor</h2>
-                    <p class="pp-card__desc">Restringe a passagem de plantões a apenas profissionais do setor do plantão.</p>
+                    <h2 class="pp-card__title">Registro de saída em plantões subsequentes</h2>
+                    <p class="pp-card__desc">Em dois plantões seguidos (saída de um igual à entrada do outro), o profissional registra a entrada no primeiro e a saída no segundo.</p>
                   </div>
-                  <label class="pp-check" title="Apenas entre profissionais do mesmo setor">
-                    <input type="checkbox" name="passagemMesmoSetor" class="sr-only" aria-label="Apenas entre profissionais do mesmo setor" />
+                  <label class="pp-check" title="Registro de saída em plantões subsequentes">
+                    <input type="checkbox" name="saidaSubsequente" class="sr-only" aria-label="Registro de saída em plantões subsequentes" />
                     <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
                   </label>
                 </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Justificar horários de entrada e saída</h2>
+                    <p class="pp-card__desc">Os profissionais podem justificar todos os registros de entrada e saída realizados.</p>
+                  </div>
+                  <label class="pp-check" title="Justificar horários de entrada e saída">
+                    <input type="checkbox" name="justificarHorarios" class="sr-only" aria-label="Justificar horários de entrada e saída" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Visualizador vê a situação de registro de entrada e saída</h2>
+                    <p class="pp-card__desc">Os visualizadores veem se os profissionais estão no plantão ou atrasados, de acordo com os registros.</p>
+                  </div>
+                  <label class="pp-check" title="Visualizador vê a situação de registro de entrada e saída">
+                    <input type="checkbox" name="visualizadorRegistros" class="sr-only" aria-label="Visualizador vê a situação de registro de entrada e saída" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Histórico de registros de entrada e saída</h2>
+                    <p class="pp-card__desc">Os profissionais veem todos os registros realizados (menu Registros de presença no aplicativo).</p>
+                  </div>
+                  <label class="pp-check" title="Histórico de registros de entrada e saída">
+                    <input type="checkbox" name="historicoRegistros" class="sr-only" aria-label="Histórico de registros de entrada e saída" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#tolerancia" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="flex flex-wrap items-center gap-3 border-b border-line px-2 pb-3">
+                  <pp-icon type="sidebarSettings" name="tolerance" class="size-10 shrink-0" aria-hidden="true"></pp-icon>
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Tolerância de entrada e saída</h2>
+                    <p class="pp-card__desc">Cada parâmetro vale para um período e define a regra geral e, se precisar, regras por local.</p>
+                  </div>
+                  <button type="button" class="pp-btn shrink-0" data-tolerancia-novo>
+                    <pp-icon type="tools" name="plus" monochrome="true" class="size-4"></pp-icon>Novo parâmetro
+                  </button>
+                </div>
+                <div id="tolerancia-lista" class="flex flex-col gap-3" aria-live="polite"></div>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#valores-padroes" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Dia de início da semana</h2>
+                    <p class="pp-card__desc">Dia da semana com o qual o calendário da escala começa.</p>
+                  </div>
+                  <div class="relative shrink-0">
+                    <label for="inicio-semana" class="pp-select-label">Selecione uma opção</label>
+                    <select id="inicio-semana" name="inicioSemana" class="pp-select">
+                      <option value="domingo">Domingo</option>
+                      <option value="segunda">Segunda-feira</option>
+                      <option value="terca">Terça-feira</option>
+                      <option value="quarta">Quarta-feira</option>
+                      <option value="quinta">Quinta-feira</option>
+                      <option value="sexta">Sexta-feira</option>
+                      <option value="sabado">Sábado</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Horário de início</h2>
+                    <p class="pp-card__desc">Horário de início sugerido ao criar plantões, podendo ser alterado.</p>
+                  </div>
+                  <div class="relative shrink-0">
+                    <label for="horario-inicio" class="pp-select-label">Horário</label>
+                    <input id="horario-inicio" name="horarioInicio" type="time" step="60" value="07:00" required class="pp-number pp-number--wide" />
+                  </div>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Duração dos plantões</h2>
+                    <p class="pp-card__desc">Duração sugerida ao criar plantões (horas:minutos), podendo ser alterada.</p>
+                  </div>
+                  <div class="relative shrink-0">
+                    <label for="duracao-plantao" class="pp-select-label">Duração</label>
+                    <input id="duracao-plantao" name="duracaoPlantao" type="text" inputmode="numeric" pattern="\d{1,2}:[0-5]\d" placeholder="12:00" title="Use o formato 12:00" value="12:00" required class="pp-number pp-number--wide" />
+                  </div>
+                </div>
+                <div class="pp-card min-h-[85px] flex-wrap py-3">
+                  <div class="min-w-0 flex-1 max-sm:basis-full">
+                    <h2 class="pp-card__title">Profissional padrão</h2>
+                    <p class="pp-card__desc">Profissão sugerida ao adicionar profissionais, podendo ser alterada.</p>
+                  </div>
+                  <div class="relative shrink-0">
+                    <label for="profissional-padrao" class="pp-select-label">Selecione uma opção</label>
+                    <select id="profissional-padrao" name="profissionalPadrao" class="pp-select">
+                      <option value="medico-a">Médico(a)</option>
+                      <option value="academico">Acadêmico</option>
+                      <option value="assistente-social">Assistente Social</option>
+                      <option value="biomedico-a">Biomédico(a)</option>
+                      <option value="condutor">Condutor</option>
+                      <option value="cuidador">Cuidador</option>
+                      <option value="dentista">Dentista</option>
+                      <option value="enfermeiro-a">Enfermeiro(a)</option>
+                      <option value="farmaceutico-a">Farmacêutico(a)</option>
+                      <option value="fisioterapeuta">Fisioterapeuta</option>
+                      <option value="fonoaudiologo">Fonoaudiólogo</option>
+                      <option value="nutricionista">Nutricionista</option>
+                      <option value="outros">Outros</option>
+                      <option value="psicologo-a">Psicólogo(a)</option>
+                      <option value="radio-operador">Rádio Operador</option>
+                      <option value="tarm">TARM</option>
+                      <option value="tec-aux-de-enfermagem">Téc/Aux. de Enfermagem</option>
+                      <option value="tec-aux-de-saude-bucal">Téc/Aux. de Saúde Bucal</option>
+                      <option value="tecnico-de-radiologia">Técnico de Radiologia</option>
+                      <option value="terapeuta-ocupacional">Terapeuta Ocupacional</option>
+                      <option value="veterinario-a">Veterinário(a)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6 flex justify-center">
+                <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
+              </div>
+            </form>
+
+            <form class="flex flex-1 flex-col" data-preference-tab="#visualizacao-da-escala" hidden>
+              <div class="flex flex-1 flex-col gap-3 rounded-2xl border border-line bg-white p-3">
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Coordenadores visualizam a escala completa</h2>
+                    <p class="pp-card__desc">Coordenadores podem visualizar, sem alterar, a escala completa de um profissional.</p>
+                  </div>
+                  <label class="pp-check" title="Coordenadores visualizam a escala completa">
+                    <input type="checkbox" name="coordenadoresEscalaCompleta" class="sr-only" aria-label="Coordenadores visualizam a escala completa" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Exibir tipo de plantão para usuários do tipo visualizador</h2>
+                    <p class="pp-card__desc">Exibe o tipo de plantão, na escala web e nos aplicativos, para usuários do tipo visualizador.</p>
+                  </div>
+                  <label class="pp-check" title="Exibir tipo de plantão para usuários do tipo visualizador">
+                    <input type="checkbox" name="visualizadorTipoPlantao" class="sr-only" aria-label="Exibir tipo de plantão para usuários do tipo visualizador" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Profissionais visualizam escalas</h2>
+                    <p class="pp-card__desc">Os profissionais têm acesso à escala dos seus setores (apenas visualização).</p>
+                  </div>
+                  <label class="pp-check" title="Profissionais visualizam escalas">
+                    <input type="checkbox" name="profissionaisEscalas" class="sr-only" aria-label="Profissionais visualizam escalas" data-master-toggle="escalas" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="escalas">
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Profissionais visualizam escala completa</h2>
+                      <p class="pp-card__desc">Os profissionais têm acesso à escala completa da empresa (apenas visualização).</p>
+                    </div>
+                    <label class="pp-check" title="Profissionais visualizam escala completa">
+                      <input type="checkbox" name="profissionaisEscalaCompleta" class="sr-only" aria-label="Profissionais visualizam escala completa" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                </fieldset>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Profissionais visualizam valor do plantão</h2>
+                    <p class="pp-card__desc">Os profissionais veem o valor dos plantões a que têm acesso, como os seus e os anunciados.</p>
+                  </div>
+                  <label class="pp-check" title="Profissionais visualizam valor do plantão">
+                    <input type="checkbox" name="profissionaisValor" class="sr-only" aria-label="Profissionais visualizam valor do plantão" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Exibir tipo de plantão para profissionais</h2>
+                    <p class="pp-card__desc">Os profissionais veem o tipo de plantão na escala e no detalhe do plantão.</p>
+                  </div>
+                  <label class="pp-check" title="Exibir tipo de plantão para profissionais">
+                    <input type="checkbox" name="profissionaisTipoPlantao" class="sr-only" aria-label="Exibir tipo de plantão para profissionais" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <div class="pp-card min-h-[85px] py-3">
+                  <div class="min-w-0 flex-1">
+                    <h2 class="pp-card__title">Profissionais visualizam relatório financeiro pessoal</h2>
+                    <p class="pp-card__desc">Os profissionais podem ver o extrato dos plantões realizados.</p>
+                  </div>
+                  <label class="pp-check" title="Profissionais visualizam relatório financeiro pessoal">
+                    <input type="checkbox" name="relatorioPessoal" class="sr-only" aria-label="Profissionais visualizam relatório financeiro pessoal" data-master-toggle="relatorio" />
+                    <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                  </label>
+                </div>
+                <fieldset class="pp-dependent-fields" data-dependent-fields="relatorio">
+                  <legend class="sr-only">Opções dependentes</legend>
+                  <div class="pp-card min-h-[85px] py-3">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="pp-card__title">Regras de tolerância aplicadas no relatório financeiro dos profissionais</h2>
+                      <p class="pp-card__desc">Os profissionais só veem o valor dos plantões com registro de entrada e saída; plantões futuros ficam sem valor.</p>
+                    </div>
+                    <label class="pp-check" title="Regras de tolerância aplicadas no relatório financeiro dos profissionais">
+                      <input type="checkbox" name="relatorioComTolerancia" class="sr-only" aria-label="Regras de tolerância aplicadas no relatório financeiro dos profissionais" />
+                      <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+                    </label>
+                  </div>
+                </fieldset>
                 <div class="pp-card min-h-[85px] flex-wrap py-3">
                   <div class="min-w-0 flex-1">
-                    <h2 class="pp-card__title">Locais e Setores disponíveis para passar os plantões.</h2>
-                    <p class="pp-card__desc">Selecione os Locais e Setores em que os profissionais poderão passar os plantões.</p>
+                    <h2 class="pp-card__title">Data limite para visualização</h2>
+                    <p class="pp-card__desc">Os profissionais visualizam a escala de cada setor até a data informada.</p>
                   </div>
-                  <button type="button" class="pp-btn shrink-0" data-locais-preferencia="passagens">
-                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar Locais e Setores
+                  <button type="button" class="pp-btn shrink-0" data-locais-preferencia="visualizacao">
+                    <pp-icon type="sidebarSettings" name="places" monochrome="true" class="size-4"></pp-icon>Configurar datas limite
                   </button>
                 </div>
               </div>
-              <div class="mt-[24px] flex justify-center">
+              <div class="mt-6 flex justify-center">
                 <button type="submit" class="pp-btn"><pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>Salvar Preferências</button>
               </div>
             </form>
@@ -547,7 +1490,7 @@
                 </div>
               </div>
 
-              <div class="mt-[24px] flex justify-center">
+              <div class="mt-6 flex justify-center">
                 <button type="button" class="pp-btn" data-save-other>
                   <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-[18px]"></pp-icon>
                   Salvar Preferências
@@ -625,6 +1568,109 @@
         <div class="pp-modal__footer">
           <button type="submit" class="pp-btn">
             <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-5"></pp-icon>Ok
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="tolerancia-modal" class="pp-modal" aria-labelledby="tolerancia-modal-title">
+      <form id="tolerancia-form" class="pp-modal__layout">
+        <div class="pp-modal__header">
+          <h2 id="tolerancia-modal-title" class="text-base font-semibold text-ink">Parâmetros de tolerância</h2>
+          <button type="button" class="pp-modal__close focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500" aria-label="Fechar" data-tolerancia-close>
+            <pp-icon type="appbar" name="modalClose" class="size-5"></pp-icon>
+          </button>
+        </div>
+        <div class="pp-modal__body scrollbar-slim">
+          <div class="pp-tolerancia-form">
+              <fieldset class="pp-tolerancia-form__row" data-tolerancia-periodo>
+                <legend class="pp-tolerancia-form__label">Período</legend>
+                <p class="pp-tolerancia-form__help">Datas em que este parâmetro é aplicado aos registros de entrada e saída.</p>
+                <div class="flex flex-wrap gap-3">
+                  <div class="relative"><label for="tol-inicio" class="pp-select-label">Início</label><input id="tol-inicio" name="inicio" type="date" class="pp-input w-[170px]" required /></div>
+                  <div class="relative"><label for="tol-fim" class="pp-select-label">Fim</label><input id="tol-fim" name="fim" type="date" class="pp-input w-[170px]" required /></div>
+                </div>
+              </fieldset>
+              <div class="pp-tolerancia-form__row" data-tolerancia-local hidden>
+                <label for="tol-local" class="pp-tolerancia-form__label">Local</label>
+                <p class="pp-tolerancia-form__help">Esta regra substitui a regra geral nos plantões do local escolhido.</p>
+                <select id="tol-local" name="local" class="pp-input w-[260px]" data-native-select></select>
+              </div>
+              <div class="pp-tolerancia-form__row">
+                <label for="tol-entrada" class="pp-tolerancia-form__label">Tolerância de entrada</label>
+                <p class="pp-tolerancia-form__help">Quantos minutos o profissional pode chegar atrasado sem desconto. Ex.: com 00:30, uma entrada até 30 minutos após o início conta como horário de início.</p>
+                <input id="tol-entrada" name="entrada" type="text" inputmode="numeric" pattern="\d{2}:[0-5]\d" placeholder="00:30" title="Use o formato 00:30" class="pp-number" required />
+              </div>
+              <div class="pp-tolerancia-form__row">
+                <label for="tol-saida" class="pp-tolerancia-form__label">Tolerância de saída</label>
+                <p class="pp-tolerancia-form__help">Quantos minutos o profissional pode sair mais cedo sem desconto. Ex.: com 00:30, uma saída até 30 minutos antes do fim conta como horário de fim.</p>
+                <input id="tol-saida" name="saida" type="text" inputmode="numeric" pattern="\d{2}:[0-5]\d" placeholder="00:30" title="Use o formato 00:30" class="pp-number" required />
+              </div>
+              <fieldset class="pp-tolerancia-form__row">
+                <legend class="pp-tolerancia-form__label">Considerar entrada antecipada?</legend>
+                <p class="pp-tolerancia-form__help">Se o profissional chegar antes do horário de entrada, o tempo extra é considerado no plantão.</p>
+                <div class="pp-segmented">
+                  <label><input type="radio" name="antecipada" value="sim" class="sr-only" checked /><span>Sim</span></label>
+                  <label><input type="radio" name="antecipada" value="nao" class="sr-only" /><span>Não</span></label>
+                </div>
+                <div class="pp-tolerancia-form__sub" data-yn-sub="antecipada">
+                  <label for="tol-antecipada-tempo" class="pp-tolerancia-form__label">A partir de quanto tempo antes da entrada</label>
+                  <p class="pp-tolerancia-form__help">Abaixo desse tempo não há adicional; a partir dele, o tempo extra é somado à duração do plantão.</p>
+                  <input id="tol-antecipada-tempo" name="antecipadaTempo" type="text" inputmode="numeric" pattern="\d{2}:[0-5]\d" placeholder="00:00" title="Use o formato 00:00" class="pp-number" required />
+                </div>
+              </fieldset>
+              <fieldset class="pp-tolerancia-form__row">
+                <legend class="pp-tolerancia-form__label">Considerar saída postergada?</legend>
+                <p class="pp-tolerancia-form__help">Se o profissional sair depois do horário de saída, o tempo extra é considerado no plantão.</p>
+                <div class="pp-segmented">
+                  <label><input type="radio" name="postergada" value="sim" class="sr-only" checked /><span>Sim</span></label>
+                  <label><input type="radio" name="postergada" value="nao" class="sr-only" /><span>Não</span></label>
+                </div>
+                <div class="pp-tolerancia-form__sub" data-yn-sub="postergada">
+                  <label for="tol-postergada-tempo" class="pp-tolerancia-form__label">A partir de quanto tempo depois da saída</label>
+                  <p class="pp-tolerancia-form__help">Abaixo desse tempo não há adicional; a partir dele, o tempo extra é somado à duração do plantão.</p>
+                  <input id="tol-postergada-tempo" name="postergadaTempo" type="text" inputmode="numeric" pattern="\d{2}:[0-5]\d" placeholder="00:00" title="Use o formato 00:00" class="pp-number" required />
+                </div>
+              </fieldset>
+              <fieldset class="pp-tolerancia-form__row">
+                <legend class="pp-tolerancia-form__label">Calcular acréscimos em blocos?</legend>
+                <p class="pp-tolerancia-form__help">A duração extra (entrada antecipada e saída postergada) é convertida em blocos, sempre arredondando para cima.</p>
+                <div class="pp-segmented">
+                  <label><input type="radio" name="acrescimo" value="sim" class="sr-only" checked /><span>Sim</span></label>
+                  <label><input type="radio" name="acrescimo" value="nao" class="sr-only" /><span>Não</span></label>
+                </div>
+                <div class="pp-tolerancia-form__sub" data-yn-sub="acrescimo">
+                  <label for="tol-acrescimo-tempo" class="pp-tolerancia-form__label">Tamanho do bloco de acréscimo</label>
+                  <p class="pp-tolerancia-form__help">Cada bloco iniciado conta inteiro no valor do plantão.</p>
+                  <input id="tol-acrescimo-tempo" name="acrescimoTempo" type="text" inputmode="numeric" pattern="\d{2}:[0-5]\d" placeholder="00:00" title="Use o formato 00:00" class="pp-number" required />
+                </div>
+              </fieldset>
+              <fieldset class="pp-tolerancia-form__row">
+                <legend class="pp-tolerancia-form__label">Calcular descontos em blocos?</legend>
+                <p class="pp-tolerancia-form__help">Os atrasos são convertidos em blocos, sempre arredondando para cima, descontadas as margens de tolerância.</p>
+                <div class="pp-segmented">
+                  <label><input type="radio" name="desconto" value="sim" class="sr-only" checked /><span>Sim</span></label>
+                  <label><input type="radio" name="desconto" value="nao" class="sr-only" /><span>Não</span></label>
+                </div>
+                <div class="pp-tolerancia-form__sub" data-yn-sub="desconto">
+                  <label for="tol-desconto-tempo" class="pp-tolerancia-form__label">Tamanho do bloco de desconto</label>
+                  <p class="pp-tolerancia-form__help">Cada bloco iniciado é descontado inteiro do valor do plantão.</p>
+                  <input id="tol-desconto-tempo" name="descontoTempo" type="text" inputmode="numeric" pattern="\d{2}:[0-5]\d" placeholder="00:00" title="Use o formato 00:00" class="pp-number" required />
+                </div>
+              </fieldset>
+              <fieldset class="pp-tolerancia-form__row">
+                <legend class="pp-tolerancia-form__label">Ignorar sobreposição de entrada e saída em plantões consecutivos no mesmo setor?</legend>
+                <p class="pp-tolerancia-form__help">Quando sim, a saída de um plantão e a entrada do seguinte no mesmo setor não são consideradas sobrepostas.</p>
+                <div class="pp-segmented">
+                  <label><input type="radio" name="sobreposicao" value="sim" class="sr-only" checked /><span>Sim</span></label>
+                  <label><input type="radio" name="sobreposicao" value="nao" class="sr-only" /><span>Não</span></label>
+                </div>
+              </fieldset>
+          </div>
+        </div>
+        <div class="pp-modal__footer">
+          <button type="submit" class="pp-btn">
+            <pp-icon type="ui" name="circleCheck" stroke-width="1.8" class="size-5"></pp-icon><span data-tolerancia-submit>Ok</span>
           </button>
         </div>
       </form>

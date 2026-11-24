@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 /* ---------------------------------------------------------------------------
    Tokens — referência ao Lumen DS publicado.
 
@@ -187,29 +187,36 @@
    Components
    --------------------------------------------------------------------------- */
 @layer components {
+  /* AppShell (public/components/app-shell.js): os elementos não geram caixa,
+     o <header> e o <nav> que eles renderizam ficam direto no layout. */
+  pp-app-header,
+  pp-app-rail {
+    display: contents;
+  }
+
   /* -------------------------------------------------------- rail (left) */
-  .pp-rail-link {
+  .pp-sidebar-link {
     @apply grid size-10 shrink-0 place-items-center rounded-full border border-primary-25 bg-white text-primary-500 transition-colors hover:border-primary-200 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
   }
 
-  .pp-rail-link[aria-current="page"] {
+  .pp-sidebar-link[aria-current="page"] {
     @apply border-primary-200 bg-primary-25;
   }
 
-  .pp-rail-link[aria-expanded="true"] {
+  .pp-sidebar-link[aria-expanded="true"] {
     @apply border-primary-200 bg-primary-25;
   }
 
-  .pp-rail-link--selected[aria-current="page"],
-  .pp-rail-link--selected[aria-expanded="true"] {
+  .pp-sidebar-link--selected[aria-current="page"],
+  .pp-sidebar-link--selected[aria-expanded="true"] {
     @apply border-primary-500 bg-primary-500 hover:bg-primary-600;
   }
 
-  .pp-rail-link--selected pp-icon {
+  .pp-sidebar-link--selected pp-icon {
     filter: brightness(0) invert(1);
   }
 
-  .pp-rail-menu {
+  .pp-sidebar-menu {
     @apply fixed z-50 w-50 overflow-y-auto rounded-lg bg-white shadow-[0_4px_18px_rgba(0,0,0,0.2)];
     max-height: calc(100vh - 16px);
   }
@@ -220,15 +227,15 @@
     max-width: calc(100vw - 40px);
   }
 
-  .pp-rail-menu__item {
+  .pp-sidebar-menu__item {
     @apply flex min-h-[51px] items-center gap-2.5 border-b border-primary-50 px-2.5 py-2 text-[14px] leading-[18px] text-primary-500 transition-colors hover:bg-primary-25 focus-visible:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary-500;
   }
 
-  .pp-rail-menu__item:last-child {
+  .pp-sidebar-menu__item:last-child {
     @apply border-b-0;
   }
 
-  .pp-rail-menu__item pp-icon {
+  .pp-sidebar-menu__item pp-icon {
     @apply size-5;
   }
 
@@ -263,7 +270,7 @@
   }
 
   .pp-weekly-day small {
-    @apply text-[9px] uppercase leading-[11px] text-gray-500;
+    @apply text-[9px] uppercase leading-2.75 text-gray-500;
   }
 
   .pp-weekly-day--highlight {
@@ -312,12 +319,12 @@
   .pp-weekly-shift--blue { @apply bg-cyan-50; }
 
   .pp-weekly-time {
-    @apply shrink-0 border-b-[3px] border-red-500 text-right text-[9px] font-semibold leading-[11px] text-primary-500;
+    @apply shrink-0 border-b-[3px] border-red-500 text-right text-[9px] font-semibold leading-2.75 text-primary-500;
   }
 
   /* --------------------------------------------- settings nav (sidebar) */
   .pp-nav-item {
-    @apply ml-[34px] flex min-h-[43px] w-[calc(100%_-_34px)] items-center justify-between gap-3 border-b border-nav-line py-[11px] pr-2 text-left text-[16px] leading-[18px] text-nav transition-colors hover:text-primary-500;
+    @apply ml-8 flex min-h-[43px] w-[calc(100%_-_34px)] items-center justify-between gap-3 border-b border-nav-line py-2.75 pr-2 text-left text-[16px] leading-[18px] text-nav transition-colors hover:text-primary-500;
   }
 
   .pp-nav-item:last-child {
@@ -373,6 +380,85 @@
     @apply mt-0.5 text-[13.5px] leading-[19px] text-muted;
   }
 
+  .pp-card--check:has(input:not(:disabled)) {
+    @apply cursor-pointer transition-colors;
+  }
+
+  /* O fundo do cartão é só do estado marcado: o foco do teclado aparece no
+     próprio checkbox (.pp-check), sem pintar o cartão. */
+  .pp-card--check:has(input:checked) {
+    @apply border-primary-200 bg-primary-25/50;
+  }
+
+  @media (hover: hover) {
+    .pp-card--check:has(input:not(:disabled)):hover {
+      @apply border-primary-200 bg-primary-25;
+    }
+  }
+
+  .pp-dependent-fields {
+    @apply min-w-0;
+  }
+
+  .pp-dependent-fields > .pp-card + .pp-card {
+    @apply mt-3;
+  }
+
+  .pp-dependent-fields:disabled {
+    @apply opacity-50;
+  }
+
+  .pp-card:has(> .pp-group-list) {
+    container-type: inline-size;
+  }
+
+  .pp-group-list {
+    @apply grid w-full min-w-0 grid-cols-3 gap-2;
+  }
+  .pp-group-list label:first-of-type {
+    @apply grid-cols-1;
+  }
+
+  @container (max-width: 500px) {
+    .pp-group-list {
+      @apply grid-cols-2;
+    }
+  }
+
+  @container (max-width: 330px) {
+    .pp-group-list {
+      @apply grid-cols-1;
+    }
+  }
+
+  .pp-group-option {
+    @apply flex cursor-pointer items-center p-2 gap-2 rounded-md text-sm text-ink transition-colors;
+  }
+
+  .pp-group-option:has(input:focus-visible) {
+    @apply bg-primary-25;
+  }
+
+  /* Mesmo tratamento do cartão marcado, em cyan-50. */
+  .pp-group-option:has(input:checked) {
+    @apply bg-cyan-50;
+  }
+
+  @media (hover: hover) {
+    .pp-group-option:has(input:not(:disabled)):hover {
+      @apply bg-primary-25;
+    }
+
+    /* Opção marcada não troca de cor no hover. */
+    .pp-group-option:has(input:checked):hover {
+      @apply bg-cyan-50;
+    }
+  }
+
+  .pp-group-option:has(input:disabled) {
+    @apply cursor-not-allowed;
+  }
+
   /* ------------------------------------------------------------ checkbox */
   .pp-check {
     @apply relative grid size-5 shrink-0 cursor-pointer place-items-center rounded-[5px] border border-gray-200 bg-white transition-colors;
@@ -426,7 +512,12 @@
 
   .pp-select-menu--above {
     top: auto;
-    bottom: calc(100% + 20px);
+    bottom: calc(100% + 1px);
+  }
+
+  .pp-select-menu--right {
+    right: 0;
+    left: auto;
   }
 
   .pp-select-option {
@@ -570,8 +661,155 @@
     @apply cursor-not-allowed opacity-40;
   }
 
+  /* --------------------------------------- módulo (Credenciamento, Financeiro, Registro) */
+  /* Faixa que antecede as funcionalidades de um módulo contratado. */
+  .pp-module-banner {
+    @apply flex flex-wrap items-center gap-4 rounded-xl border border-primary-200 bg-primary-25 px-5 py-4;
+  }
+
+  .pp-module-banner__eyebrow {
+    @apply text-[13px] text-muted;
+  }
+
+  .pp-module-banner__title {
+    @apply text-[20px] leading-6 text-ink;
+  }
+
+  .pp-module-banner__title strong {
+    @apply font-semibold text-primary-500;
+  }
+
+  .pp-module-banner__desc {
+    @apply mt-1 text-[13px] text-muted;
+  }
+
+  /* Observação curta abaixo da descrição de um cartão */
+  .pp-card__note {
+    @apply mt-1 text-[12px] font-medium text-primary-700;
+  }
+
+  /* Dois cartões lado a lado (ex.: botões de iniciar e encerrar plantão) */
+  .pp-card-grid {
+    @apply grid gap-3 lg:grid-cols-2;
+  }
+
+  .pp-number--wide {
+    @apply w-[120px];
+  }
+
+  /* Grupos aninhados: espaçamento entre irmãos e sem somar a opacidade */
+  .pp-dependent-fields > :is(.pp-card, .pp-dependent-fields, .pp-card-grid) + :is(.pp-card, .pp-dependent-fields, .pp-card-grid) {
+    @apply mt-3;
+  }
+
+  .pp-dependent-fields:disabled .pp-dependent-fields:disabled {
+    @apply opacity-100;
+  }
+
+  /* Sim / Não */
+  .pp-segmented {
+    @apply inline-flex overflow-hidden rounded-[8px] border border-gray-200;
+  }
+
+  .pp-segmented label {
+    @apply cursor-pointer;
+  }
+
+  .pp-segmented span {
+    @apply block min-w-16 px-4 py-2 text-center text-[14px] text-nav transition-colors;
+  }
+
+  .pp-segmented label + label span {
+    @apply border-l border-gray-200;
+  }
+
+  .pp-segmented input:checked + span {
+    @apply bg-primary-500 font-medium text-white;
+  }
+
+  .pp-segmented input:focus-visible + span {
+    @apply outline-2 -outline-offset-2 outline-primary-700;
+  }
+
+  /* ---------------------------------------------------------- tolerância */
+  .pp-tolerancia {
+    @apply overflow-hidden rounded-xl border border-line;
+  }
+
+  .pp-tolerancia__header {
+    @apply flex flex-wrap items-center gap-2 border-b border-line bg-cyan-50/85 px-4 py-3;
+  }
+
+  .pp-tolerancia__header h3 {
+    @apply mr-auto text-[17px] font-medium text-ink;
+  }
+
+  .pp-tolerancia__tag {
+    @apply mr-2 text-[13px] text-muted;
+  }
+
+  .pp-tolerancia__body {
+    @apply grid md:grid-cols-2;
+  }
+
+  .pp-tolerancia__rules {
+    @apply px-4 py-2;
+  }
+
+  .pp-tolerancia__rule {
+    @apply flex items-center justify-between gap-4 border-b border-line py-2 text-[13px] last:border-b-0;
+  }
+
+  .pp-tolerancia__rule dd {
+    @apply shrink-0 font-semibold text-primary-500;
+  }
+
+  .pp-tolerancia__locais {
+    @apply flex flex-col gap-3 border-line p-4 max-md:border-t md:border-l;
+  }
+
+  .pp-tolerancia__locais h4 {
+    @apply text-[15px] font-medium text-ink;
+  }
+
+  .pp-tolerancia__locais-list li {
+    @apply flex items-center gap-2 border-b border-line py-2 text-[13px] last:border-b-0;
+  }
+
+  .pp-tolerancia__empty {
+    @apply py-6 text-center text-[13px] text-muted;
+  }
+
+  .pp-tolerancia-form {
+    @apply mx-auto flex max-w-[640px] flex-col gap-5;
+  }
+
+  .pp-tolerancia-form__row {
+    @apply flex flex-col items-start gap-2;
+  }
+
+  .pp-tolerancia-form__label {
+    @apply text-[15px] font-medium text-ink;
+  }
+
+  .pp-tolerancia-form__help {
+    @apply text-[13px] text-muted;
+  }
+
+  .pp-tolerancia-form__sub {
+    @apply mt-2 flex w-full flex-col items-start gap-2 border-l-2 border-primary-100 pl-4;
+  }
+
   .pp-input {
     @apply h-[37px] rounded-[8px] border border-line bg-white px-3 text-[14px] text-ink outline-none;
+  }
+
+  .pp-number {
+    @apply h-[37px] w-[100px] rounded-[8px] border border-gray-200 bg-white px-3 text-[14px] text-ink outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
+  }
+
+  .pp-number--table {
+    @apply max-w-full;
   }
 
   .pp-modal {
@@ -597,7 +835,7 @@
   }
 
   .pp-modal__close {
-    @apply -mr-5 flex w-20 shrink-0 items-center justify-center self-stretch border-l border-cyan-200;
+    @apply -mr-5 flex w-20 shrink-0 items-center justify-center self-stretch border-l border-cyan-200 bg-cyan-50 transition-colors hover:bg-cyan-100;
   }
 
   .pp-modal__body {
@@ -924,7 +1162,7 @@
   }
 
   .pp-nav-sub-list:not([hidden]),
-  .pp-rail-menu:not([hidden]) {
+  .pp-sidebar-menu:not([hidden]) {
     animation: pp-fade-in-up 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
@@ -955,7 +1193,7 @@
   .pp-modal[open],
   .pp-modal[open]::backdrop,
   .pp-nav-sub-list:not([hidden]),
-  .pp-rail-menu:not([hidden]) {
+  .pp-sidebar-menu:not([hidden]) {
     animation: none;
   }
 }
