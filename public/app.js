@@ -226,17 +226,44 @@ function setupDialogMenu(root) {
   const trigger = root.querySelector("[data-dialog-menu-trigger]");
   const menu = root.querySelector(".pp-dialog-menu");
   if (!trigger || !menu) return;
+  /* data-dialog-menu="click": abre só no clique/teclado (ex.: calendário).
+     data-dialog-menu-fixed: painel fixo na tela, para gatilhos dentro de
+     contêineres com overflow. */
+  const opensOnHover = root.dataset.dialogMenu !== "click";
+  const isFixed = root.hasAttribute("data-dialog-menu-fixed");
   let timer;
   let pinned = false;
 
   const isOpen = () => !menu.hidden;
+  const place = () => {
+    if (!isFixed || menu.hidden) return;
+    const gap = 8;
+    const rect = trigger.getBoundingClientRect();
+    const width = menu.offsetWidth;
+    const height = menu.offsetHeight;
+    const preferred = menu.classList.contains("pp-dialog-menu--end") ? rect.right - width : rect.left;
+    const left = Math.min(Math.max(preferred, gap), window.innerWidth - width - gap);
+    const below = rect.bottom + gap;
+    const top = below + height <= window.innerHeight - gap ? below : Math.max(rect.top - height - gap, gap);
+    menu.style.left = `${left}px`;
+    menu.style.top = `${top}px`;
+  };
   const setOpen = (open) => {
     clearTimeout(timer);
     if (!open && menu.contains(document.activeElement)) trigger.focus({ preventScroll: true });
+    const opening = open && menu.hidden;
     menu.hidden = !open;
     trigger.setAttribute("aria-expanded", String(open));
     if (!open) pinned = false;
+    /* Avisa o conteúdo (ex.: calendário) para se atualizar antes de aparecer. */
+    if (opening) menu.dispatchEvent(new CustomEvent("dialog-menu-open"));
+    place();
   };
+  menu.addEventListener("dialog-menu-close", () => setOpen(false));
+  if (isFixed) {
+    window.addEventListener("resize", place);
+    document.addEventListener("scroll", place, true);
+  }
   const setOpenLater = (open, delay) => {
     clearTimeout(timer);
     timer = setTimeout(() => setOpen(open), delay);
@@ -245,10 +272,10 @@ function setupDialogMenu(root) {
   const isBusy = () => Boolean(menu.querySelector(".pp-select-menu:not([hidden])"));
 
   root.addEventListener("pointerenter", (event) => {
-    if (event.pointerType === "mouse") setOpenLater(true, DIALOG_MENU_OPEN_DELAY);
+    if (opensOnHover && event.pointerType === "mouse") setOpenLater(true, DIALOG_MENU_OPEN_DELAY);
   });
   root.addEventListener("pointerleave", (event) => {
-    if (event.pointerType !== "mouse" || pinned || isBusy()) return;
+    if (!opensOnHover || event.pointerType !== "mouse" || pinned || isBusy()) return;
     setOpenLater(false, DIALOG_MENU_CLOSE_DELAY);
   });
 
@@ -262,7 +289,8 @@ function setupDialogMenu(root) {
     setOpen(open);
     pinned = open;
     if (open && event.detail === 0) {
-      menu.querySelector("button, input:not(.sr-only), [tabindex]:not([tabindex='-1']), input")?.focus();
+      (menu.querySelector("[data-dialog-menu-autofocus]") ||
+        menu.querySelector("button, input:not(.sr-only), [tabindex]:not([tabindex='-1']), input"))?.focus();
     }
   });
 

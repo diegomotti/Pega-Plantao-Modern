@@ -70,6 +70,17 @@
                   </div>
                 </div>
               </div>
+              <div class="pp-dialog-menu-anchor" data-dialog-menu>
+                <button type="button" class="pp-dialog-menu__icon-trigger" aria-label="Legenda: Tipos de Plantão" aria-expanded="false" aria-controls="service-type-index" data-dialog-menu-trigger>
+                  <pp-icon type="tools" name="info" aria-hidden="true"></pp-icon>
+                </button>
+                <div id="service-type-index" class="pp-dialog-menu pp-dialog-menu--end" role="dialog" aria-labelledby="service-type-index-title" hidden>
+                  <div class="pp-dialog-menu__section">
+                    <span id="service-type-index-title" class="pp-dialog-menu__title">Tipos de Plantão</span>
+                    <ul class="pp-dialog-menu__list" data-service-type-index></ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -77,7 +88,39 @@
             <div class="pp-weekly-calendar">
               <div class="pp-weekly-header">
                 <div class="pp-weekly-period">
-                  <pp-icon type="sidebar" name="calendar" class="size-7"></pp-icon>
+                  <div class="pp-dialog-menu-anchor" data-dialog-menu="click" data-dialog-menu-fixed>
+                    <button type="button" class="pp-dialog-menu__icon-trigger" aria-label="Escolher semana no calendário" aria-expanded="false" aria-controls="weekly-date-picker" data-dialog-menu-trigger>
+                      <pp-icon type="sidebar" name="calendar" class="size-7" aria-hidden="true"></pp-icon>
+                    </button>
+                    <div id="weekly-date-picker" class="pp-dialog-menu pp-dialog-menu--fixed pp-calendar" role="dialog" aria-labelledby="weekly-date-picker-title" hidden>
+                      <div class="pp-calendar__header">
+                        <button type="button" class="pp-calendar__nav" aria-label="Mês anterior" data-calendar-prev>
+                          <pp-icon type="ui" name="chevronRight" class="size-5 rotate-180" aria-hidden="true"></pp-icon>
+                        </button>
+                        <h2 id="weekly-date-picker-title" class="pp-calendar__title" aria-live="polite"></h2>
+                        <button type="button" class="pp-calendar__nav" aria-label="Próximo mês" data-calendar-next>
+                          <pp-icon type="ui" name="chevronRight" class="size-5" aria-hidden="true"></pp-icon>
+                        </button>
+                      </div>
+                      <table class="pp-calendar__grid" role="grid" aria-labelledby="weekly-date-picker-title">
+                        <thead>
+                          <tr>
+                            <th scope="col" abbr="Segunda-feira">S</th>
+                            <th scope="col" abbr="Terça-feira">T</th>
+                            <th scope="col" abbr="Quarta-feira">Q</th>
+                            <th scope="col" abbr="Quinta-feira">Q</th>
+                            <th scope="col" abbr="Sexta-feira">S</th>
+                            <th scope="col" abbr="Sábado">S</th>
+                            <th scope="col" abbr="Domingo">D</th>
+                          </tr>
+                        </thead>
+                        <tbody data-calendar-body></tbody>
+                      </table>
+                      <div class="pp-calendar__footer">
+                        <button type="button" class="pp-btn pp-btn--text py-1.5" data-calendar-today>Hoje</button>
+                      </div>
+                    </div>
+                  </div>
                   <span id="weekly-month"></span>
                   <button type="button" id="previous-week" class="pp-weekly-arrow ml-auto" aria-label="Semana anterior">
                     <pp-icon type="ui" name="chevronRight" class="size-5 rotate-180"></pp-icon>

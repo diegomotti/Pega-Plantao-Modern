@@ -198,6 +198,110 @@ function renderWeeklySchedule() {
   }));
 }
 
+/* ------------------------------------------- calendário (ícone do período) */
+/* Igual à escala atual: o ícone de calendário abre um mês; escolher um dia
+   leva a escala para a semana dele. Teclado: setas mudam o dia, PageUp/
+   PageDown o mês, Home/End o início/fim da semana, Enter escolhe. */
+const datePicker = document.querySelector("#weekly-date-picker");
+const datePickerTitle = document.querySelector("#weekly-date-picker-title");
+const datePickerBody = datePicker?.querySelector("[data-calendar-body]");
+let calendarFocus = new Date(weekStart);
+
+function addCalendarDays(date, days) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + days);
+  return next;
+}
+
+function addCalendarMonths(date, months) {
+  const next = new Date(date.getFullYear(), date.getMonth() + months, 1);
+  const lastDay = new Date(next.getFullYear(), next.getMonth() + 1, 0).getDate();
+  next.setDate(Math.min(date.getDate(), lastDay));
+  return next;
+}
+
+function renderDatePicker(focusDay = false) {
+  if (!datePicker) return;
+  const month = calendarFocus.getMonth();
+  const year = calendarFocus.getFullYear();
+  datePickerTitle.textContent = new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" }).format(calendarFocus);
+  const selectedWeek = dateKey(weekStart);
+  const todayKey = dateKey(today);
+  const focusKey = dateKey(calendarFocus);
+  let cursor = startOfWeek(new Date(year, month, 1));
+  const rows = [];
+  while (rows.length === 0 || cursor.getMonth() === month) {
+    const row = document.createElement("tr");
+    row.className = "pp-calendar__week";
+    row.classList.toggle("pp-calendar__week--selected", dateKey(cursor) === selectedWeek);
+    for (let index = 0; index < 7; index += 1) {
+      const date = new Date(cursor);
+      const key = dateKey(date);
+      const cell = document.createElement("td");
+      cell.setAttribute("role", "gridcell");
+      const day = document.createElement("button");
+      day.type = "button";
+      day.className = "pp-calendar__day";
+      day.textContent = date.getDate();
+      day.dataset.calendarDate = key;
+      day.tabIndex = key === focusKey ? 0 : -1;
+      day.setAttribute("aria-label", new Intl.DateTimeFormat("pt-BR", { dateStyle: "full" }).format(date));
+      if (key === focusKey) day.dataset.dialogMenuAutofocus = "";
+      if (date.getMonth() !== month) day.dataset.outside = "";
+      if (key === todayKey) day.setAttribute("aria-current", "date");
+      if (row.classList.contains("pp-calendar__week--selected")) cell.setAttribute("aria-selected", "true");
+      cell.append(day);
+      row.append(cell);
+      cursor = addCalendarDays(cursor, 1);
+    }
+    rows.push(row);
+  }
+  datePickerBody.replaceChildren(...rows);
+  if (focusDay) datePickerBody.querySelector('[tabindex="0"]')?.focus();
+}
+
+function pickCalendarDate(date) {
+  weekStart = startOfWeek(date);
+  renderWeeklySchedule();
+  datePicker.dispatchEvent(new CustomEvent("dialog-menu-close"));
+}
+
+datePicker?.addEventListener("dialog-menu-open", () => {
+  calendarFocus = new Date(weekStart);
+  renderDatePicker();
+});
+datePicker?.querySelector("[data-calendar-prev]").addEventListener("click", () => {
+  calendarFocus = addCalendarMonths(calendarFocus, -1);
+  renderDatePicker();
+});
+datePicker?.querySelector("[data-calendar-next]").addEventListener("click", () => {
+  calendarFocus = addCalendarMonths(calendarFocus, 1);
+  renderDatePicker();
+});
+datePicker?.querySelector("[data-calendar-today]").addEventListener("click", () => pickCalendarDate(today));
+datePickerBody?.addEventListener("click", (event) => {
+  if (!(event.target instanceof Element)) return;
+  const day = event.target.closest("[data-calendar-date]");
+  if (day) pickCalendarDate(new Date(`${day.dataset.calendarDate}T00:00:00`));
+});
+datePickerBody?.addEventListener("keydown", (event) => {
+  const moves = {
+    ArrowLeft: (date) => addCalendarDays(date, -1),
+    ArrowRight: (date) => addCalendarDays(date, 1),
+    ArrowUp: (date) => addCalendarDays(date, -7),
+    ArrowDown: (date) => addCalendarDays(date, 7),
+    PageUp: (date) => addCalendarMonths(date, -1),
+    PageDown: (date) => addCalendarMonths(date, 1),
+    Home: (date) => startOfWeek(date),
+    End: (date) => addCalendarDays(startOfWeek(date), 6),
+  };
+  const move = moves[event.key];
+  if (!move) return;
+  event.preventDefault();
+  calendarFocus = move(calendarFocus);
+  renderDatePicker(true);
+});
+
 document.querySelector("#previous-week").addEventListener("click", () => {
   weekStart.setDate(weekStart.getDate() - 7);
   renderWeeklySchedule();
@@ -625,6 +729,22 @@ function resetShiftTabs() {
 }
 
 renderWeeklySchedule();
+
+/* ------------------------------------ legenda "Tipos de Plantão" (ícone i) */
+/* A lista vem das opções do select Tipo do modal: uma única fonte de cores. */
+function renderServiceTypeIndex() {
+  const list = document.querySelector("[data-service-type-index]");
+  const typeSelect = document.querySelector("#shift-type");
+  if (!list || !typeSelect) return;
+  list.replaceChildren(...Array.from(typeSelect.options).map((option) => {
+    const item = document.createElement("li");
+    item.className = "pp-dialog-menu__type";
+    item.textContent = option.text;
+    if (option.dataset.color) item.style.setProperty("--pp-dialog-menu-type", option.dataset.color);
+    return item;
+  }));
+}
+renderServiceTypeIndex();
 
 /* ------------------------------------------------- filtro (pp-dialog-menu) */
 weeklyPlace?.addEventListener("change", () => {
