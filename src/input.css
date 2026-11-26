@@ -135,10 +135,12 @@
 
   body {
     text-rendering: optimizeLegibility;
-    background-color: var(--pp-palette-cyan-50);
-    background-image:
+    /* Também usado pelo header fixo (.pp-page-scroll), para emendar sem costura. */
+    --pp-page-background:
       radial-gradient(70% 45% at 0% 0%, #ffffff 0%, rgba(255, 255, 255, 0) 70%),
       linear-gradient(160deg, #f3fafd 0%, #edf7fc 42%, #e7f4fa 100%);
+    background-color: var(--pp-palette-cyan-50);
+    background-image: var(--pp-page-background);
     background-attachment: fixed;
   }
 
@@ -194,6 +196,42 @@
     display: contents;
   }
 
+  /* Página com a rolagem do navegador (ex.: Preferências): o <main> não tem
+     scroller próprio. O header (com o divisor) fica fixo no topo e o rail e o
+     menu lateral ficam fixos logo abaixo dele enquanto a página rola. */
+  .pp-page-scroll {
+    --pp-header-height: calc(var(--spacing) * 17);
+    --pp-shell-top: calc(var(--pp-header-height) + 1px); /* header + divisor */
+  }
+
+  .pp-page-scroll > pp-app-header > header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background-color: var(--pp-palette-cyan-50);
+    background-image: var(--pp-page-background);
+    background-attachment: fixed;
+  }
+
+  .pp-page-scroll > pp-app-header > header + div {
+    position: sticky;
+    top: var(--pp-header-height);
+    z-index: 30;
+  }
+
+  .pp-page-scroll > div > pp-app-sidebar > nav,
+  .pp-page-scroll > div > aside {
+    position: sticky;
+    top: var(--pp-shell-top);
+    align-self: flex-start;
+    max-height: calc(100dvh - var(--pp-shell-top));
+  }
+
+  /* Os menus do rail abrem por cima do menu lateral e do conteúdo. */
+  .pp-page-scroll > div > pp-app-sidebar > nav {
+    z-index: 20;
+  }
+
   /* -------------------------------------------------------- rail (left) */
   .pp-sidebar-link {
     @apply grid size-10 shrink-0 place-items-center rounded-full border border-primary-25 bg-white text-primary-500 transition-colors hover:border-primary-200 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
@@ -217,7 +255,7 @@
   }
 
   .pp-sidebar-menu {
-    @apply fixed z-50 w-50 overflow-y-auto rounded-lg bg-white shadow-3xl;
+    @apply fixed z-50 w-50 overflow-y-auto rounded-lg bg-white shadow-2xl;
     max-height: calc(100vh - 16px);
   }
 
@@ -239,13 +277,75 @@
     @apply size-5;
   }
 
+  /* ---------------------------------------------------------- dialog menu */
+  /* Painel flutuante com a mesma base do pp-sidebar-menu / pp-account-menu
+     (cartão branco, rounded-lg, shadow-2xl), mas com conteúdo livre em
+     seções. Abre no hover, clique ou teclado do gatilho [data-dialog-menu]. */
+  .pp-dialog-menu-anchor {
+    @apply relative;
+  }
+
+  .pp-dialog-menu {
+    @apply absolute top-[calc(100%+8px)] left-0 z-50 w-max min-w-50 max-w-[min(320px,calc(100vw-32px))] rounded-lg bg-white text-left text-[13px] leading-[18px] text-gray-700 shadow-2xl;
+  }
+
+  .pp-dialog-menu[hidden] {
+    @apply hidden;
+  }
+
+  /* Ponte invisível sobre o espaço entre gatilho e painel: o mouse atravessa
+     sem fechar o menu. */
+  .pp-dialog-menu::before {
+    @apply absolute inset-x-0 bottom-full h-2;
+    content: "";
+  }
+
+  .pp-dialog-menu--end {
+    @apply right-0 left-auto;
+  }
+
+  /* Prévia só de leitura, posicionada por JS (ex.: hover do card de plantão). */
+  .pp-dialog-menu--floating {
+    @apply pointer-events-none fixed top-0 left-0 w-60;
+  }
+
+  .pp-dialog-menu__section {
+    @apply flex flex-col gap-1.5 border-b border-primary-50 px-3 py-2.5;
+  }
+
+  .pp-dialog-menu__section:last-child {
+    @apply border-b-0;
+  }
+
+  .pp-dialog-menu__title {
+    @apply text-[11px] font-semibold tracking-wide text-muted uppercase;
+  }
+
+  .pp-dialog-menu__value {
+    @apply font-semibold text-gray-900;
+  }
+
+  .pp-dialog-menu__row {
+    @apply flex flex-wrap items-center gap-x-4 gap-y-2;
+  }
+
+  .pp-dialog-menu__type {
+    @apply inline-flex items-center gap-2;
+  }
+
+  .pp-dialog-menu__type::before {
+    @apply size-3 shrink-0 rounded-full border border-gray-200;
+    background: var(--pp-dialog-menu-type, var(--pp-palette-white));
+    content: "";
+  }
+
   /* ------------------------------------------------------ weekly schedule */
   .pp-weekly-calendar {
-    @apply min-w-[1050px];
+    @apply min-w-262;
   }
 
   .pp-weekly-header {
-    @apply grid h-[51px] grid-cols-[220px_minmax(0,1fr)_32px] border-b border-cyan-200;
+    @apply grid h-12 grid-cols-[220px_minmax(0,1fr)_32px] mt-2 border-b border-cyan-200;
   }
 
   .pp-weekly-period {
@@ -302,15 +402,18 @@
   }
 
   .pp-weekly-column--highlight {
-    @apply border-x border-cyan-300 bg-white/40;
+    @apply border-x border-cyan-300 bg-white/50;
   }
 
   .pp-weekly-add {
-    @apply mb-0.5 flex h-[24px] w-full items-center justify-center rounded bg-white/70 text-primary-500 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-primary-500;
+    @apply mb-0.5 flex h-6 w-full items-center justify-center rounded-md bg-white/80 text-primary-500 hover:bg-primary-25 focus-visible:outline-2 focus-visible:outline-primary-500;
   }
 
   .pp-weekly-shift {
-    @apply mb-0.5 flex min-h-[38px] justify-between gap-1 rounded-[2px] border border-gray-200 border-l-[3px] border-l-green-500 bg-white px-1 py-0.5 text-[11px] leading-[14px] text-gray-900 shadow-sm;
+    @apply mb-1 flex min-h-10 justify-between gap-1 rounded-md border border-gray-100 border-l-[3px] text-gray-700 border-l-green-500 bg-white px-1 py-1 shadow-xs;
+  }
+  .pp-weekly-shift > span {
+    @apply truncate leading-3 font-medium text-xs;
   }
 
   .pp-weekly-shift--green { @apply bg-green-50; }
@@ -318,13 +421,27 @@
   .pp-weekly-shift--red { @apply bg-red-50; }
   .pp-weekly-shift--blue { @apply bg-cyan-50; }
 
+  /* O card é um botão (abre "Alterar Plantão"). */
+  button.pp-weekly-shift {
+    @apply w-full cursor-pointer text-left transition-colors hover:border-gray-700 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-primary-500;
+  }
+
+  .pp-weekly-checkin {
+    @apply mt-1 block size-4;
+  }
+
+  /* Horários de entrada/saída (filtro "Mostrar Entrada e Saída"). */
+  .pp-weekly-checkinout {
+    @apply mt-1 block font-roboto text-[10px] leading-3 font-normal text-muted;
+  }
+
   .pp-weekly-time {
-    @apply shrink-0 border-b-[3px] border-red-500 text-right text-[9px] font-semibold leading-2.75 text-primary-500;
+    @apply shrink-0 font-roboto border-b-[3px] border-red-500 text-right text-xs font-semibold leading-3 text-primary-500;
   }
 
   /* --------------------------------------------- settings nav (sidebar) */
   .pp-nav-item {
-    @apply ml-8 flex min-h-[43px] w-[calc(100%_-_34px)] items-center justify-between gap-3 border-b border-nav-line py-2.75 pr-2 text-left text-[16px] leading-[18px] text-nav transition-colors hover:text-primary-500;
+    @apply ml-8 flex min-h-10 w-[calc(100%-34px)] items-center justify-between gap-3 border-b border-nav-line py-2.75 pr-2 text-left text-[16px] leading-5 text-nav transition-colors hover:text-primary-500;
   }
 
   .pp-nav-item:last-child {
@@ -377,21 +494,21 @@
   }
 
   .pp-card__desc {
-    @apply mt-0.5 text-[13.5px] leading-[19px] text-muted;
+    @apply mt-0.5 text-[13.5px] leading-5 text-muted;
   }
 
-  .pp-card--check:has(input:not(:disabled)) {
+  .pp-card--check:not(.pp-card--stack):has(input:not(:disabled)) {
     @apply cursor-pointer transition-colors;
   }
 
   /* O fundo do cartão é só do estado marcado: o foco do teclado aparece no
      próprio checkbox (.pp-check), sem pintar o cartão. */
-  .pp-card--check:has(input:checked) {
-    @apply border-primary-200 bg-primary-25/50;
+  .pp-card--check:not(.pp-card--stack):has(input:checked) {
+    @apply border-green-500 bg-primary-25/50;
   }
 
   @media (hover: hover) {
-    .pp-card--check:has(input:not(:disabled)):hover {
+    .pp-card--check:not(.pp-card--stack):has(input:not(:disabled)):hover {
       @apply border-primary-200 bg-primary-25;
     }
   }
@@ -465,11 +582,11 @@
   }
 
   .pp-check:has(input:checked) {
-    @apply border-primary-500 bg-primary-500;
+    @apply border-primary-700 bg-primary-500;
   }
 
   .pp-check:has(input:indeterminate) {
-    @apply border-primary-500 bg-primary-500;
+    @apply border-primary-700 bg-primary-500;
   }
 
   .pp-check:has(input:indeterminate)::after {
@@ -489,9 +606,29 @@
     @apply outline-2 outline-offset-2 outline-primary-500;
   }
 
+  /* Variante radio: redonda, com um ponto branco quando marcada. */
+  .pp-check--radio {
+    @apply rounded-full;
+  }
+
+  .pp-check--radio:has(input:checked)::after {
+    @apply size-2 rounded-full bg-white;
+    content: "";
+  }
+
+  /* Checkbox com texto: o label envolve o .pp-check (um <span>) e o texto,
+     então clicar no texto também marca. */
+  .pp-check-field {
+    @apply inline-flex cursor-pointer items-center gap-2 select-none;
+  }
+
+  .pp-check-field:has(input:checked) {
+    @apply text-primary-700;
+  }
+
   /* ------------------------------------------------- floating-label select */
   .pp-select {
-    @apply flex h-[37px] w-[159px] cursor-pointer items-center overflow-hidden rounded-[8px] border border-gray-200 bg-white pr-9 pl-3.5 text-left text-[14px] text-muted outline-none transition-colors hover:border-gray-300 focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
+    @apply flex h-10 w-40 cursor-pointer items-center overflow-hidden rounded-[8px] border border-gray-200 bg-white pr-9 pl-3.5 text-left text-[14px] text-muted outline-none transition-colors hover:border-gray-300 focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
   }
 
   .pp-select > span {
@@ -499,15 +636,32 @@
   }
 
   .pp-select-label {
-    @apply pointer-events-none absolute -top-[7px] left-3 z-10 bg-white px-1 text-[11px] leading-none font-semibold text-gray-700;
+    @apply pointer-events-none absolute -top-2 left-2 z-10 px-1 text-xs leading-none font-semibold text-gray-700;
   }
 
   /* Dropdown list: cartão branco, divisórias ciano e linhas altas. */
   .pp-select-menu {
-    @apply absolute top-[calc(100%+1px)] left-0 z-50 max-h-[280px] w-full min-w-[200px] overflow-y-auto rounded-[8px] bg-white;
+    @apply absolute top-[calc(100%+1px)] left-0 z-50 flex w-full min-w-[200px] flex-col overflow-hidden rounded-[8px] bg-white;
     box-shadow:
       0 12px 32px rgb(33 79 141 / 16%),
       0 3px 8px rgb(33 79 141 / 8%);
+  }
+
+  .pp-select-menu[hidden] {
+    @apply hidden;
+  }
+
+  /* Campo de busca no topo da lista aberta. */
+  .pp-select-search {
+    @apply m-2 h-9 shrink-0 rounded-[6px] border border-gray-200 bg-white px-3 text-[14px] text-ink outline-none placeholder:text-gray-400 focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
+  }
+
+  .pp-select-list {
+    @apply max-h-[240px] overflow-y-auto border-t border-cyan-200;
+  }
+
+  .pp-select-empty {
+    @apply border-t border-cyan-200 px-3.5 py-3 text-[14px] text-muted;
   }
 
   .pp-select-menu--above {
@@ -534,6 +688,82 @@
     @apply bg-cyan-50/50 outline-none;
   }
 
+  /* Colorfield (Lumen pp-colorfield): bolinha de 16px com a cor da opção,
+     a 14px da borda e 10px antes do texto — no campo e em cada opção. */
+  .pp-select--color {
+    @apply gap-2.5 pl-3.5;
+  }
+
+  .pp-select--color [data-select-value] {
+    @apply min-w-0 truncate;
+  }
+
+  .pp-select-dot {
+    @apply size-4 shrink-0 rounded-full;
+  }
+
+  .pp-select-option .pp-select-dot {
+    @apply mr-2.5;
+  }
+
+  /* ------------------------------------------------------------- tooltip */
+  /* Ícone "i" com texto de ajuda. Aparece ao passar o mouse ou focar pelo
+     teclado; Esc fecha (app.js). O balão abre abaixo e centralizado; use
+     pp-tooltip--start / --end para alinhá-lo pela esquerda / direita.
+     <span class="pp-tooltip">
+       <button type="button" class="pp-tooltip__trigger" aria-label="Mais informações" aria-describedby="id">
+         <pp-icon type="tools" name="info" class="size-4" aria-hidden="true"></pp-icon>
+       </button>
+       <span role="tooltip" id="id" class="pp-tooltip__bubble">Texto</span>
+     </span> */
+  .pp-tooltip {
+    @apply relative inline-flex shrink-0 align-middle;
+  }
+
+  .pp-tooltip__trigger {
+    @apply grid size-6 cursor-help place-items-center rounded-full transition-colors hover:bg-cyan-100 focus-visible:outline-2 focus-visible:outline-primary-500;
+  }
+
+  .pp-tooltip__bubble {
+    @apply invisible absolute top-[calc(100%+8px)] left-1/2 z-50 w-max max-w-72 -translate-x-1/2 rounded-md bg-gray-900 px-3 py-2 text-left text-[12px] leading-4 font-normal text-white opacity-0 shadow-lg transition-opacity duration-150;
+  }
+
+  /* Seta, e uma ponte invisível para o mouse ir do ícone ao balão. */
+  .pp-tooltip__bubble::before {
+    @apply absolute -top-1 left-1/2 size-2 -translate-x-1/2 rotate-45 bg-gray-900;
+    content: "";
+  }
+
+  .pp-tooltip__bubble::after {
+    @apply absolute inset-x-0 -top-2.5 h-2.5;
+    content: "";
+  }
+
+  .pp-tooltip--start .pp-tooltip__bubble {
+    @apply -left-1 translate-x-0;
+  }
+
+  .pp-tooltip--start .pp-tooltip__bubble::before {
+    @apply left-4;
+  }
+
+  .pp-tooltip--end .pp-tooltip__bubble {
+    @apply right-[-4px] left-auto translate-x-0;
+  }
+
+  .pp-tooltip--end .pp-tooltip__bubble::before {
+    @apply right-3 left-auto;
+  }
+
+  .pp-tooltip:hover .pp-tooltip__bubble,
+  .pp-tooltip:has(.pp-tooltip__trigger:focus-visible) .pp-tooltip__bubble {
+    @apply visible opacity-100;
+  }
+
+  .pp-tooltip[data-tooltip-dismissed] .pp-tooltip__bubble {
+    @apply invisible opacity-0;
+  }
+
   /* ------------------------------------------------------------- buttons */
   .pp-btn {
     --pp-btn-filled: var(--pp-palette-primary-500);
@@ -543,6 +773,7 @@
     --pp-btn-outline-label: var(--pp-palette-primary-500);
     --pp-btn-outline-active: var(--pp-palette-primary-400);
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500;
+    border: 1px solid currentColor;
     background: var(--pp-btn-filled);
     color: var(--pp-btn-filled-label);
   }
@@ -597,6 +828,14 @@
     --pp-btn-outline-active: var(--pp-palette-green-500);
   }
 
+  .pp-btn--gray {
+    --pp-btn-filled: var(--pp-palette-gray-500);
+    --pp-btn-filled-hover: var(--pp-palette-gray-700);
+    --pp-btn-filled-active: var(--pp-palette-gray-400);
+    --pp-btn-outline-label: var(--pp-palette-gray-500);
+    --pp-btn-outline-active: var(--pp-palette-gray-400);
+  }
+
   .pp-btn--white {
     --pp-btn-filled: var(--pp-palette-white);
     --pp-btn-filled-label: var(--pp-palette-black);
@@ -625,6 +864,16 @@
     border: 1px solid currentColor;
   }
 
+  /* Ícones monocromáticos (brancos) dentro de botões seguem a cor do texto:
+     brancos no botão preenchido, na cor da borda no botão outline. */
+  .pp-btn pp-icon[monochrome="true"] svg :is([fill="white"], [fill="#fff"], [fill="#FFF"], [fill="#ffffff"], [fill="#FFFFFF"]) {
+    fill: currentColor;
+  }
+
+  .pp-btn pp-icon[monochrome="true"] svg :is([stroke="white"], [stroke="#fff"], [stroke="#FFF"], [stroke="#ffffff"], [stroke="#FFFFFF"]) {
+    stroke: currentColor;
+  }
+
   .pp-btn--outline:not(:disabled):hover,
   .pp-btn--text:not(:disabled):hover {
     background: color-mix(in srgb, var(--pp-btn-outline-label) 10%, transparent);
@@ -650,7 +899,7 @@
   }
 
   .pp-btn--icon {
-    @apply size-10 p-0;
+    @apply size-9 p-0;
   }
 
   .pp-btn--square { @apply rounded-none; }
@@ -683,18 +932,35 @@
     @apply mt-1 text-[13px] text-muted;
   }
 
+  /* Módulo agrupado: o banner vira o cabeçalho de um cartão que contém as
+     funcionalidades do módulo (ex.: Registro de Entrada e Saída Avançado). */
+  .pp-module-group {
+    @apply flex flex-col rounded-xl border border-primary-200 bg-primary-25;
+  }
+
+  .pp-module-group > .pp-module-banner {
+    @apply rounded-none border-0 bg-transparent;
+  }
+
+  .pp-module-group__content {
+    @apply flex flex-col gap-3 px-5 pb-5;
+  }
+
   /* Observação curta abaixo da descrição de um cartão */
   .pp-card__note {
     @apply mt-1 text-[12px] font-medium text-primary-700;
   }
 
   /* Dois cartões lado a lado (ex.: botões de iniciar e encerrar plantão) */
+  /* Cartões lado a lado quando cabem (~24rem cada), pelo espaço do conteúdo e
+     não pela largura da janela; o campo quebra para baixo do texto se faltar. */
   .pp-card-grid {
-    @apply grid gap-3 lg:grid-cols-2;
+    @apply grid gap-3;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
   }
 
   .pp-number--wide {
-    @apply w-[120px];
+    @apply w-30;
   }
 
   /* Grupos aninhados: espaçamento entre irmãos e sem somar a opacidade */
@@ -706,28 +972,132 @@
     @apply opacity-100;
   }
 
-  /* Sim / Não */
-  .pp-segmented {
-    @apply inline-flex overflow-hidden rounded-[8px] border border-gray-200;
+  /* Cartão principal com opções aninhadas (ex.: Registro de entrada e saída
+     pelo aplicativo): a linha do checkbox fica em cima e, com ele marcado, as
+     opções abrem logo abaixo com fade + slide. */
+  .pp-card--stack {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .pp-card__row {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 5);
+  }
+  .pp-card--stack.pp-card--check {
+    transition: border-color 200ms ease, background-color 200ms ease;
+  }
+  .pp-card--stack.pp-card--check > .pp-card__row:has(input:not(:disabled)) {
+    cursor: pointer;
+  }
+  .pp-card--stack.pp-card--check:has(> .pp-card__row input:checked) {
+    border-color: var(--color-green-500);
+    background-color: var(--color-primary-25);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-primary-25) 50%, transparent);
+    }
+  }
+  @media (hover: hover) {
+    .pp-card--stack.pp-card--check:has(> .pp-card__row:hover input:not(:disabled)) {
+      border-color: var(--color-primary-200);
+      background-color: var(--color-primary-25);
+    }
+  }
+  .pp-card__children {
+    display: grid;
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition: grid-template-rows 320ms cubic-bezier(0.2, 0, 0, 1), opacity 240ms ease-out 60ms, visibility 0s;
+  }
+  .pp-card__children-body {
+    min-height: 0;
+    overflow: hidden;
+  }
+  /* O overflow escondido serve só à animação: com uma lista de select aberta
+     dentro das opções, ela não pode ser cortada pela borda do grupo. */
+  .pp-card__children-body:has(.pp-select-menu:not([hidden])) {
+    overflow: visible;
+  }
+  .pp-card__children-content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 3);
+    padding-top: calc(var(--spacing) * 3);
+    padding-bottom: calc(var(--spacing) * 2);
+    transform: translateY(0);
+    transition: transform 320ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  .pp-card__children[data-hide-when-disabled]:disabled,
+  .pp-card--stack[data-collapsed] > .pp-card__children {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition: grid-template-rows 240ms cubic-bezier(0.4, 0, 1, 1), opacity 160ms ease-in, visibility 0s 240ms;
+  }
+  .pp-card__children[data-hide-when-disabled]:disabled .pp-card__children-content,
+  .pp-card--stack[data-collapsed] > .pp-card__children .pp-card__children-content {
+    transform: translateY(calc(var(--spacing) * -2));
   }
 
-  .pp-segmented label {
+  /* Seta ao lado do checkbox do cartão empilhado: recolhe/expande as opções.
+     Só aparece quando há opções para mostrar (grupo habilitado). */
+  .pp-card__expand {
+    @apply -mr-3 grid size-8 shrink-0 cursor-pointer place-items-center rounded-full text-primary-500 transition-[background-color,opacity] duration-200;
+  }
+
+  .pp-card__expand:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500;
+  }
+
+  @media (hover: hover) {
+    .pp-card__expand:hover {
+      @apply bg-primary-50;
+    }
+  }
+
+  .pp-card__expand pp-icon {
+    transition: transform 200ms ease;
+  }
+
+  .pp-card__expand[aria-expanded="true"] pp-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Sem opções para mostrar (cartão desmarcado), a seta sai do layout para não
+     deixar um espaço vazio ao lado do checkbox. */
+  .pp-card--stack:has(> .pp-card__children:disabled) > .pp-card__row .pp-card__expand {
+    display: none;
+  }
+
+
+  /* Sim / Não */
+  .pp-check-true-or-false {
+    @apply inline-flex overflow-hidden rounded-lg border border-gray-200;
+  }
+
+  .pp-check-true-or-false label {
     @apply cursor-pointer;
   }
 
-  .pp-segmented span {
-    @apply block min-w-16 px-4 py-2 text-center text-[14px] text-nav transition-colors;
+  .pp-check-true-or-false span {
+    @apply block min-w-16 px-4 py-2 text-center text-sm text-nav transition-colors;
   }
 
-  .pp-segmented label + label span {
+  .pp-check-true-or-false label + label span {
     @apply border-l border-gray-200;
   }
 
-  .pp-segmented input:checked + span {
-    @apply bg-primary-500 font-medium text-white;
+  .pp-check-true-or-false input:checked + span {
+    @apply bg-green-500 font-medium text-white;
   }
 
-  .pp-segmented input:focus-visible + span {
+  /* A 2ª opção é o "falso" (ex.: Não): marcada, fica cinza. */
+  .pp-check-true-or-false label:last-child input:checked + span {
+    @apply bg-gray-200;
+  }
+
+  .pp-check-true-or-false input:focus-visible + span {
     @apply outline-2 -outline-offset-2 outline-primary-700;
   }
 
@@ -799,13 +1169,13 @@
   .pp-tolerancia-form__sub {
     @apply mt-2 flex w-full flex-col items-start gap-2 border-l-2 border-primary-100 pl-4;
   }
-
+  
   .pp-input {
-    @apply h-[37px] rounded-[8px] border border-line bg-white px-3 text-[14px] text-ink outline-none;
+    @apply h-10 rounded-lg border border-line bg-white px-3 text-sm text-ink outline-none focus:border-line focus-visible:outline-none;
   }
 
   .pp-number {
-    @apply h-[37px] w-[100px] rounded-[8px] border border-gray-200 bg-white px-3 text-[14px] text-ink outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
+    @apply h-9 rounded-lg border border-line bg-white px-3 text-sm text-ink outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
   }
 
   .pp-number--table {
@@ -813,7 +1183,7 @@
   }
 
   .pp-modal {
-    @apply m-auto w-[calc(100%_-_30px)] max-w-[900px] overflow-hidden rounded-2xl border border-line p-0 text-muted shadow-xl;
+    @apply m-auto w-[calc(100%-30px)] max-w-225 overflow-hidden rounded-2xl border border-line bg-transparent p-0 text-muted shadow-xl;
     height: min(680px, calc(100dvh - 30px));
     max-height: calc(100dvh - 30px);
   }
@@ -830,20 +1200,23 @@
     @apply flex h-full min-h-0 flex-col;
   }
 
+  /* O <dialog> é transparente (como no Figma): cabeçalho e rodapé em ciano
+     translúcido deixam ver a página atrás; só o cabeçalho a desfoca. O
+     conteúdo tem fundo branco. */
   .pp-modal__header {
-    @apply flex min-h-20 shrink-0 items-center justify-between gap-4 border-b border-line bg-cyan-50/85 px-5;
+    @apply flex min-h-20 shrink-0 items-center justify-between gap-4 border-b border-line bg-cyan-50/93 px-5 backdrop-blur-lg;
   }
 
   .pp-modal__close {
-    @apply -mr-5 flex w-20 shrink-0 items-center justify-center self-stretch border-l border-cyan-200 bg-cyan-50 transition-colors hover:bg-cyan-100;
+    @apply -mr-5 flex w-20 shrink-0 items-center justify-center self-stretch border-l border-secondary-200 bg-transparent transition-colors hover:bg-white/75;
   }
 
   .pp-modal__body {
-    @apply min-h-0 flex-1 overflow-y-auto p-5;
+    @apply min-h-0 flex-1 overflow-y-auto bg-white p-5;
   }
 
   .pp-modal__footer {
-    @apply flex min-h-16 shrink-0 items-center justify-center border-t border-line bg-cyan-50/85 px-5 py-3;
+    @apply flex min-h-16 shrink-0 items-center justify-center border-t border-line bg-cyan-50/93 px-5 py-3;
   }
 
   .pp-shift-modal {
@@ -853,7 +1226,44 @@
   }
 
   .pp-shift-header {
-    @apply flex-wrap py-3;
+    @apply flex-wrap;
+  }
+
+  .pp-shift-title-group {
+    @apply flex flex-wrap items-center gap-3;
+  }
+
+  .pp-shift-history-btn {
+    @apply grid size-9 place-items-center rounded-full text-primary-500 transition-colors hover:bg-cyan-100 focus-visible:outline-2 focus-visible:outline-primary-500;
+  }
+
+  .pp-shift-history-btn span {
+    @apply sr-only;
+  }
+
+  .pp-shift-history-btn[aria-pressed="true"] {
+    @apply bg-cyan-100 ring-1 ring-primary-500;
+  }
+
+  /* Lista do histórico de alterações do plantão. */
+  .pp-shift-history {
+    @apply flex flex-col gap-2;
+  }
+
+  .pp-shift-history li {
+    @apply border border-line bg-white px-4 py-3;
+  }
+
+  .pp-shift-history__title {
+    @apply mb-1 text-[14px] text-ink;
+  }
+
+  .pp-shift-history dl div {
+    @apply flex gap-1 text-[13px] leading-5;
+  }
+
+  .pp-shift-history dt {
+    @apply font-semibold text-gray-700;
   }
 
   .pp-shift-title {
@@ -870,21 +1280,23 @@
     @apply flex items-center gap-2;
   }
 
-  .pp-shift-header input[type="checkbox"],
-  .pp-shift-panel input[type="checkbox"] {
+  .pp-shift-header input[type="checkbox"]:not(.sr-only),
+  .pp-shift-panel input[type="checkbox"]:not(.sr-only) {
     @apply size-4 accent-primary-500;
   }
 
   .pp-shift-content {
-    @apply flex min-h-0 flex-1 overflow-y-auto p-5;
+    @apply flex min-h-0 flex-1 overflow-y-auto bg-white p-7.5;
   }
 
+  /* Aba ativa "encaixada" no painel (Figma): mesmo fundo, borda só em cima,
+     embaixo e à esquerda, e 1px por cima da borda esquerda do painel. */
   .pp-shift-nav {
-    @apply w-[240px] shrink-0 pt-1;
+    @apply relative z-10 -mr-px w-60 shrink-0;
   }
 
   .pp-shift-nav-item {
-    @apply ml-0 w-full justify-start gap-3 border-b-0 px-4 text-[15px];
+    @apply ml-0 min-h-10 w-full justify-start gap-3 rounded-l-full border border-r-0 border-transparent py-2 pr-4 pl-5 text-[15px];
   }
 
   .pp-shift-nav-item pp-icon {
@@ -892,11 +1304,11 @@
   }
 
   .pp-shift-nav-item[aria-current="page"] {
-    @apply rounded-full border border-secondary-200 bg-white shadow-sm;
+    @apply border-secondary-200 bg-cyan-50 font-medium text-primary-500;
   }
 
   .pp-shift-panel {
-    @apply min-w-0 flex-1 rounded-xl border border-line bg-cyan-50/85 p-5;
+    @apply min-w-0 flex-1 rounded-[3px] border border-secondary-200 bg-cyan-50 p-5;
   }
 
   .pp-shift-section {
@@ -924,11 +1336,15 @@
   }
 
   .pp-field > span {
-    @apply absolute -top-2 left-3 z-10 bg-white px-1 text-[12px] leading-4 text-gray-700;
+    @apply pointer-events-none absolute -top-2 left-2 z-10 px-1 text-xs leading-none font-semibold text-gray-700;
   }
 
   .pp-field input {
-    @apply h-10 w-full rounded border border-line bg-white px-3 text-[14px] text-ink outline-none focus:border-line focus-visible:outline-none;
+    @apply w-full h-10 rounded-lg border border-line bg-white px-3 text-sm text-ink outline-none focus:border-line focus-visible:outline-none;
+  }
+
+  .pp-select-menu input {
+    @apply w-[calc(100%-18px)];
   }
 
   .pp-field .pp-select {
@@ -941,10 +1357,6 @@
 
   .pp-shift-settings .pp-field {
     @apply min-w-[180px] flex-1;
-  }
-
-  .pp-shift-settings .pp-field:first-child {
-    @apply max-w-[440px];
   }
 
   .pp-shift-duration > .pp-field {
@@ -960,19 +1372,79 @@
   }
 
   .pp-shift-repeat {
-    @apply flex flex-wrap items-center gap-3 border-0 p-0;
-  }
-
-  .pp-shift-repeat legend {
-    @apply mb-2 text-[13px] font-medium text-ink;
+    @apply flex flex-wrap items-center gap-3;
   }
 
   .pp-shift-repeat .pp-field {
     @apply w-[150px];
   }
 
-  .pp-shift-repeat:disabled {
+  /* Desligado (Repetir desmarcado): só o conteúdo fica apagado, a borda não. */
+  .pp-shift-repeat:disabled > * {
     @apply opacity-50;
+  }
+
+  /* Duração e Dias da semana lado a lado (Figma), com uma borda em comum,
+     quando o painel tem largura para os dois; senão, um abaixo do outro. */
+  .pp-shift-panel {
+    container-type: inline-size;
+  }
+
+  .pp-shift-split {
+    @apply mb-4 grid gap-4;
+  }
+
+  .pp-shift-split > .pp-shift-section {
+    @apply mb-0 flex min-w-0 flex-col;
+  }
+
+  .pp-shift-split .pp-shift-section-heading {
+    @apply min-h-8;
+  }
+
+  .pp-shift-split .pp-shift-box {
+    @apply flex-1;
+  }
+
+  .pp-shift-days .pp-shift-section-heading {
+    @apply justify-start gap-6;
+  }
+
+  .pp-shift-split .pp-shift-section-heading h3 {
+    @apply mb-0;
+  }
+
+  .pp-shift-split .pp-shift-section-heading {
+    @apply mb-2;
+  }
+
+  @container (min-width: 900px) {
+    /* Duração com a largura que precisa (~610px); Dias da semana fica com o
+       resto e quebra os dias para baixo de "Repetir até" se faltar espaço. */
+    .pp-shift-split {
+      display: flex;
+      gap: 0;
+    }
+
+    .pp-shift-split > .pp-shift-section:first-child {
+      flex: auto;
+    }
+
+    .pp-shift-days {
+      flex: auto;
+    }
+
+    .pp-shift-days {
+      @apply pl-0;
+    }
+
+    .pp-shift-days .pp-shift-section-heading {
+      @apply pl-4;
+    }
+
+    .pp-shift-days .pp-shift-box {
+      @apply -ml-px;
+    }
   }
 
   .pp-shift-weekdays {
@@ -980,7 +1452,7 @@
   }
 
   .pp-shift-weekdays label {
-    @apply relative;
+    @apply relative cursor-pointer;
   }
 
   .pp-shift-weekdays input {
@@ -988,7 +1460,7 @@
   }
 
   .pp-shift-weekdays span {
-    @apply grid size-8 place-items-center rounded-full bg-gray-200 text-sm font-medium text-gray-700;
+    @apply grid size-8 place-items-center rounded-full bg-gray-100 text-sm font-medium text-gray-700 hover:bg-primary-50;
   }
 
   .pp-shift-weekdays input:checked + span {
@@ -1020,7 +1492,188 @@
   }
 
   .pp-shift-notice {
-    @apply mb-4 rounded-lg border border-primary-100 bg-white px-4 py-3 text-sm text-ink;
+    @apply mb-4 flex items-center gap-3 rounded-lg border border-primary-100 bg-white py-2 pr-2 pl-4 text-sm text-ink;
+  }
+
+  .pp-shift-notice[hidden] {
+    @apply hidden;
+  }
+
+  .pp-shift-notice p {
+    @apply min-w-0 flex-1 py-1;
+  }
+
+  .pp-shift-notice__close {
+    @apply grid size-8 shrink-0 place-items-center rounded-full transition-colors hover:bg-cyan-50 focus-visible:outline-2 focus-visible:outline-primary-500;
+  }
+
+  /* Abas do Criar Plantão: Detalhes, Produtividade, Habilidades, Anunciar e
+     Pagamentos. */
+  .pp-shift-details {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+
+  .pp-textarea {
+    @apply block min-h-28 w-full resize-y rounded border border-line bg-white px-3 py-2 text-[14px] text-ink outline-none focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
+  }
+
+  .pp-shift-hint {
+    @apply mt-2 flex items-start gap-2 text-[13px] leading-5 text-muted;
+  }
+
+  .pp-shift-hint pp-icon {
+    @apply mt-0.5 size-4 shrink-0;
+  }
+
+  .pp-shift-list {
+    @apply bg-white p-0;
+  }
+
+  .pp-shift-list-row {
+    @apply flex min-h-14 flex-wrap items-center gap-3 px-4 py-3 text-[14px] text-ink;
+  }
+
+  .pp-shift-list-row + .pp-shift-list-row {
+    @apply border-t border-line;
+  }
+
+  .pp-shift-qty {
+    @apply ml-auto w-[140px];
+  }
+
+  .pp-shift-table {
+    @apply w-full border-collapse text-left text-[14px] text-ink;
+  }
+
+  .pp-shift-table th {
+    @apply border-b border-line px-4 py-3 align-bottom text-[13px] font-medium text-nav;
+  }
+
+  .pp-shift-table td {
+    @apply border-b border-line px-4 py-2 align-middle;
+  }
+
+  .pp-shift-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .pp-shift-table:has(tbody:empty) thead th {
+    @apply border-b-0;
+  }
+
+  .pp-shift-table thead {
+    @apply border-b border-line
+  }
+
+  .pp-shift-skills :is(th, td):not(:first-child) {
+    @apply w-[25%] text-center;
+  }
+
+  .pp-shift-skills th [data-skills-name] {
+    @apply block text-sm font-semibold text-primary-500;
+  }
+
+  .pp-shift-skills td pp-icon {
+    @apply mx-auto size-4;
+  }
+
+  .pp-shift-payments td:first-child, .pp-shift-payments th:first-child {
+    @apply w-[25%];
+  }
+
+  .pp-shift-payments td:nth-child(2), .pp-shift-payments th:nth-child(2) {
+    @apply w-[25%];
+  }
+
+  .pp-shift-payments td:last-child, .pp-shift-payments th:last-child {
+    @apply w-12 text-right;
+  }
+
+  .pp-shift-empty {
+    @apply px-4 py-6 text-center text-sm text-muted;
+  }
+
+  .pp-shift-announce-toggle {
+    @apply flex items-center gap-2 text-[17px] font-semibold text-ink;
+  }
+
+  .pp-shift-announce {
+    @apply flex flex-col gap-4;
+  }
+
+  .pp-shift-announce:disabled {
+    @apply opacity-50;
+  }
+
+  .pp-shift-announce .pp-field input {
+    @apply w-full;
+  }
+
+  .pp-shift-announce-list {
+    @apply max-h-[320px] overflow-y-auto rounded border border-line bg-white;
+  }
+
+  .pp-shift-announce-list li + li {
+    @apply border-t border-line;
+  }
+
+  .pp-shift-announce-list label {
+    @apply flex min-h-11 cursor-pointer items-center gap-3 px-4 text-[14px] text-ink;
+  }
+
+  .pp-shift-announce:disabled .pp-shift-announce-list label {
+    @apply cursor-default;
+  }
+
+  .pp-shift-list-row:has(.pp-check) {
+    @apply cursor-pointer;
+  }
+
+  :disabled .pp-check,
+  .pp-check:has(input:disabled) {
+    @apply cursor-default;
+  }
+
+  .pp-shift-tag {
+    @apply ml-auto shrink-0 rounded-full bg-gray-100 px-2.5 py-0.5 text-[12px] font-medium text-gray-700;
+  }
+
+  .pp-shift-tag--local {
+    @apply bg-tertiary-50 text-tertiary-700;
+  }
+
+  .pp-shift-tag--setor {
+    @apply bg-primary-50 text-primary-700;
+  }
+
+  /* Valores do plantão: um grupo à esquerda (Valor, Pago) e outro à direita
+     (Configurado, Bruto), cada um empilhado em coluna. */
+  .pp-shift-values {
+    @apply flex flex-wrap items-start justify-between gap-4;
+  }
+
+  .pp-shift-values > div {
+    @apply flex flex-col gap-3;
+  }
+
+  .pp-shift-values > div:last-child {
+    @apply items-end;
+  }
+
+  .pp-shift-values .pp-field {
+    @apply w-37;
+  }
+
+  .pp-shift-stat {
+    @apply flex flex-col text-xs text-gray-700;
+  }
+
+  .pp-shift-stat strong {
+    @apply text-[16px] font-semibold text-primary-500;
+  }
+
+  .pp-shift-paid {
+    @apply flex items-center gap-3 text-[14px] text-ink;
   }
 
   @media (max-width: 767px) {
@@ -1044,8 +1697,12 @@
       @apply flex w-full flex-wrap gap-1;
     }
 
+    .pp-shift-nav {
+      @apply mr-0;
+    }
+
     .pp-shift-nav-item {
-      @apply w-auto min-h-10 px-3 text-sm;
+      @apply w-auto min-h-10 rounded-full border-r px-3 text-sm;
     }
 
     .pp-shift-panel {
@@ -1162,7 +1819,8 @@
   }
 
   .pp-nav-sub-list:not([hidden]),
-  .pp-sidebar-menu:not([hidden]) {
+  .pp-sidebar-menu:not([hidden]),
+  .pp-dialog-menu:not([hidden]) {
     animation: pp-fade-in-up 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
@@ -1193,7 +1851,21 @@
   .pp-modal[open],
   .pp-modal[open]::backdrop,
   .pp-nav-sub-list:not([hidden]),
-  .pp-sidebar-menu:not([hidden]) {
+  .pp-sidebar-menu:not([hidden]),
+  .pp-dialog-menu:not([hidden]) {
     animation: none;
   }
+
+  .pp-card__children,
+  .pp-card__children-content,
+  .pp-card__expand pp-icon {
+    transition: none;
+  }
+}
+
+/* Fora de @layer para vencer os utilitários absolute/-top-px: com a página
+   rolando, a linha lateral do rail fica fixa abaixo do header. */
+.pp-page-scroll > div > pp-app-sidebar > div[aria-hidden="true"] {
+  position: fixed;
+  top: var(--pp-header-height);
 }

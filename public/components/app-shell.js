@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   AppShell — topbar e rail compartilhados por todas as páginas.
+   AppShell — topbar e sidebar compartilhados por todas as páginas.
 
    Uso (o script fica no <head>, sem defer, para a moldura aparecer junto com
    a página):

@@ -25,17 +25,51 @@
         <main class="min-h-0 min-w-0 flex-1 overflow-y-auto px-4 pt-4 pb-6 lg:pr-7 lg:pl-7" aria-label="Escala semanal">
           <div class="flex min-h-[56px] flex-wrap items-center justify-between gap-3 border-b border-cyan-200 py-2">
             <div>
-              <h1 class="text-[15px] font-medium text-primary-500">HMPP - Hospital e Maternidade Pega Plantão</h1>
+              <h1 id="weekly-place-title" class="text-[15px] font-medium text-primary-500">HMPP - Hospital e Maternidade Pega Plantão</h1>
               <p class="text-[11px] text-muted">Escala ilustrativa · dados de exemplo</p>
             </div>
             <div class="flex items-center gap-2.5">
               <div class="relative">
                 <label for="sector-search" class="pp-select-label">Setor</label>
-                <input id="sector-search" type="search" placeholder="Digite o nome do setor" class="pp-input w-[192px]" />
+                <input id="sector-search" type="search" placeholder="Digite o nome do setor" class="pp-input w-50" />
               </div>
-              <button type="button" class="pp-btn" data-weekly-placeholder="Opções">
-                <pp-icon type="tools" name="filter" monochrome="true" class="size-4"></pp-icon>Opções
-              </button>
+              <div class="pp-dialog-menu-anchor" data-dialog-menu>
+                <button type="button" class="pp-btn py-2" aria-expanded="false" aria-controls="weekly-filter-menu" data-dialog-menu-trigger>
+                  <pp-icon type="tools" name="filter" monochrome="true" class="size-4"></pp-icon>Filtrar
+                </button>
+                <div id="weekly-filter-menu" class="pp-dialog-menu pp-dialog-menu--end w-72" role="dialog" aria-label="Filtrar escala" hidden>
+                  <div class="pp-dialog-menu__section pt-4">
+                    <div class="pp-field">
+                      <label for="weekly-place" class="pp-select-label">Local</label>
+                      <select id="weekly-place" name="place" class="pp-select w-full">
+                        <option>HMPP - Hospital e Maternidade Pega Plantão</option>
+                        <option>Hospital Volatile Informática</option>
+                        <option>Maternidade Sanga Puitã</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="pp-dialog-menu__section">
+                    <span id="weekly-order-label" class="pp-dialog-menu__title">Ordenar por</span>
+                    <div class="pp-dialog-menu__row" role="radiogroup" aria-labelledby="weekly-order-label">
+                      <label class="pp-check-field">
+                        <span class="pp-check pp-check--radio"><input type="radio" name="weekly-order" value="sector" class="sr-only" checked /></span>
+                        Setores
+                      </label>
+                      <label class="pp-check-field">
+                        <span class="pp-check pp-check--radio"><input type="radio" name="weekly-order" value="type" class="sr-only" /></span>
+                        Tipo
+                      </label>
+                    </div>
+                  </div>
+                  <div class="pp-dialog-menu__section">
+                    <span class="pp-dialog-menu__title">Mais informações</span>
+                    <label class="pp-check-field">
+                      <span class="pp-check"><input id="weekly-show-checkinout" type="checkbox" name="show-checkinout" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                      Mostrar Entrada e Saída
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -56,6 +90,7 @@
               </div>
               <div id="weekly-sectors"></div>
               <p id="weekly-empty" class="py-6 text-sm" hidden>Nenhum setor encontrado.</p>
+              <div id="shift-preview" class="pp-dialog-menu pp-dialog-menu--floating" role="tooltip" hidden></div>
             </div>
           </div>
         </main>
@@ -73,27 +108,52 @@
       <pp-icon type="topbar" name="helpDesk" class="size-6"></pp-icon>
     </button>
 
+    <!-- shift modal: "Criar Plantão" (+ de um dia) e "Alterar Plantão" (clique num cartão) -->
     <dialog id="create-shift-modal" class="pp-modal pp-shift-modal" aria-labelledby="create-shift-title">
       <form id="create-shift-form" class="pp-modal__layout">
         <div class="pp-modal__header pp-shift-header">
-          <h2 id="create-shift-title" class="pp-shift-title">
-            <pp-icon type="services" name="duty" class="size-8"></pp-icon>
-            Criar Plantão
-          </h2>
+          <div class="pp-shift-title-group">
+            <h2 id="create-shift-title" class="pp-shift-title font-red-hat-display">
+              <pp-icon type="services" name="duty" class="size-8"></pp-icon>
+              <span data-shift-title>Criar Plantão</span>
+            </h2>
+            <button type="button" class="pp-shift-history-btn" title="Histórico de alterações" aria-pressed="false" data-shift-history data-edit-only hidden>
+              <pp-icon type="tools" name="history" class="size-5"></pp-icon>
+              <span>Histórico de alterações</span>
+            </button>
+          </div>
           <div class="pp-shift-header-actions">
             <span>Informar:</span>
-            <label><input type="checkbox" name="inform-coordinators" /> Coordenador(es)</label>
-            <label><input type="checkbox" name="inform-professionals" /> Profissional(is)</label>
+            <label class="pp-check-field">
+              <span class="pp-check">
+                <input type="checkbox" name="inform-coordinators" class="sr-only" />
+                <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+              </span>
+              Coordenador(es)
+            </label>
+            <label class="pp-check-field">
+              <span class="pp-check">
+                <input type="checkbox" name="inform-professionals" class="sr-only" />
+                <pp-icon type="ui" name="check" stroke-width="3"></pp-icon>
+              </span>
+              Profissional(is)
+            </label>
             <span>Opções:</span>
-            <button type="button" class="pp-btn pp-btn--outline pp-btn--icon" title="Limpar formulário" aria-label="Limpar formulário" data-shift-reset>
+            <button type="button" class="pp-btn pp-btn--red pp-btn--outline pp-btn--icon" title="Cancelar agenda" aria-label="Cancelar agenda" data-shift-cancel-schedule data-edit-only hidden>
+              <pp-icon type="services" name="exit" class="size-5"></pp-icon>
+            </button>
+            <button type="button" class="pp-btn pp-btn--secondary pp-btn--outline pp-btn--icon" title="Limpar campos" aria-label="Limpar formulário" data-shift-reset data-create-only>
+              <pp-icon type="tools" name="back" class="size-5"></pp-icon>
+            </button>
+            <button type="button" class="pp-btn pp-btn--red pp-btn--outline pp-btn--icon" title="Excluir plantão" aria-label="Excluir plantão" data-shift-delete data-edit-only hidden>
               <pp-icon type="tools" name="delete" class="size-5"></pp-icon>
             </button>
             <button type="submit" class="pp-btn">
-              <pp-icon type="ui" name="circleCheck" class="size-5"></pp-icon>Salvar e criar plantão
+              <pp-icon type="ui" name="circleCheck" class="size-5"></pp-icon><span data-shift-submit>Salvar e criar plantão</span>
             </button>
           </div>
           <button type="button" class="pp-modal__close" aria-label="Fechar" data-shift-close>
-            <pp-icon type="appbar" name="modalClose" class="size-5"></pp-icon>
+            <pp-icon type="appbar" name="modalClose" class="size-6"></pp-icon>
           </button>
         </div>
         <div class="pp-shift-content scrollbar-slim">
@@ -104,8 +164,14 @@
             <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="detalhes">
               <pp-icon type="modalProfessionals" name="medic" class="size-5"></pp-icon><span>Detalhes</span>
             </button>
+            <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="produtividade">
+              <pp-icon type="services" name="productivity" class="size-5"></pp-icon><span>Produtividade</span>
+            </button>
             <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="habilidades">
               <pp-icon type="modalProfessionals" name="ability" class="size-5"></pp-icon><span>Habilidades</span>
+            </button>
+            <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="trocas" data-edit-only hidden>
+              <pp-icon type="static" name="exchange" class="size-5"></pp-icon><span>Trocas</span>
             </button>
             <button type="button" class="pp-nav-item pp-shift-nav-item" data-shift-section="anunciar">
               <pp-icon type="sidebar" name="announce" class="size-5"></pp-icon><span>Anunciar</span>
@@ -115,7 +181,12 @@
             </button>
           </nav>
           <div class="pp-shift-panel">
-            <p class="pp-shift-notice" id="shift-notice" role="status" hidden></p>
+            <div class="pp-shift-notice" id="shift-notice" hidden>
+              <p role="status" data-shift-notice-text></p>
+              <button type="button" class="pp-shift-notice__close" title="Fechar aviso" aria-label="Fechar aviso" data-shift-notice-close>
+                <pp-icon type="appbar" name="modalClose" class="size-4"></pp-icon>
+              </button>
+            </div>
             <div data-shift-panel="informacoes">
               <section class="pp-shift-section">
                 <h3>Configure o Setor, Tipo e Valor:</h3>
@@ -129,23 +200,34 @@
                   </div>
                   <div class="pp-field">
                     <label for="shift-type" class="pp-select-label">Tipo</label>
-                    <select id="shift-type" name="type" class="pp-select"><option>CH Clínico</option><option>Plantão</option></select>
+                    <select id="shift-type" name="type" class="pp-select" data-color-select>
+                      <option data-color="var(--pp-palette-primary-500)">CH Clínico</option>
+                      <option data-color="var(--pp-palette-tertiary-500)">Plantão</option>
+                      <option data-color="var(--pp-palette-secondary-500)">Noturno</option>
+                      <option data-color="var(--pp-palette-green-500)">Fim de semana</option>
+                    </select>
                   </div>
                 </div>
               </section>
-              <section class="pp-shift-section">
-                <div class="pp-shift-section-heading">
-                  <h3>Informe a duração em dias e horas:</h3>
-                  <label class="pp-shift-repeat-label"><input id="shift-repeat" type="checkbox" name="repeat" /> Repetir</label>
-                </div>
-                <div class="pp-shift-box pp-shift-duration">
-                  <label class="pp-field"><span>Início</span><input id="shift-start-time" type="time" name="start-time" value="08:00" /></label>
-                  <label class="pp-field"><span>Fim</span><input id="shift-end-time" type="time" name="end-time" value="17:30" /></label>
-                  <label class="pp-field"><span>Duração</span><input id="shift-duration" value="09:30" readonly /></label>
-                  <label class="pp-field"><span>Valor (R$)</span><input type="number" name="value" min="0" step="0.01" value="1250.00" /></label>
-                  <label class="pp-field"><span>Data de início</span><input id="shift-date" type="date" name="date" /></label>
-                  <fieldset id="shift-repeat-fields" class="pp-shift-repeat" disabled>
-                    <legend>Dias da semana</legend>
+              <div class="pp-shift-split">
+                <section class="pp-shift-section">
+                  <div class="pp-shift-section-heading">
+                    <h3>Informe a duração em dias e horas:</h3>
+                  </div>
+                  <div class="pp-shift-box pp-shift-duration">
+                    <label class="pp-field w-26"><span>Início</span><input id="shift-start-time" type="time" name="start-time" value="08:00" /></label>
+                    <label class="pp-field w-26"><span>Fim</span><input id="shift-end-time" type="time" name="end-time" value="17:30" /></label>
+                    <label class="pp-field w-18"><span>Duração</span><input id="shift-duration" value="09:30" readonly /></label>
+                    <label class="pp-field w-24"><span>Valor (R$)</span><input type="text" name="value" value="1250.00" /></label>
+                    <label class="pp-field w-32"><span>Data de início</span><input id="shift-date" type="date" name="date" /></label>
+                  </div>
+                </section>
+                <section class="pp-shift-section pp-shift-days">
+                  <div class="pp-shift-section-heading">
+                    <h3 id="shift-days-title">Dias da semana</h3>
+                    <label class="pp-check-field pp-shift-repeat-label"><span class="pp-check"><input id="shift-repeat" type="checkbox" name="repeat" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span> Repetir</label>
+                  </div>
+                  <fieldset id="shift-repeat-fields" class="pp-shift-box pp-shift-repeat" aria-labelledby="shift-days-title" disabled>
                     <label class="pp-field"><span>Repetir até</span><input type="date" name="repeat-until" /></label>
                     <div class="pp-shift-weekdays" aria-label="Dias da semana">
                       <label title="Segunda-feira"><input type="checkbox" name="weekdays" value="1" aria-label="Segunda-feira" /><span>S</span></label>
@@ -157,8 +239,8 @@
                       <label title="Domingo"><input type="checkbox" name="weekdays" value="0" aria-label="Domingo" /><span>D</span></label>
                     </div>
                   </fieldset>
-                </div>
-              </section>
+                </section>
+              </div>
               <section class="pp-shift-section">
                 <h3>Selecione o(s) profissional(is) para este plantão:</h3>
                 <div class="pp-shift-box pp-shift-professionals">
@@ -170,8 +252,8 @@
                         <option>Alfonso Calzoni</option><option>Gretchen George</option><option>Alena Septimus</option>
                       </select>
                     </div>
-                    <label><input type="checkbox" name="list-fixed" /> Listar todos</label>
-                    <label><input type="checkbox" name="coverage" /> Precisa de cobertura</label>
+                    <label class="pp-check-field"><span class="pp-check"><input type="checkbox" name="list-fixed" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span> Listar todos</label>
+                    <label class="pp-check-field"><span class="pp-check"><input type="checkbox" name="coverage" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span> Precisa de cobertura</label>
                     <div class="pp-field pp-shift-situation">
                       <label for="shift-situation" class="pp-select-label">Situação</label>
                       <select id="shift-situation" name="situation" class="pp-select"><option>Designado</option><option>Pendente</option></select>
@@ -185,15 +267,244 @@
                         <option>Alfonso Calzoni</option><option>Gretchen George</option><option>Alena Septimus</option>
                       </select>
                     </div>
-                    <label><input type="checkbox" name="list-professionals" /> Listar todos</label>
+                    <label class="pp-check-field"><span class="pp-check"><input type="checkbox" name="list-professionals" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span> Listar todos</label>
                   </div>
                 </div>
               </section>
             </div>
-            <section id="shift-other-section" hidden>
-              <h3 id="shift-other-title"></h3>
-              <p>Esta seção está em construção.</p>
-            </section>
+            <div data-shift-panel="detalhes" hidden>
+              <section class="pp-shift-section" data-edit-only hidden>
+                <div class="pp-shift-section-heading">
+                  <h3>Registros de entrada e saída:</h3>
+                </div>
+                <div class="pp-shift-box pp-shift-duration">
+                  <label class="pp-field w-36"><span>Entrada (data)</span><input id="shift-checkin-date" type="date" name="checkin-date" /></label>
+                  <label class="pp-field w-32"><span>Entrada (hora)</span><input id="shift-checkin-time" type="time" name="checkin-time" /></label>
+                  <label class="pp-field w-36"><span>Saída (data)</span><input id="shift-checkout-date" type="date" name="checkout-date" /></label>
+                  <label class="pp-field w-32"><span>Saída (hora)</span><input id="shift-checkout-time" type="time" name="checkout-time" /></label>
+                  <button type="button" class="pp-btn pp-btn--outline py-2" data-shift-copy-times>
+                    <pp-icon type="tools" name="copy" class="size-5" data-copy-icon></pp-icon>
+                    <span data-copy-label>Copiar dados do plantão</span>
+                  </button>
+                </div>
+              </section>
+              <section class="pp-shift-section" data-edit-only hidden>
+                <h3>Observação do profissional (horários):</h3>
+                <div class="pp-shift-box bg-white">
+                  <p id="shift-professional-comment" class="text-[14px] text-ink"></p>
+                </div>
+              </section>
+              <div class="pp-shift-details">
+                <section class="pp-shift-section">
+                  <h3><label for="shift-other-info">Outras informações:</label></h3>
+                  <div class="pp-shift-box">
+                    <textarea id="shift-other-info" name="other-info" rows="5" class="pp-textarea"
+                      aria-describedby="shift-other-info-hint"></textarea>
+                    <p id="shift-other-info-hint" class="pp-shift-hint">
+                      <pp-icon type="tools" name="eyeOpen" aria-hidden="true"></pp-icon>
+                      Os profissionais também visualizam o conteúdo deste campo.
+                    </p>
+                  </div>
+                </section>
+                <section class="pp-shift-section">
+                  <h3><label for="shift-internal-note">Observação interna:</label></h3>
+                  <div class="pp-shift-box">
+                    <textarea id="shift-internal-note" name="internal-note" rows="5" class="pp-textarea"
+                      aria-describedby="shift-internal-note-hint"></textarea>
+                    <p id="shift-internal-note-hint" class="pp-shift-hint">
+                      <pp-icon type="tools" name="lock" aria-hidden="true"></pp-icon>
+                      Apenas empresas e coordenadores visualizam o conteúdo deste campo.
+                    </p>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <div data-shift-panel="produtividade" hidden>
+              <section class="pp-shift-section">
+                <h3 class="flex items-center gap-1">
+                  Opções de produtividade para o(s) profissional(is):
+                  <span class="pp-tooltip">
+                    <button type="button" class="pp-tooltip__trigger" aria-label="Mais informações" aria-describedby="shift-productivity-tip">
+                      <pp-icon type="tools" name="info" class="size-4" aria-hidden="true"></pp-icon>
+                    </button>
+                    <span role="tooltip" id="shift-productivity-tip" class="pp-tooltip__bubble">As opções vêm do cadastro de produtividades nas configurações.</span>
+                  </span>
+                </h3>
+                <div class="pp-shift-box pp-shift-list">
+                  <label class="pp-shift-list-row">
+                    <span class="pp-check"><input type="checkbox" name="productivity-displacement" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                    <span>01 - Deslocamento</span>
+                  </label>
+                  <div class="pp-shift-list-row">
+                    <label for="shift-productivity-exams">02 - Exames laudados</label>
+                    <label class="pp-field pp-shift-qty">
+                      <span>Quantidade</span>
+                      <input id="shift-productivity-exams" type="number" name="productivity-exams" min="0" step="1"
+                        inputmode="numeric" placeholder="0" />
+                    </label>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div data-shift-panel="habilidades" hidden>
+              <section class="pp-shift-section">
+                <h3>Compare as habilidades dos profissionais:</h3>
+                <div class="pp-shift-box pp-shift-list overflow-x-auto">
+                  <table class="pp-shift-table pp-shift-skills">
+                    <thead>
+                      <tr>
+                        <th scope="col">Habilidade</th>
+                        <th scope="col">Profissional fixo<span data-skills-name="fixed">Nenhum selecionado</span></th>
+                        <th scope="col">Profissional de plantão<span data-skills-name="shift">Nenhum selecionado</span></th>
+                      </tr>
+                    </thead>
+                    <tbody id="shift-skills-body"></tbody>
+                  </table>
+                  <p id="shift-skills-empty" class="pp-shift-empty">Selecione o profissional fixo ou o profissional de
+                    plantão na aba Informações para comparar as habilidades.</p>
+                </div>
+              </section>
+            </div>
+
+            <div data-shift-panel="anunciar" hidden>
+              <section class="pp-shift-section">
+                <label class="pp-shift-announce-toggle">
+                  <span class="pp-check"><input id="shift-announce" type="checkbox" name="announce" aria-describedby="shift-announce-hint" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                  Permitir candidatura dos seguintes grupos de profissionais:
+                </label>
+                <p id="shift-announce-hint" class="pp-shift-hint mb-3">
+                  Somente os profissionais vinculados aos itens selecionados verão o plantão e poderão se candidatar à
+                  cobertura. Depois de anunciar, você pode enviar alertas para o celular deles pela tela de escalas.
+                </p>
+                <fieldset id="shift-announce-fields" class="p-0 pp-shift-announce" disabled>
+                  <legend class="sr-only">Grupos, locais e setores que podem se candidatar</legend>
+                  <div class="pp-field">
+                    <label for="shift-announce-search" class="pp-select-label">Buscar</label>
+                    <input id="shift-announce-search" type="search" placeholder="Digite o nome do grupo, local ou setor" />
+                  </div>
+                  <ul class="pp-shift-announce-list scrollbar-slim" id="shift-announce-list">
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="todos" data-announce-all class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Todos os profissionais</span></label></li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="bloqueio-pagamentos" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Bloqueio - Pagamentos</span><span class="pp-shift-tag">Grupo</span></label></li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="bloqueio-plantoes" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Bloqueio - Plantões</span><span class="pp-shift-tag">Grupo</span></label></li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="coringas" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Coringas</span><span class="pp-shift-tag">Grupo</span></label></li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="intervalo-interjornada" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Intervalo Interjornada</span><span class="pp-shift-tag">Grupo</span></label></li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="web-check-in" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Web Check-In</span><span class="pp-shift-tag">Grupo</span></label></li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="hmpp" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>HMPP - Hospital e Maternidade Pega Plantão</span><span
+                          class="pp-shift-tag pp-shift-tag--local">Local</span></label></li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="setor-omar-philips" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Setor Omar Philips</span><span class="pp-shift-tag pp-shift-tag--setor">Setor</span></label>
+                    </li>
+                    <li><label><span class="pp-check"><input type="checkbox" name="announce-groups" value="setor-pediatria-delicada-ii" class="sr-only" /><pp-icon type="ui" name="check" stroke-width="3"></pp-icon></span>
+                        <span>Setor Pediatria Delicada II</span><span
+                          class="pp-shift-tag pp-shift-tag--setor">Setor</span></label></li>
+                  </ul>
+                  <p id="shift-announce-empty" class="pp-shift-empty" hidden>Nenhum grupo, local ou setor encontrado.</p>
+                </fieldset>
+              </section>
+            </div>
+
+            <div data-shift-panel="trocas" hidden>
+              <section class="pp-shift-section">
+                <h3>Trocas já feitas entre profissionais:</h3>
+                <div class="pp-shift-box pp-shift-list overflow-x-auto">
+                  <table class="pp-shift-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Profissionais</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Data e hora do plantão<span class="block font-normal">Local - Setor</span></th>
+                        <th scope="col">Status<span class="block font-normal">Resposta do profissional</span></th>
+                        <th scope="col">Aprovação<span class="block font-normal">Resposta do coordenador</span></th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  <p class="pp-shift-empty">Sem histórico de trocas.</p>
+                </div>
+              </section>
+            </div>
+
+            <div data-shift-panel="historico" hidden>
+              <section class="pp-shift-section">
+                <h3>Histórico do plantão:</h3>
+                <ol id="shift-history-list" class="pp-shift-history"></ol>
+              </section>
+            </div>
+
+            <div data-shift-panel="pagamentos" hidden>
+              <section class="pp-shift-section">
+                <div class="pp-shift-section-heading">
+                  <h3>Configure o valor para este plantão:</h3>
+                  <button type="button" class="pp-btn pp-btn--outline py-2 -mt-2" data-shift-placeholder="Configurações de Valores">
+                    <pp-icon type="sidebarSettings" name="values" class="size-5"></pp-icon>Ir para Configurações de Valores
+                  </button>
+                </div>
+                <div class="pp-shift-box pp-shift-values mt-1">
+                  <div class="flex flex-row">
+                    <label class="pp-field w-26"><span>Valor (R$)</span><input id="shift-payment-value" type="text" aria-describedby="shift-payment-value-tip" /></label>
+                    <div class="pp-shift-stat"><span>Pago</span><strong id="shift-paid-total">R$ 0,00</strong></div>
+                    <span class="pp-tooltip pp-tooltip--start self-center">
+                      <button type="button" class="pp-tooltip__trigger" aria-label="Mais informações" aria-describedby="shift-payment-value-tip">
+                        <pp-icon type="tools" name="info" class="size-5" aria-hidden="true"></pp-icon>
+                      </button>
+                      <span role="tooltip" id="shift-payment-value-tip" class="pp-tooltip__bubble">Valor a ser pago pelo plantão na íntegra. É o mesmo campo Valor da aba Informações.</span>
+                    </span>
+                  </div>
+                  <div class="flex flex-row">
+                    <label class="pp-field w-30"><span>Configurado (R$)</span><input id="shift-configured-value" readonly /></label>
+                    <label class="pp-field w-30"><span>Bruto (R$)</span><input id="shift-gross-value" readonly /></label>
+                  </div>
+                </div>
+              </section>
+              <section class="pp-shift-section">
+                <div class="pp-shift-section-heading">
+                  <h3>Pagamentos</h3>
+                  <div class="pp-shift-paid -mt-2">
+                    <span id="shift-paid-label">Marcar como pago:</span>
+                    <span class="pp-tooltip pp-tooltip--end">
+                      <button type="button" class="pp-tooltip__trigger" aria-label="Mais informações" aria-describedby="shift-paid-tip">
+                        <pp-icon type="tools" name="info" class="size-5" aria-hidden="true"></pp-icon>
+                      </button>
+                      <span role="tooltip" id="shift-paid-tip" class="pp-tooltip__bubble">Marcado como pago, o saldo do plantão é zerado nos relatórios e as alterações podem ser bloqueadas. Lance antes os valores que foram pagos.</span>
+                    </span>
+                    <div class="pp-check-true-or-false py-0" role="radiogroup" aria-labelledby="shift-paid-label">
+                      <label><input type="radio" name="paid" value="sim" class="sr-only"
+                          aria-describedby="shift-paid-tip" /><span>Sim</span></label>
+                      <label>
+                        <input type="radio" name="paid" value="nao" class="sr-only" checked />
+                        <span>Não</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="pp-shift-box pp-shift-list overflow-x-auto mt-1">
+                  <table class="pp-shift-table pp-shift-payments">
+                    <thead>
+                      <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Pago (R$)</th>
+                        <th scope="col">Tipo de lançamento / Observação</th>
+                        <th scope="col"><span class="sr-only">Opções</span></th>
+                      </tr>
+                    </thead>
+                    <tbody id="shift-payments-body"></tbody>
+                  </table>
+                  <p id="shift-payments-empty" class="pp-shift-empty">Nenhum pagamento lançado.</p>
+                </div>
+                <button type="button" class="pp-btn pp-btn--outline mt-3 w-full" data-shift-add-payment>
+                  <pp-icon type="tools" name="add" class="size-5"></pp-icon>Adicionar pagamento
+                </button>
+              </section>
+            </div>
           </div>
         </div>
       </form>

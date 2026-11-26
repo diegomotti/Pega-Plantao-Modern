@@ -872,6 +872,14 @@
     "title": "type: services | icon: checkinUndone | filled: false | monochrome: false"
   },
   {
+    "file": "type-services--icon-checkinWaiting--filled-false--monochrome-false.svg",
+    "type": "services",
+    "icon": "checkinWaiting",
+    "filled": false,
+    "monochrome": false,
+    "title": "type: services | icon: checkinWaiting | filled: false | monochrome: false"
+  },
+  {
     "file": "type-services--icon-checkout--filled-false--monochrome-false.svg",
     "type": "services",
     "icon": "checkout",

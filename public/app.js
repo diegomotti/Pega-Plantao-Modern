@@ -210,6 +210,81 @@ document.addEventListener("keydown", (event) => {
   accountToggle?.focus();
 });
 
+/* ----------------------------------------------------------- dialog menu */
+/* pp-dialog-menu: painel flutuante ligado a um gatilho.
+   <div class="pp-dialog-menu-anchor" data-dialog-menu>
+     <button data-dialog-menu-trigger aria-expanded="false" aria-controls="…">
+     <div id="…" class="pp-dialog-menu" role="dialog" hidden>…</div>
+   </div>
+   Mouse: abre ao passar (com pequeno atraso) e fecha ao sair. Clique fixa o
+   painel aberto; clicar de novo, clicar fora ou Esc fecha. Teclado: Enter/Espaço
+   abre e leva o foco ao primeiro campo. */
+const DIALOG_MENU_OPEN_DELAY = 150;
+const DIALOG_MENU_CLOSE_DELAY = 250;
+
+function setupDialogMenu(root) {
+  const trigger = root.querySelector("[data-dialog-menu-trigger]");
+  const menu = root.querySelector(".pp-dialog-menu");
+  if (!trigger || !menu) return;
+  let timer;
+  let pinned = false;
+
+  const isOpen = () => !menu.hidden;
+  const setOpen = (open) => {
+    clearTimeout(timer);
+    if (!open && menu.contains(document.activeElement)) trigger.focus({ preventScroll: true });
+    menu.hidden = !open;
+    trigger.setAttribute("aria-expanded", String(open));
+    if (!open) pinned = false;
+  };
+  const setOpenLater = (open, delay) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => setOpen(open), delay);
+  };
+  /* Não fecha enquanto uma lista de select do painel estiver aberta. */
+  const isBusy = () => Boolean(menu.querySelector(".pp-select-menu:not([hidden])"));
+
+  root.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "mouse") setOpenLater(true, DIALOG_MENU_OPEN_DELAY);
+  });
+  root.addEventListener("pointerleave", (event) => {
+    if (event.pointerType !== "mouse" || pinned || isBusy()) return;
+    setOpenLater(false, DIALOG_MENU_CLOSE_DELAY);
+  });
+
+  trigger.addEventListener("click", (event) => {
+    clearTimeout(timer);
+    if (isOpen() && !pinned && event.detail > 0) {
+      pinned = true;
+      return;
+    }
+    const open = !isOpen();
+    setOpen(open);
+    pinned = open;
+    if (open && event.detail === 0) {
+      menu.querySelector("button, input:not(.sr-only), [tabindex]:not([tabindex='-1']), input")?.focus();
+    }
+  });
+
+  /* Captura: se uma lista de select estiver aberta, o Esc fecha só ela. */
+  root.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !isOpen()) return;
+    if (menu.querySelector(".pp-select-menu:not([hidden])")) return;
+    event.stopPropagation();
+    setOpen(false);
+    trigger.focus();
+  }, true);
+
+  document.addEventListener("pointerdown", (event) => {
+    if (isOpen() && event.target instanceof Node && !root.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener("focusin", (event) => {
+    if (isOpen() && event.target instanceof Node && !root.contains(event.target)) setOpen(false);
+  });
+}
+
+document.querySelectorAll("[data-dialog-menu]").forEach(setupDialogMenu);
+
 /* ------------------------------------------------------------ rail menus */
 const rail = document.querySelector('nav[aria-label="Módulos"]');
 const railToggles = rail?.querySelectorAll("[data-rail-toggle]");
@@ -298,6 +373,7 @@ document.addEventListener("focusin", (event) => {
 });
 
 rail?.addEventListener("scroll", closeRailMenus);
+window.addEventListener("scroll", closeRailMenus, { passive: true });
 window.addEventListener("resize", closeRailMenus);
 
 /* Copia a navegação de ajustes para o disclosure de telas pequenas. */
@@ -431,8 +507,12 @@ function updatePreferenceSection() {
   }
 }
 
-document.querySelector("[data-save-other]")?.addEventListener("click", () => {
-  showToast("Preferências salvas com sucesso.");
+/* Um único "Salvar Preferências" para todas as abas: envia o formulário da
+   aba aberta (a validação e o salvamento continuam no submit de cada um). */
+document.querySelector("[data-save-preferences]")?.addEventListener("click", () => {
+  const panel = [form, ...preferenceForms].find((item) => item instanceof HTMLFormElement && !item.hidden);
+  if (panel) panel.requestSubmit();
+  else showToast("Preferências salvas com sucesso.");
 });
 
 window.addEventListener("hashchange", updatePreferenceSection);
@@ -530,6 +610,7 @@ document.querySelectorAll("#prefs-form .pp-card, [data-preference-tab] .pp-card"
   /* Só conta os controles do próprio cartão: os de um grupo dependente
      aninhado pertencem ao cartão interno, não a ele. */
   const controls = Array.from(card.querySelectorAll("input, select, textarea, button, a")).filter((control) => {
+    if (control.matches("[data-card-expand]")) return false;
     const group = control.closest("[data-dependent-fields]");
     return !group || !card.contains(group);
   });
@@ -542,6 +623,8 @@ document.querySelectorAll("#prefs-form .pp-card, [data-preference-tab] .pp-card"
     /* Cliques nas opções aninhadas pertencem a elas, não ao cartão pai. */
     const dependent = event.target.closest("[data-dependent-fields]");
     if (dependent && card.contains(dependent)) return;
+    /* No cartão empilhado (.pp-card--stack) só a linha do checkbox alterna. */
+    if (card.classList.contains("pp-card--stack") && !event.target.closest(".pp-card__row")) return;
     if (event.target.closest("label, input, button, a, select, textarea") || input.matches(":disabled")) return;
     if (window.getSelection()?.toString()) return;
     input.focus();
@@ -573,6 +656,56 @@ preferenceForms.forEach((panel) => {
   });
 });
 
+/* Cartão empilhado (.pp-card--stack): a seta [data-card-expand] ao lado do
+   checkbox recolhe/expande as opções. Marcar o cartão sempre as expande. */
+function setCardExpanded(card, expanded) {
+  card.toggleAttribute("data-collapsed", !expanded);
+  const button = card.querySelector(":scope > .pp-card__row [data-card-expand]");
+  if (!button) return;
+  const label = expanded ? "Recolher opções" : "Expandir opções";
+  button.setAttribute("aria-expanded", String(expanded));
+  button.setAttribute("aria-label", label);
+  button.title = label;
+}
+
+document.querySelectorAll(".pp-card--stack").forEach((card) => {
+  const button = card.querySelector(":scope > .pp-card__row [data-card-expand]");
+  const master = card.querySelector(":scope > .pp-card__row [data-master-toggle]");
+  if (!button) return;
+  button.addEventListener("click", () => setCardExpanded(card, card.hasAttribute("data-collapsed")));
+  master?.addEventListener("change", () => {
+    if (master.checked) setCardExpanded(card, true);
+  });
+});
+
+/* --------------------------------------------------------------- tooltip */
+/* Esc fecha o tooltip aberto (sem fechar o modal por trás); ele volta a
+   aparecer quando o mouse sai e entra de novo, ou o foco muda. */
+document.addEventListener(
+  "keydown",
+  (event) => {
+    if (event.key !== "Escape") return;
+    const open = Array.from(document.querySelectorAll(".pp-tooltip")).find(
+      (tooltip) => !tooltip.hasAttribute("data-tooltip-dismissed") && (tooltip.matches(":hover") || tooltip.matches(":has(:focus-visible)"))
+    );
+    if (!open) return;
+    event.preventDefault();
+    event.stopPropagation();
+    open.setAttribute("data-tooltip-dismissed", "");
+  },
+  true
+);
+["pointerleave", "focusout"].forEach((type) => {
+  document.addEventListener(
+    type,
+    (event) => {
+      const tooltip = event.target instanceof Element ? event.target.closest(".pp-tooltip") : null;
+      if (tooltip && (type === "focusout" || event.target === tooltip)) tooltip.removeAttribute("data-tooltip-dismissed");
+    },
+    true
+  );
+});
+
 /* ---------------------------------------------------------------- select */
 /* O <select> nativo continua guardando o valor (form + localStorage); a lista
    aberta é um listbox próprio, para seguir o desenho do Design System. */
@@ -584,24 +717,69 @@ function setupSelect(root) {
 
   const select = root.querySelector("select");
   const trigger = root.querySelector("[data-select-trigger]");
-  const menu = root.querySelector("[data-select-menu]");
+  let menu = root.querySelector("[data-select-menu]");
   const valueLabel = root.querySelector("[data-select-value]");
   const chevron = root.querySelector("[data-select-chevron]");
 
   if (!(select instanceof HTMLSelectElement) || !(trigger instanceof HTMLButtonElement) || !(menu instanceof HTMLElement)) return null;
 
-  const options = () => Array.from(menu.querySelectorAll('[role="option"]'));
+  /* A lista aberta ganha um campo de busca no topo: o listbox (<ul>) vai para
+     dentro de um painel (.pp-select-menu) junto com o campo e o "sem resultado". */
+  const list = menu.matches('[role="listbox"]') ? menu : menu.querySelector('[role="listbox"]');
+  if (!(list instanceof HTMLElement)) return null;
+  if (list === menu) {
+    const panel = document.createElement("div");
+    panel.className = "pp-select-menu";
+    panel.dataset.selectMenu = "";
+    panel.hidden = true;
+    list.before(panel);
+    list.className = "pp-select-list";
+    delete list.dataset.selectMenu;
+    list.hidden = false;
+    menu = panel;
+  }
+  const search = document.createElement("input");
+  search.type = "search";
+  search.className = "pp-select-search";
+  search.placeholder = "Buscar";
+  search.autocomplete = "off";
+  search.setAttribute("aria-label", "Filtrar opções");
+  search.setAttribute("aria-controls", list.id);
+  const empty = document.createElement("p");
+  empty.className = "pp-select-empty";
+  empty.textContent = "Nenhum resultado encontrado.";
+  empty.hidden = true;
+  menu.replaceChildren(search, list, empty);
+
+  const options = () => Array.from(list.querySelectorAll('[role="option"]'));
+  const visibleOptions = () => options().filter((item) => !item.hidden && item.getAttribute("aria-disabled") !== "true");
+  const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   let active = -1;
+
+  const filter = () => {
+    const term = normalize(search.value.trim());
+    let count = 0;
+    options().forEach((item) => {
+      const match = !term || normalize(item.textContent).includes(term);
+      item.hidden = !match;
+      if (match) count += 1;
+    });
+    empty.hidden = count > 0;
+    active = -1;
+  };
+  search.addEventListener("input", filter);
 
   const sync = () => {
     const option = select.selectedOptions[0];
     if (valueLabel) valueLabel.textContent = option ? option.textContent.trim() : "";
+    const dot = root.querySelector("[data-select-dot]");
+    if (dot instanceof HTMLElement) dot.style.backgroundColor = option?.dataset.color || "transparent";
     trigger.disabled = select.matches(":disabled");
     options().forEach((item) => item.setAttribute("aria-selected", String(Number(item.dataset.index) === select.selectedIndex)));
   };
 
   const build = () => {
-    menu.replaceChildren(
+    list.replaceChildren(
       ...Array.from(select.options).map((option, index) => {
         const item = document.createElement("li");
         item.className = "pp-select-option";
@@ -612,13 +790,20 @@ function setupSelect(root) {
         item.setAttribute("aria-selected", "false");
         if (option.disabled || option.parentElement?.disabled) item.setAttribute("aria-disabled", "true");
         item.textContent = option.textContent.trim();
+        if (option.dataset.color) {
+          const dot = document.createElement("span");
+          dot.className = "pp-select-dot";
+          dot.style.backgroundColor = option.dataset.color;
+          dot.setAttribute("aria-hidden", "true");
+          item.prepend(dot);
+        }
         return item;
       }),
     );
   };
 
   const setActive = (index) => {
-    const items = options().filter((item) => item.getAttribute("aria-disabled") !== "true");
+    const items = visibleOptions();
     if (items.length === 0) return;
     active = (index + items.length) % items.length;
     items[active].focus();
@@ -629,6 +814,8 @@ function setupSelect(root) {
     openedSelect?.close();
     build();
     sync();
+    search.value = "";
+    empty.hidden = true;
     menu.hidden = false;
     menu.classList.remove("pp-select-menu--above", "pp-select-menu--right");
     const menuBounds = menu.getBoundingClientRect();
@@ -644,8 +831,11 @@ function setupSelect(root) {
     trigger.setAttribute("aria-expanded", "true");
     chevron?.classList.add("rotate-180");
     openedSelect = { root, close };
-    const enabled = options().filter((item) => item.getAttribute("aria-disabled") !== "true");
-    setActive(Math.max(0, enabled.findIndex((item) => Number(item.dataset.index) === select.selectedIndex)));
+    const enabled = visibleOptions();
+    const selected = enabled.find((item) => Number(item.dataset.index) === select.selectedIndex);
+    selected?.scrollIntoView({ block: "nearest" });
+    active = enabled.indexOf(selected);
+    search.focus();
   };
 
   const close = ({ focus = false } = {}) => {
@@ -687,7 +877,47 @@ function setupSelect(root) {
   });
 
   menu.addEventListener("keydown", (event) => {
-    const items = options().filter((item) => item.getAttribute("aria-disabled") !== "true");
+    const items = visibleOptions();
+
+    /* No campo de busca: setas vão para a lista, Enter escolhe a 1ª opção. */
+    if (event.target === search) {
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+          setActive(0);
+          break;
+        case "ArrowUp":
+          event.preventDefault();
+          setActive(items.length - 1);
+          break;
+        case "Enter":
+          event.preventDefault();
+          choose(items[0]);
+          break;
+        case "Escape":
+          event.preventDefault();
+          close({ focus: true });
+          break;
+        case "Tab":
+          close();
+          break;
+        default:
+          break;
+      }
+      return;
+    }
+
+    /* Na lista: digitar volta para a busca; seta acima na 1ª opção também. */
+    if (event.key.length === 1 && event.key !== " " && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      search.focus();
+      return;
+    }
+    if (event.key === "ArrowUp" && active <= 0) {
+      event.preventDefault();
+      active = -1;
+      search.focus();
+      return;
+    }
     if (items.length === 0) return;
 
     switch (event.key) {
@@ -792,6 +1022,16 @@ function enhanceSelect(select) {
   trigger.setAttribute("aria-expanded", "false");
   trigger.setAttribute("aria-controls", menuId);
   trigger.setAttribute("aria-labelledby", `${accessibleLabel.id} ${valueId}`);
+  /* Variante "colorfield" (Lumen): bolinha com a cor da opção antes do valor.
+     Use <select data-color-select> e data-color="…" em cada <option>. */
+  if (select.hasAttribute("data-color-select")) {
+    trigger.classList.add("pp-select--color");
+    const dot = document.createElement("span");
+    dot.className = "pp-select-dot";
+    dot.dataset.selectDot = "";
+    dot.setAttribute("aria-hidden", "true");
+    trigger.append(dot);
+  }
   const value = document.createElement("span");
   value.id = valueId;
   value.dataset.selectValue = "";
