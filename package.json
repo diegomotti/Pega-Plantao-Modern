@@ -5,10 +5,10 @@
   "type": "module",
   "description": "Pega Plantão - Modern (HTML + Tailwind CSS)",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/input.css -o ./public/styles.css --minify",
-    "watch:css": "tailwindcss -i ./src/input.css -o ./public/styles.css --watch",
+    "build:css": "node node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/input.css -o ./public/styles.css --minify",
+    "watch:css": "node node_modules/@tailwindcss/cli/dist/index.mjs -i ./src/input.css -o ./public/styles.css --watch",
     "start": "node server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm:start\" \"npm:watch:css\"",
+    "dev": "node node_modules/concurrently/dist/bin/index.js --kill-others-on-fail \"npm:start\" \"npm:watch:css\"",
     "sync:tokens": "node scripts/sync-tokens.mjs",
     "build": "npm run sync:tokens && npm run build:css"
   },
